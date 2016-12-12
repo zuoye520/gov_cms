@@ -1,0 +1,796 @@
+@charset "utf-8";
+
+// @Createtime 2016-04-01
+
+
+$font-main-color:#313131;/*基本字体颜色*/
+$base-font-size:20px;/*基本字体大小*/
+$color-bg: #eee;//背景颜色
+ //em px转换 start
+  //pxToem(12px)为0.6rem 
+  //  pxToem(12px,24px)为0.5rem
+@function del-units($number){
+    @return $number / ($number * 0 + 1);
+}
+
+@function px-em($target-size,$context:$base-font-size){
+    @if not unitless($target-size){     
+        $target-size: del-units($target-size);    }
+    @if not unitless($context){
+        $context: del-units($context);
+    }
+    @return ($target-size /2/ $context) * 1rem;
+}
+
+
+
+// reset
+// ==========================================================================
+
+html {
+    -webkit-text-size-adjust: 100%; 
+    text-size-adjust:100%;
+    font-size: $base-font-size;
+    background: $color-bg;
+}
+
+body {
+    -webkit-overflow-scrolling: touch;
+    font-family: "Helvetica Neue", Helvetica, "microsoft yahei", "Roboto", sans-serif;
+    font-size: px-em(24px);
+    background: $color-bg;
+    color: $font-main-color
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+audio,
+canvas,
+progress,
+video {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+/**
+ * Add the correct display in IE 10-.
+ * 1. Add the correct display in IE.
+ */
+[hidden],
+template/* 1 */ {
+    display: none;
+}
+
+/**
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ */
+
+a {
+  background-color: transparent; /* 1 */
+  -webkit-text-decoration-skip: objects; /* 2 */
+}
+
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+  &:active,&:hover {
+    /*
+     * Remove the outline on focused links when they are also active or hovered
+     * in all browsers (opinionated).
+     */
+    outline: 0;
+    outline-width: 0;
+  }
+}
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+/**
+ * 1. Remove the bottom border in Firefox 39-.
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+b,
+strong {
+    font-weight: 700
+}
+
+dfn {
+    font-style: italic
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+mark {
+    color: #000;
+    background: #ff0
+}
+
+img {
+    border: 0
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+hr {
+    height: 0;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box
+}
+
+pre {
+    overflow: auto
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, monospace
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit
+}
+
+button {
+    overflow: visible
+}
+
+button,
+select {
+    text-transform: none;
+    -webkit-appearance: none;
+    appearance: none
+}
+
+button,
+html input[type=button],
+input[type=reset],
+input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+
+button[disabled],
+html input[disabled] {
+    cursor: default
+}
+
+input,
+textarea {
+    line-height: normal;
+    -webkit-appearance: none
+}
+
+input[type=checkbox],
+input[type=radio] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none!important;
+    margin: 0
+}
+input[type="search"] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-appearance: none;
+}
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+fieldset {
+    margin: 0 2px;
+    border: 1px solid silver
+}
+input[type=text],
+textarea {
+    border: 0
+}
+
+legend {
+    padding: 0;
+    border: 0
+}
+
+textarea {
+    overflow: auto
+}
+
+optgroup {
+    font-weight: 700
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse
+}
+td,
+th {
+  padding: 0;
+}
+
+
+a,
+img {
+    -webkit-touch-callout: none
+}
+
+cite,
+em,
+s,
+i,
+b {
+    font-style: normal
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    font-size: px-em(24px);
+    margin: 0;
+    line-height: none
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent
+}
+
+a {
+    text-decoration: none
+}
+/*a标签选择效果*/
+a:active {
+    opacity: .8;
+    transition: all 300ms ease;
+}
+
+
+
+// 媒体查询
+// ==========================================================================
+
+.w640 {
+    margin: auto;
+    max-width: 640px;
+    min-height: 450px
+}
+//iphone 6
+@media only screen and (min-width:375px) and (max-width:413px) {
+    html {
+        font-size: 24px!important
+    }
+    .w640 {
+        min-height: 580px!important
+    }
+}
+//iphone 6+
+@media only screen and (min-width:414px) and (max-width:639px) {
+    html {
+        font-size: 26px!important
+    }
+    .w640 {
+        min-height: 610px!important
+    }
+}
+//大于iphone 6+
+@media only screen and (min-width:640px) {
+    html {
+        font-size: 28px!important
+    }
+    .w640 {
+        min-height: 900px!important
+    }
+}
+
+
+
+// box
+// ==========================================================================
+
+.box {
+    width: 100%;
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    box-orient: horizontal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -ms-flex-direction: row
+}
+
+.box-flex {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1
+}
+
+.box-align {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -moz-box-pack: center;
+    -moz-box-align: center;
+    -ms-flex-pack: center;
+    -ms-flex-align: center
+}
+
+.box-center-flex {
+    width: 100%;
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    box-orient: horizontal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -ms-flex-direction: row;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -moz-box-pack: center;
+    -moz-box-align: center;
+    -ms-flex-pack: center;
+    -ms-flex-align: center
+}
+
+// border-radius
+// ==========================================================================
+
+.b-radius-50 {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%
+}
+
+.b-radius-5 {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px
+}
+
+.b-radius-3 {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px
+}
+
+// 浮动，显示隐藏，文本对齐方式
+// ==========================================================================
+body .fn-clear:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+}
+
+body .fn-clear {
+    clear: both;
+    zoom: 1
+}
+
+body .fn-hide {
+    display: none
+}
+
+body .fn-show {
+    display: block
+}
+
+body .fn-v-hide {
+    visibility: hidden
+}
+
+body .fn-v-show {
+    visibility: visible
+}
+
+body .fn-left,
+body .fn-right {
+    display: inline;
+}
+
+body .fn-left {
+    float: left
+}
+
+body .fn-right {
+    float: right
+}
+
+body .text-right {
+   text-align:right;
+}
+
+body .text-left {
+   text-align:left;
+}
+
+body .text-center {
+   text-align:center;
+}
+
+// padding-margin
+// ==========================================================================
+
+.p-5 {
+    padding: 5px
+}
+
+.p-10 {
+    padding: 10px
+}
+
+.p-15 {
+    padding: 15px
+}
+
+.p-20 {
+    padding: 20px
+}
+
+.p-30 {
+    padding: 30px
+}
+.p-t-5 {
+    padding-top: 5px
+}
+
+.p-t-10 {
+    padding-top: 10px
+}
+
+.p-t-15 {
+    padding-top: 15px
+}
+
+.p-t-20 {
+    padding-top: 20px
+}
+
+.p-t-30 {
+    padding-top: 30px
+}
+
+.p-b-5{
+    padding-bottom: 5px
+}
+.p-b-10 {
+    padding-bottom: 10px
+}
+.p-b-15 {
+    padding-bottom: 15px
+}
+.p-b-20 {
+    padding-bottom: 10px
+}
+.p-b-30 {
+    padding-bottom: 30px
+}
+
+.p-l-5 {
+    padding-left: 5px
+}
+
+.p-l-10 {
+    padding-left: 10px
+}
+
+.p-l-15 {
+    padding-left: 15px
+}
+
+.p-l-20 {
+    padding-left: 20px
+}
+
+.p-l-30 {
+    padding-left: 30px
+}
+
+.p-r-5 {
+    padding-right: 5px
+}
+
+.p-r-10 {
+    padding-right: 10px
+}
+
+.p-r-15 {
+    padding-right: 15px
+}
+
+.p-r-20 {
+    padding-right: 20px
+}
+
+.p-r-30 {
+    padding-right: 30px
+}
+
+
+.m-5 {
+    margin: 5px
+}
+
+.m-10 {
+    margin: 10px
+}
+
+.m-15 {
+    margin: 15px
+}
+
+.m-20 {
+    margin: 20px
+}
+
+.m-30 {
+    margin: 30px
+}
+.m-t-5 {
+    margin-top: 5px
+}
+
+.m-t-10 {
+    margin-top: 10px
+}
+
+.m-t-15 {
+    margin-top: 15px
+}
+
+.m-t-20 {
+    margin-top: 20px
+}
+
+.m-t-30 {
+    margin-top: 30px
+}
+
+.m-b-5{
+    margin-bottom: 5px
+}
+.m-b-10 {
+    margin-bottom: 10px
+}
+.m-b-15 {
+    margin-bottom: 15px
+}
+.m-b-20 {
+    margin-bottom: 10px
+}
+.m-b-30 {
+    margin-bottom: 30px
+}
+
+.m-l-5 {
+    margin-left: 5px
+}
+
+.m-l-10 {
+    margin-left: 10px
+}
+
+.m-l-15 {
+    margin-left: 15px
+}
+
+.m-l-20 {
+    margin-left: 20px
+}
+
+.m-l-30 {
+    margin-left: 30px
+}
+
+.m-r-5 {
+    margin-right: 5px
+}
+
+.m-r-10 {
+    margin-right: 10px
+}
+
+.m-r-15 {
+    margin-right: 15px
+}
+
+.m-r-20 {
+    margin-right: 20px
+}
+
+.m-r-30 {
+    margin-right: 30px
+}
+
+// 内容超过1行用...代替
+
+.text-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-all
+}
+
+// 内容超过2行用...代替
+
+.text-ellipsis-2{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+// 内容超过3行用...代替
+
+.text-ellipsis-3{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+
+
+//自动换行
+.auto-wrap{
+    word-wrap: break-word;
+    white-space: normal;
+    word-break: break-all;
+}
+
+//@mixin
+
+//加浏览器前缀
+@mixin add-brower($property,$value){
+    -webkit-#{$property}: $value;
+       -moz-#{$property}: $value;
+        -ms-#{$property}: $value;
+            #{$property}: $value;
+}
+
+
+//flex弹性布局==========================================
+//块级元素
+.fx{
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+}
+//行内元素
+.fx-inline{
+    display: inline-flex;
+    display: -ms-inline-flexbox;
+    display: -webkit-inline-flex;
+}
+//上下左右居中
+.fx-align{
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+}
+//可换行
+.fx-wrap{
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+//占满一行
+.fx-fill{
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+}
+
+//在交叉轴（Y轴）上的对齐方式===================================
+//下对齐
+.fx-y-down{
+    align-items: flex-end;
+    -webkit-align-items: flex-end;
+}
+//居中对齐
+.fx-y-center{
+    align-items: center;
+    -webkit-align-items: center;
+}
+//拉伸对齐
+.fx-y-stretch{
+    align-items: stretch;
+    -webkit-align-items: stretch;
+}
+
+//在主轴（X轴）上的对齐方式=====================================
+//居中对齐
+.fx-x-center{
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+//右对齐
+.fx-x-right{
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+}
+//两端对齐
+.fx-x-between{
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+//每个元素中间的间距相等
+.fx-x-around{
+    justify-content: space-around;
+    -webkit-justify-content: space-around;
+}
