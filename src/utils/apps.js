@@ -111,6 +111,13 @@ const request = function(url, data, config, type) {
 	});
 	p.then(function(res) {
 		if(parseInt(res.status) != 0) {
+			switch (res.status){
+				case 500:
+					alert('服务器开小差咯！');
+					break;
+				default:
+					break;
+			}
 			rp.ef({
 				code: res.status,
 				errorMsg: res.data,

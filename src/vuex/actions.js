@@ -11,7 +11,7 @@ import * as types from './mutation_types.js'
 /*
  * @DESC:api接口
  */
-const 	GET_PIC_LIST = "xhlc/api/main/";//获取首页图片信息/xhlc/api/main/:type
+const 	GET_PIC_LIST = "xhlc/api/m/";//获取首页图片信息/xhlc/api/m/:type
 const 	GET_ARTICLE_LIST = "xhlc/api/a/list/";//获取文章列表/xhlc/api/a/list/:category
 const 	GET_ARTICLE_DETAIL = "xhlc/api/a/";//获取文章详情/xhlc/api/a/:id
 const 	GET_M_E_LIST = "xhlc/api/m/e/list";//获取诚信等级公示
@@ -28,7 +28,20 @@ export const getPicListAction = ({ dispatch, state },params={}) => {
 	return new Promise((resolve, reject) =>{
 		apps.get(GET_PIC_LIST+params.type).success((data)=>{
 			apps.log(data);
-			dispatch(types.GET_PIC_LIST,data);
+			dispatch(types.GET_PIC_LIST,data,params.type);
+//			switch (params.type){
+//				case 'Banner':
+//					dispatch(types.GET_BANNER_LIST,data);
+//				break;
+//				case 'EnterpriseList':
+//					dispatch(types.GET_ENTERPRISE_LIST,data);
+//				break;
+//				case 'ProjectList':
+//					dispatch(types.GET_PROJECT_LIST,data);
+//				break;
+//				default:
+//				break;
+//			}
 			resolve("ok");
 	    }).businessError(900,(msg, data)=>{
         		reject(msg);
@@ -44,7 +57,7 @@ export const getPicListAction = ({ dispatch, state },params={}) => {
  */
 export const getArticleListAction = ({ dispatch, state },params={}) => {
 	return new Promise((resolve, reject) =>{
-		apps.get(GET_ARTICLE_LIST+params.category).success((data)=>{
+		apps.get(GET_ARTICLE_LIST+params.category,params).success((data)=>{
 			apps.log(data);
 			dispatch(types.GET_ARTICLE_LIST,data);
 			resolve("ok");

@@ -2,7 +2,23 @@
 	<div class="index">
 		<section class="banner-cont fn-clear m-t-15">
 			<div class="left-banner fn-left">
-				<img src="../assets/images/banner.jpg"/>
+				<!-- Swiper -->
+			    <div class="swiper-container">
+			        <div class="swiper-wrapper">
+			            <div class="swiper-slide" v-for="item in bannerList"><img :src="item.picUrl"/></div>
+			            <!--<div class="swiper-slide">Slide 2</div>
+			            <div class="swiper-slide">Slide 3</div>
+			            <div class="swiper-slide">Slide 4</div>
+			            <div class="swiper-slide">Slide 5</div>
+			            <div class="swiper-slide">Slide 6</div>
+			            <div class="swiper-slide">Slide 7</div>
+			            <div class="swiper-slide">Slide 8</div>
+			            <div class="swiper-slide">Slide 9</div>
+			            <div class="swiper-slide">Slide 10</div>-->
+			        </div>
+			        <!-- Add Pagination -->
+			        <div class="swiper-pagination"></div>
+			    </div>
 			</div>
 			<div class="right-query fn-right">
 				<div class="fn-clear">
@@ -196,52 +212,28 @@
 			<div class="building-main fn-left">
 				<h2>诚信项目展示</h2>
 				<div>
-					<a href="javascript:;">
-						<img src="../assets/images/building.jpg"/>
-						<p class="building-name">「滨江壹号」70-180平滨江大宅 首发面市</p>
+					<a>
+						<img :src="projectList[0]?projectList[0].picUrl:''"/>
+						<p class="building-name">{{projectList[0]?projectList[0].title:''}}</p>
 					</a>
 				</div>
 			</div>
 			<div class="building-secondary fn-right m-b-15">
 				<ul class="fn-clear">
-					<li class="fn-left">
-						<a href="javascript:;">
-							<img src="../assets/images/building.jpg"/>
-							<p class="building-name">恒大照母山</p>
-						</a>
-					</li>
-					<li class="fn-left">
-						<a href="javascript:;">
-							<img src="../assets/images/building.jpg"/>
-							<p class="building-name">恒大照母山</p>
-						</a>
-					</li>
-					<li class="fn-left">
-						<a href="javascript:;">
-							<img src="../assets/images/building.jpg"/>
-							<p class="building-name">恒大照母山</p>
+					<li class="fn-left" v-for="item in projectListOne" >
+						<a>
+							<img :src="item.picUrl"/>
+							<p class="building-name">{{item.title}}</p>
 						</a>
 					</li>
 				</ul>
 			</div>
 			<div class="building-secondary fn-right">
 				<ul class="fn-clear">
-					<li class="fn-left">
-						<a href="javascript:;">
-							<img src="../assets/images/building.jpg"/>
-							<p class="building-name">恒大照母山</p>
-						</a>
-					</li>
-					<li class="fn-left">
-						<a href="javascript:;">
-							<img src="../assets/images/building.jpg"/>
-							<p class="building-name">恒大照母山</p>
-						</a>
-					</li>
-					<li class="fn-left">
-						<a href="javascript:;">
-							<img src="../assets/images/building.jpg"/>
-							<p class="building-name">恒大照母山</p>
+					<li class="fn-left" v-for="item in projectListTwo" >
+						<a>
+							<img :src="item.picUrl"/>
+							<p class="building-name">{{item.title}}</p>
 						</a>
 					</li>
 				</ul>
@@ -251,14 +243,7 @@
 			<h3 class="fn-clear">诚信品牌<p class="fn-right"><a href="javascript:;">更多</a></p> </h3>
 			<div class="brand-list">
 				<ul class="fn-clear">
-					<li class="fn-left"><a href="javascript:;"><img src="../assets/images/brand1.jpg"/></a></li>
-					<li class="fn-left"><a href="javascript:;"><img src="../assets/images/login_bg.jpg"/></a></li>
-					<li class="fn-left"><a href="javascript:;"><img src="../assets/images/brand1.jpg"/></a></li>
-					<li class="fn-left"><a href="javascript:;"><img src="../assets/images/brand1.jpg"/></a></li>
-					<li class="fn-left"><a href="javascript:;"><img src="../assets/images/brand1.jpg"/></a></li>
-					<li class="fn-left"><a href="javascript:;"><img src="../assets/images/banner.jpg"/></a></li>
-					<li class="fn-left"><a href="javascript:;"><img src="../assets/images/logo.png"/></a></li>
-					<li class="fn-left"><a href="javascript:;"><img src="../assets/images/brand1.jpg"/></a></li>
+					<li class="fn-left" v-for="item in enterpriseLists"><a><img :src="item.picUrl"/></a></li>
 				</ul>
 			</div>
 		</section>
@@ -726,7 +711,8 @@
 <script>
 	import apps from "../utils/apps.js";
 	import {
-		getPicListAction
+		getPicListAction,
+		getArticleListAction
 	} from '../vuex/actions.js';
 	import Pages from "../components/Pages.vue";
 	import Gather from "../components/Gather.vue";
@@ -747,13 +733,29 @@
 		 */
 		data() {
 			return {
-				picListParams:{
-					type:'1'//type值为 Banner、EnterpriseList、ProjectList
+				xwdtParams:{//新闻动态
+					pageCount: 7,
+					pageIndex: 1,
+					category:2,
+					type:'XWDT'
 				},
-				pages :{
-					pageCount:10,//每页显示多少条
-					pageIndex:1,//当前第几页
-					total:100 //总条数
+				xwdtParams:{//新闻动态
+					pageCount: 7,
+					pageIndex: 1,
+					category:2,
+					type:'XWDT'
+				},
+				xwdtParams:{//新闻动态
+					pageCount: 7,
+					pageIndex: 1,
+					category:2,
+					type:'XWDT'
+				},
+				zcfgParams:{//政策法规
+					pageCount: 4,
+					pageIndex: 1,
+					category:2,
+					type:'ZCFG'
 				}
 			}
 		},
@@ -762,45 +764,54 @@
 		 */
 		vuex: {
 			getters: {
-				picList:(state)=> state.modules.picList,
+				bannerList:(state)=> state.modules.bannerList,//轮播列表
+				enterpriseList:(state)=> state.modules.enterpriseList,//诚信品牌列表
+				projectList:(state)=> state.modules.projectList,//项目列表
 			},
 			actions: {
-				getPicListAction
+				getPicListAction,
+				getArticleListAction
 			}
 		},
 		/*
 		 * 实例被创建后调用，但是还没有开始 DOM 编译
 		 */
 		ready(){
-			var mySwiper = new Swiper ('.swiper-container', {
-			    loop: true,
-			    // 如果需要分页器
-			    pagination: '.swiper-pagination',
-			    // 如果需要前进后退按钮
-			    nextButton: '.swiper-button-next',
-			    prevButton: '.swiper-button-prev',
-			  }) 	
+			var swiper = new Swiper('.swiper-container', {
+		        pagination: '.swiper-pagination',
+		        paginationClickable: true
+		    });
 		},
 		created() {
 			//获取首页图片信息Banner
-//			this.picListParams.type = 'Banner';
-			this.getPicListAction(this.picListParams).then((data)=>{
-				apps.log(data)
+			this.getPicListAction({
+				type: 'Banner'
+			}).then((data)=>{
+				apps.log('banner数据请求成功')
 			},(error)=>{
 				apps.log(error)
 			});
 			
 			//获取首页图片信息EnterpriseList
-//			this.picListParams.type = 'EnterpriseList';
-			this.getPicListAction(this.picListParams).then((data)=>{
-				apps.log(data)
+			this.getPicListAction({
+				type: 'EnterpriseList'
+			}).then((data)=>{
+				apps.log('诚信列表数据请求成功')
 			},(error)=>{
 				apps.log(error)
 			});
 			//获取首页图片信息ProjectList
-//			this.picListParams.type = 'ProjectList';
-			this.getPicListAction(this.picListParams).then((data)=>{
-				apps.log(data)
+			this.getPicListAction({
+				type: 'ProjectList'
+			}).then((data)=>{
+				apps.log('项目列表数据请求成功')
+			},(error)=>{
+				apps.log(error)
+			});
+			
+			//获取政策法规ZCFG(2,1,"政策法规")
+			this.getArticleListAction(this.zcfgParams).then((data)=>{
+				apps.log('政策法规数据请求成功')
 			},(error)=>{
 				apps.log(error)
 			});
@@ -812,7 +823,8 @@
 			handlePageClick(index){
 				apps.log(index);
 				this.pages.pageIndex = index;
-			}
+			},
+			
 		},
 		/*
 		 * 定义过滤器
@@ -823,7 +835,15 @@
 		 * 实例计算属性
 		 */
 		computed: {
-			
+			projectListOne(){
+				return this.projectList.slice(1, 4);
+			},
+			projectListTwo(){
+				return this.projectList.slice(4, 7);
+			},
+			enterpriseLists(){
+				return this.enterpriseList.slice(0, 7);
+			}
 		},
 		/*
 		 * 路由数据钩 参数发生变化这里被激活

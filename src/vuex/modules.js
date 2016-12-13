@@ -8,7 +8,9 @@ import * as types from './mutation_types.js'
 
 // 初始化state数据，尽可能在创建 store 时就初始化 state 所需要的所有属性
 const state = {
-	picList :[],
+	bannerList :[],//banner列表
+	enterpriseList :[],//诚信列表
+	projectList :[],//项目列表
 	articleList :[],
 	articleDetail:{},
 	meList:[],
@@ -21,8 +23,20 @@ const state = {
  * @DESC : mutations状态变更
  */
 const mutations = {
-	[types.GET_PIC_LIST](state, data) {
-		state.picList = data;
+	[types.GET_PIC_LIST](state, data, type) {
+		switch (type){
+			case 'Banner':
+				state.bannerList = data;
+			break;
+			case 'EnterpriseList':
+				state.enterpriseList = data;
+			break;
+			case 'ProjectList':
+				state.projectList = data;
+			break;
+			default:
+			break;
+		}
 	},
 	[types.GET_ARTICLE_LIST](state, data) {
 		state.articleList = data;

@@ -19,13 +19,13 @@ const mapObj = {
 			require(['./views/Index.vue'], resolve)
 		}
 	},
-	"/newsList" :{
+	"/newsList/:category" :{
 		name: 'newsList',
 		component(resolve) {
 			require(['./views/NewsList.vue'], resolve)
 		}
 	},
-	"/newsDetails" :{
+	"/newsDetails/:id" :{
 		name: 'newsDetails',
 		component(resolve) {
 			require(['./views/NewsDetails.vue'], resolve)
@@ -47,6 +47,12 @@ export default function(router) {
 	});
 	
 	router.afterEach((transition)=> {
-//		router.app.isHide = false;
+		//控制菜单状态
+		if(transition.to.name == 'newsList'){
+			router.app.menuActive = transition.to.params ? parseInt(transition.to.params.category) : 0;
+		}else{
+			router.app.menuActive = 0;
+		}
+		
 	})
 }

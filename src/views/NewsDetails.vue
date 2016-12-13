@@ -3,16 +3,13 @@
 		<l-location></l-location>
 		<section class="article">
 			<div class="title">
-				<h1>重庆市国土房管局关于举办第二届“国土房管青年论坛”主题活动的通知</h1>
-				<div class="time">2016-08-04</div>
+				<h1>{{articleDetail.title}}</h1>
+				<div class="time">{{articleDetail.publishTime | formatTime "yyyy-MM-dd"}}</div>
 			</div>
 			<div class="text-info">
-				重庆市国土房管局关于举办第二届“国土房管青年论坛”主题活动的通知
-				市地勘局、市住房公积金中心、重庆农村土地交易所、市公租房管理局、市国土房屋执法总队、市农村土地整治中心，
-				各区县（自治县）国土房管局、国土资源局、房管局，各分局，局属各单位，各学会、协会，机关各处室：
-				市地勘局、市住房公积金中心、重庆农村土地交易所、市公租房管理局、市国土房屋执法总队、市农村土地整治中心，
+				{{{articleDetail.content}}}
 			</div>
-			<div class="btn-close"><a href="javascript:;">关闭窗口</a></div>
+			<div class="btn-close"><a v-back-link>关闭窗口</a></div>
 		</section>
 	</div>
 </template>
@@ -64,8 +61,7 @@
 	import Location from "../components/Location.vue";
 	
 	import {
-		getBannerList,
-		getIndexGoodsList
+		getArticleDetailAction,
 	} from '../vuex/actions.js';
 	export default {
 		/*
@@ -79,6 +75,9 @@
 		 */
 		data() {
 			return {
+				params:{
+					id:1
+				}
 			}
 		},
 		/*
@@ -86,12 +85,10 @@
 		 */
 		vuex: {
 			getters: {
-				bannerList:(state)=> state.index.bannerList,
-				goodsList :(state)=> state.index.goodsList,
+				articleDetail:(state)=> state.modules.articleDetail,
 			},
 			actions: {
-				getBannerList,
-				getIndexGoodsList
+				getArticleDetailAction
 			}
 		},
 		/*
@@ -103,12 +100,12 @@
 		 * 处理事件
 		 */
 		methods: {
-
-		},
-		/*
-		 * 定义过滤器
-		 */
-		filters: {
+			//关闭当前窗口
+			handleWindowClose(){
+				window.opener=null;
+				window.open('','_self');
+				window.close();
+			}
 		},
 		/*
 		 * 实例计算属性
@@ -123,6 +120,13 @@
 			data({
 				to
 			}) {
+				this.params.id = to.params.id || 1;//文章id
+				
+				this.getArticleDetailAction(this.params).then((data) => {
+					apps.log('文章详情数据请求成功')
+				}, (error) => {
+					apps.log(error)
+				});
 			}
 		}
 	}
