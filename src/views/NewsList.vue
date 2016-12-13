@@ -8,12 +8,12 @@
 			<l-btns></l-btns>
 		</section>
 		<section class="right-side fn-left">
-			<l-location></l-location>
+			<l-location :type = "category"></l-location>
 			<div>
 				<dl>
 					<dt class="fn-clear"><span>【 序号 】</span><span class="p-l-30">【 标签 】</span><span class="fn-right p-r-20">【 时间 】</span></dt>
 					<dd v-for="item in articleList.list">
-						<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { id: item.id }}">
+						<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { category : category ,id: item.id }}">
 							<p class="num fn-left">{{$index+1}}</p>
 							<div class="content fn-left">
 								<h3>{{item.title}} </h3>
@@ -23,6 +23,7 @@
 						</a>
 					</dd>
 				</dl>
+				<p class="p-30" align="center" v-show ="articleList.list.length <= 0">暂无内容...</p>
 			</div>
 			<div class="pages">
 				<z-pages :pages-obj = "pagesObj"></z-pages>
@@ -154,6 +155,7 @@
 					pageCount: 10,
 					pageIndex: 1
 				},
+				category : 1
 			}
 		},
 		/*
@@ -206,6 +208,7 @@
 			}) {
 				apps.log(to.params.category);
 				this.params.category = to.params.category || 1; //category
+				this.category = parseInt(to.params.category);
 				this.getArticleListAction(this.params).then((data) => {
 					apps.log('列表数据请求成功')
 				}, (error) => {

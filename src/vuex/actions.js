@@ -59,7 +59,7 @@ export const getArticleListAction = ({ dispatch, state },params={}) => {
 	return new Promise((resolve, reject) =>{
 		apps.get(GET_ARTICLE_LIST+params.category,params).success((data)=>{
 			apps.log(data);
-			dispatch(types.GET_ARTICLE_LIST,data);
+			dispatch(types.GET_ARTICLE_LIST,data,params.type);
 			resolve("ok");
 	    }).businessError(900,(msg, data)=>{
         		reject(msg);
