@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<l-location></l-location>
+		<l-location :type = "category"></l-location>
 		<section class="article">
 			<div class="title">
 				<h1>{{articleDetail.title}}</h1>
@@ -9,7 +9,7 @@
 			<div class="text-info">
 				{{{articleDetail.content}}}
 			</div>
-			<div class="btn-close"><a v-back-link>关闭窗口</a></div>
+			<div class="btn-close"><a v-back-link>返回</a></div>
 		</section>
 	</div>
 </template>
@@ -77,7 +77,8 @@
 			return {
 				params:{
 					id:1
-				}
+				},
+				category : 99
 			}
 		},
 		/*
@@ -121,7 +122,8 @@
 				to
 			}) {
 				this.params.id = to.params.id || 1;//文章id
-				
+				this.category = parseInt(to.params.category) || 99;
+				apps.log(this.category);
 				this.getArticleDetailAction(this.params).then((data) => {
 					apps.log('文章详情数据请求成功')
 				}, (error) => {

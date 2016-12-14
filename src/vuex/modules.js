@@ -11,9 +11,17 @@ const state = {
 	bannerList :[],//banner列表
 	enterpriseList :[],//诚信列表
 	projectList :[],//项目列表
-	articleList :[],
-	articleDetail:{},
-	meList:[],
+	xwdtList:[],//新闻动态
+	xhdtList:[],//协会动态
+	xzcfList:[],//行政处罚
+	zcfgList:[],//政策法规
+	bgtList:[],//曝光台
+	hyzlList:[],//行业自律
+	hjxxList:[],//企业获奖信息
+	blxwList:[],//企业不良行为
+	articleList :[],//文章列表
+	articleDetail:{},//文章详情
+	meList:[],//诚信等级公示
 	maInfo:{},
 	sNew:null,
 	sFrom:{}
@@ -38,8 +46,36 @@ const mutations = {
 			break;
 		}
 	},
-	[types.GET_ARTICLE_LIST](state, data) {
-		state.articleList = data;
+	[types.GET_ARTICLE_LIST](state, data, type) {
+		switch (type){
+			case 'XWDT'://新闻动态
+				state.xwdtList = data.list;
+			break;
+			case 'XHDT'://协会动态
+				state.xhdtList = data.list;
+			break;
+			case 'XZCF'://行政处罚
+				state.xzcfList = data.list;
+			break;
+			case 'ZCFG'://政策法规
+				state.zcfgList = data.list;
+			break;
+			case 'BGT'://曝光台
+				state.bgtList = data.list;
+			break;
+			case 'HYZL'://行业自律
+				state.hyzlList = data.list;
+			break;
+			case 'HJXX'://企业获奖信息
+				state.hjxxList = data.list;
+			break;
+			case 'BLXW'://企业不良行为
+				state.blxwList = data.list;
+			break;
+			default:
+				state.articleList = data;
+			break;
+		}
 	},
 	[types.GET_ARTICLE_DETAIL](state, data) {
 		state.articleDetail = data;

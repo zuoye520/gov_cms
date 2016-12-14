@@ -6,15 +6,6 @@
 			    <div class="swiper-container">
 			        <div class="swiper-wrapper">
 			            <div class="swiper-slide" v-for="item in bannerList"><img :src="item.picUrl"/></div>
-			            <!--<div class="swiper-slide">Slide 2</div>
-			            <div class="swiper-slide">Slide 3</div>
-			            <div class="swiper-slide">Slide 4</div>
-			            <div class="swiper-slide">Slide 5</div>
-			            <div class="swiper-slide">Slide 6</div>
-			            <div class="swiper-slide">Slide 7</div>
-			            <div class="swiper-slide">Slide 8</div>
-			            <div class="swiper-slide">Slide 9</div>
-			            <div class="swiper-slide">Slide 10</div>-->
 			        </div>
 			        <!-- Add Pagination -->
 			        <div class="swiper-pagination"></div>
@@ -30,9 +21,9 @@
 					</div>
 					<div class="fn-right btns-list">
 						<ul>
-							<li><a href="javascript:;" class="on"><span class="icon-identity"></span><p>开发企业</p><p>信息身份查询</p></a></li>
-							<li><a href="javascript:;"><span class="icon-winning"></span><p>开发企业</p><p>获奖信息查询</p></a></li>
-							<li><a href="javascript:;"><span class="icon-bad"></span><p>开发企业</p><p>不良行为查询</p></a></li>
+							<li><a  class="on"><span class="icon-identity"></span><p>开发企业</p><p>信息身份查询</p></a></li>
+							<li><a ><span class="icon-winning"></span><p>开发企业</p><p>获奖信息查询</p></a></li>
+							<li><a ><span class="icon-bad"></span><p>开发企业</p><p>不良行为查询</p></a></li>
 						</ul>
 					</div>
 				</div>
@@ -46,67 +37,68 @@
 						<p class="m-b-15"><span>用户名：</span><input type="text" id="" value="" /></p>
 						<p><span>密<i></i>码：</span><input type="password" id="" value="" /></p>
 						<div class="btns fn-clear">
-							<a href="javascript:;" class="btn-register fn-left">注册</a>
-							<a href="javascript:;" class="btn-login fn-right">登录</a>
+							<a  class="btn-register fn-left">注册</a>
+							<a  class="btn-login fn-right">登录</a>
 						</div>
 					</div>
 				</div>
 				<l-gather></l-gather>
 				<div class="blue-fill">
-					<h3 class="fn-clear">政策法规<a href="javascript:;" class="fn-right">更多</a></h3>
+					<h3 class="fn-clear">政策法规<a v-link="{ name: 'newsList', params: { category: 2 }}" class="fn-right">更多</a></h3>
 					<div class="news-list">
 						<ul>
-							<li class="text-ellipsis-2"><a href="javascript:;">成都市关于促进我市房地产市场平稳健康发展若</a></li>
-							<li class="text-ellipsis-2"><a href="javascript:;">成都市关于促进我市房地产市场平稳健康发展若</a></li>
-							<li class="text-ellipsis-2"><a href="javascript:;">成都市关于促进我市房地产市场平稳健康发展若</a></li>
-							<li class="text-ellipsis-2"><a href="javascript:;">成都市关于促进我市房地产若</a></li>
+							<li v-for ="item in zcfgList" class="text-ellipsis-2"><a v-link="{ name: 'newsDetails', params: {category : 2, id: item.id }}">{{item.title}}</a></li>
+							<li v-show ="zcfgList.length <=0"><p align="center">暂无相关文章</p></li>
 						</ul>
 					</div>
 				</div>
 				<l-btns></l-btns>
 				<div class="blue-fill">
-					<h3 class="fn-clear">开发企业诚信信息<a href="javascript:;" class="fn-right">更多</a></h3>
+					<h3 class="fn-clear">开发企业诚信信息<a  class="fn-right">更多</a></h3>
 					<div class="news-list">
 						<ul>
 							<li class="text-ellipsis">
-								<a href="javascript:;">成都市关于促进我市房地产市场平稳健康发展我市房地产市场平发展我市房地产市场平稳健康发展若</a>
+								<a >成都市关于促进我市房地产市场平稳健康发展我市房地产市场平发展我市房地产市场平稳健康发展若</a>
 							</li>
-							<li class="text-ellipsis"><a href="javascript:;">成都市关于促进我市房地产市场平稳健康发展若</a></li>
-							<li class="text-ellipsis"><a href="javascript:;">成都市关于促进我市房地产市场平稳健康发展若</a></li>
-							<li class="text-ellipsis"><a href="javascript:;">成都市关于促进我市房地产市场平稳健康发展若</a></li>
-							<li class="text-ellipsis"><a href="javascript:;">成都市关于促进我市房地产市场平稳健康发展我市房地产市场平发展我市房地产市场平稳健康发展若</a></li>
+							<li class="text-ellipsis"><a >成都市关于促进我市房地产市场平稳健康发展若</a></li>
+							<li class="text-ellipsis"><a >成都市关于促进我市房地产市场平稳健康发展若</a></li>
+							<li class="text-ellipsis"><a >成都市关于促进我市房地产市场平稳健康发展若</a></li>
+							<li class="text-ellipsis"><a >成都市关于促进我市房地产市场平稳健康发展我市房地产市场平发展我市房地产市场平稳健康发展若</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="right-content fn-right">
 				<div class="blue-half news-cont">
-					<h3><a href="javascript:;" class="news on">新闻动态</a><a href="javascript:;" class="news">协会动态</a></h3>
+					<h3><a @click="handleTabNews(1)" :class="{'on':xwdtActive == 1}" class="news">新闻动态</a><a @click="handleTabNews(2)" :class="{'on':xwdtActive == 2}" class="news">协会动态</a></h3>
 					<div class="news-list">
 						<ul>
-							<li class="fn-clear">
+							<li class="fn-clear" v-for = "item in xwdtList" v-show="xwdtActive == 1">
 								<p class="text-ellipsis fn-left" >
-									<a href="javascript:;">地产市场平稳健康发展我市康发展市地产市场平稳健康发展我市康发展我市房场平稳健康发展我市房地产市</a>
+									<a  v-link="{ name: 'newsDetails', params: {category : 4, id: item.id }}">{{item.title}}</a>
 								</p>
-								<i class="fn-right">09-10</i>
+								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
-							<li class="fn-clear">
+							<li v-show ="xwdtList.length <=0 && xwdtActive == 1"><p align="center">暂无相关文章</p></li>
+							
+							<li class="fn-clear" v-for = "item in xhdtList" v-show="xwdtActive == 2">
 								<p class="text-ellipsis fn-left" >
-									<a href="javascript:;">地产市场平稳健康发展我市康发展市地产市场平稳健康发展我市康发展我市房场平稳健康发展我市房地产市</a>
+									<a  v-link="{ name: 'newsDetails', params: { category : 5, id: item.id }}">{{item.title}}</a>
 								</p>
-								<i class="fn-right">09-10</i>
+								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
+							<li v-show ="xwdtList.length <=0 && xwdtActive == 2"><p align="center">暂无相关文章</p></li>
 						</ul>
 					</div>
 				</div>
 				<div class="fn-clear">
 					<div class="blue-half honesty-cont fn-left">
-						<h3><a href="javascript:;" class="news on">开发企业诚信信息更新</a><a href="javascript:;" class="more">更多</a></h3>
+						<h3><a  class="news on">开发企业诚信信息更新</a><a  class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
 								<li class="fn-clear">
 									<p class="text-ellipsis fn-left" >
-										<a href="javascript:;">地产市场平稳健康发展我市康发展市地产市场平稳健康发展我市康发展我市房场平稳健康发展我市房地产市</a>
+										<a >地产市场平稳健康发展我市康发展市地产市场平稳健康发展我市康发展我市房场平稳健康发展我市房地产市</a>
 									</p>
 									<i class="fn-right">详情</i>
 								</li>
@@ -114,12 +106,12 @@
 						</div>
 					</div>
 					<div class="blue-half exposure-cont fn-right">
-						<h3><a href="javascript:;" class="news on">曝光台</a><a href="javascript:;" class="more">更多</a></h3>
+						<h3><a class="news on">曝光台</a><a v-link="{ name: 'newsList', params: { category: 7 }}" class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
-								<li class="fn-clear">
+								<li class="fn-clear" v-for = "item in bgtList">
 									<p class="text-ellipsis fn-left" >
-										<a href="javascript:;"><span>[房产曝光]</span>地产市场平稳健康发展我市康发展市地产市场平稳房场平稳健康发展我市房地产市</a>
+										<a v-link="{ name: 'newsDetails', params: {category : 7, id: item.id }}">{{item.title}}</a>
 									</p>
 								</li>
 							</ul>
@@ -127,7 +119,7 @@
 					</div>
 				</div>
 				<div class="blue-fill company-list">
-					<h3 class="fn-clear">开发企业诚信信息<a href="javascript:;" class="fn-right">更多</a></h3>
+					<h3 class="fn-clear">诚信等级公示<a  class="fn-right">更多</a></h3>
 					<div class="company-info ">
 						<ul>
 							<li class="fn-clear">
@@ -169,40 +161,46 @@
 					</div>
 				</div>
 				<div class="blue-half news-cont">
-					<h3><a href="javascript:;" class="news on">行政处罚</a><a href="javascript:;" class="news">行业自律</a></h3>
+					<h3><a  @click="handleTabPunish(1)" :class="{'on':xzcfActive == 1}" class="news">行政处罚</a><a @click="handleTabPunish(2)" :class="{'on':xzcfActive == 2}" class="news">行业自律</a></h3>
 					<div class="news-list">
 						<ul>
-							<li class="fn-clear">
+							<li class="fn-clear" v-for = "item in xzcfList" v-show="xzcfActive == 1">
 								<p class="text-ellipsis fn-left" >
-									<a href="javascript:;">地产市场平稳健康发展我市康发展市地产市场平稳健康发展我市康发展我市房场平稳健康发展我市房地产市</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 8, id: item.id }}">{{item.title}}</a>
 								</p>
-								<i class="fn-right">09-10</i>
+								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
-							<li class="fn-clear">
+							<li v-show ="xzcfList.length <=0 && xzcfActive == 1"><p align="center">暂无相关文章</p></li>
+							
+							<li class="fn-clear" v-for = "item in hyzlList" v-show="xzcfActive == 2">
 								<p class="text-ellipsis fn-left" >
-									<a href="javascript:;">地产市场平稳健康发展我市康发展市地产市场平稳健康发展我市康发展我市房场平稳健康发展我市房地产市</a>
+									<a v-link="{ name: 'newsDetails', params: { category : 9, id: item.id }}">{{item.title}}</a>
 								</p>
-								<i class="fn-right">09-10</i>
+								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
+							<li v-show ="hyzlList.length <=0 && xzcfActive == 2"><p align="center">暂无相关文章</p></li>
 						</ul>
 					</div>
 				</div>
 				<div class="blue-half winning-cont news-cont">
-					<h3><a href="javascript:;" class="news on">开发企业获奖信息</a><a href="javascript:;" class="news">开发企业不良行为信息</a></h3>
+					<h3><a @click="handleTabWinning(1)" :class="{'on':hjxxActive == 1}" class="news ">开发企业获奖信息</a><a @click="handleTabWinning(2)" :class="{'on':hjxxActive == 2}" class="news">开发企业不良行为信息</a></h3>
 					<div class="news-list">
 						<ul>
-							<li class="fn-clear">
+							<li class="fn-clear" v-for = "item in hjxxList" v-show="hjxxActive == 1">
 								<p class="text-ellipsis fn-left" >
-									<a href="javascript:;">地产市场平稳健康发展我市康发展市地产市场平稳健康发展我市康发展我市房场平稳健康发展我市房地产市</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 10,  id: item.id }}">{{item.title}}</a>
 								</p>
-								<i class="fn-right">09-10</i>
+								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
-							<li class="fn-clear">
+							<li v-show ="hjxxList.length <=0 && hjxxActive == 1"><p align="center">暂无相关文章</p></li>
+							
+							<li class="fn-clear" v-for = "item in blxwList" v-show="hjxxActive == 2">
 								<p class="text-ellipsis fn-left" >
-									<a href="javascript:;">地产市场平稳健康发展我市康发展市地产市场平稳健康发展我市康发展我市房场平稳健康发展我市房地产市</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 11, id: item.id }}">{{item.title}}</a>
 								</p>
-								<i class="fn-right">09-10</i>
+								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
+							<li v-show ="blxwList.length <=0 && hjxxActive == 2"><p align="center">暂无相关文章</p></li>
 						</ul>
 					</div>
 				</div>
@@ -240,10 +238,11 @@
 			</div>
 		</section>
 		<section class="brand-cont">
-			<h3 class="fn-clear">诚信品牌<p class="fn-right"><a href="javascript:;">更多</a></p> </h3>
+			<h3 class="fn-clear">诚信品牌<p class="fn-right"><a >更多</a></p> </h3>
 			<div class="brand-list">
 				<ul class="fn-clear">
 					<li class="fn-left" v-for="item in enterpriseLists"><a><img :src="item.picUrl"/></a></li>
+					<li v-show ="enterpriseLists.length <=0"><p align="center">暂无相关信息</p></li>
 				</ul>
 			</div>
 		</section>
@@ -712,7 +711,8 @@
 	import apps from "../utils/apps.js";
 	import {
 		getPicListAction,
-		getArticleListAction
+		getArticleListAction,
+		getMEListAction
 	} from '../vuex/actions.js';
 	import Pages from "../components/Pages.vue";
 	import Gather from "../components/Gather.vue";
@@ -733,29 +733,56 @@
 		 */
 		data() {
 			return {
+				xwdtActive:1,//默认显示新闻动态
+				xzcfActive:1,//默认显示行政处罚
+				hjxxActive:1,//默认显示获奖信息
 				xwdtParams:{//新闻动态
-					pageCount: 7,
+					pageCount: 8,
 					pageIndex: 1,
-					category:2,
+					category:4,
 					type:'XWDT'
 				},
-				xwdtParams:{//新闻动态
+				xhdtParams:{//协会动态
 					pageCount: 7,
 					pageIndex: 1,
-					category:2,
-					type:'XWDT'
+					category:5,
+					type:'XHDT'
 				},
-				xwdtParams:{//新闻动态
+				xzcfParams:{//行政处罚
 					pageCount: 7,
 					pageIndex: 1,
-					category:2,
-					type:'XWDT'
+					category:8,
+					type:'XZCF'
 				},
 				zcfgParams:{//政策法规
 					pageCount: 4,
 					pageIndex: 1,
 					category:2,
 					type:'ZCFG'
+				},
+				bgtParams:{//曝光台
+					pageCount: 5,
+					pageIndex: 1,
+					category:7,
+					type:'BGT'
+				},
+				hyzlParams:{//行业自律
+					pageCount: 7,
+					pageIndex: 1,
+					category:9,
+					type:'HYZL'
+				},
+				hjxxParams:{//企业获奖信息
+					pageCount: 9,
+					pageIndex: 1,
+					category:10,
+					type:'HJXX'
+				},
+				blxwParams:{//企业不良行为
+					pageCount: 9,
+					pageIndex: 1,
+					category:11,
+					type:'BLXW'
 				}
 			}
 		},
@@ -767,10 +794,20 @@
 				bannerList:(state)=> state.modules.bannerList,//轮播列表
 				enterpriseList:(state)=> state.modules.enterpriseList,//诚信品牌列表
 				projectList:(state)=> state.modules.projectList,//项目列表
+				xwdtList:(state)=> state.modules.xwdtList,//新闻动态
+				xhdtList:(state)=> state.modules.xhdtList,//协会动态
+				xzcfList:(state)=> state.modules.xzcfList,//行政处罚
+				zcfgList:(state)=> state.modules.zcfgList,//政策法规
+				bgtList:(state)=> state.modules.bgtList,//曝光台
+				hyzlList:(state)=> state.modules.hyzlList,//行业自律
+				hjxxList:(state)=> state.modules.hjxxList,//企业获奖信息
+				blxwList:(state)=> state.modules.blxwList,//企业不良行为
+				
 			},
 			actions: {
 				getPicListAction,
-				getArticleListAction
+				getArticleListAction,
+				getMEListAction
 			}
 		},
 		/*
@@ -809,21 +846,85 @@
 				apps.log(error)
 			});
 			
+			//获取诚信等级公示
+			this.getMEListAction({
+				pageCount:5
+			}).then((data)=>{
+				apps.log('获取诚信等级公示')
+			},(error)=>{
+				apps.log(error)
+			});
+			
+			
+			
 			//获取政策法规ZCFG(2,1,"政策法规")
 			this.getArticleListAction(this.zcfgParams).then((data)=>{
 				apps.log('政策法规数据请求成功')
 			},(error)=>{
 				apps.log(error)
 			});
+			//获取新闻动态XWDT(4,1,"新闻动态"),
+			this.getArticleListAction(this.xwdtParams).then((data)=>{
+				apps.log('新闻动态数据请求成功')
+			},(error)=>{
+				apps.log(error)
+			});
+			//获取协会动态XHDT(5,1,"协会动态")
+			this.getArticleListAction(this.xhdtParams).then((data)=>{
+				apps.log('协会动态数据请求成功')
+			},(error)=>{
+				apps.log(error)
+			});
+			//获取行政处罚XZCF(8,-1,"行政处罚")
+			this.getArticleListAction(this.xzcfParams).then((data)=>{
+				apps.log('行政处罚数据请求成功')
+			},(error)=>{
+				apps.log(error)
+			});
+			//获取曝光台BGT(7,-1,"曝光台")
+			this.getArticleListAction(this.bgtParams).then((data)=>{
+				apps.log('曝光台数据请求成功')
+			},(error)=>{
+				apps.log(error)
+			});
+			//获取行业自律HYZL(9,-1,"行业自律")
+			this.getArticleListAction(this.hyzlParams).then((data)=>{
+				apps.log('行业自律数据请求成功')
+			},(error)=>{
+				apps.log(error)
+			});
+			//获取企业获奖信息HJXX(10,-1,"企业获奖信息")
+			this.getArticleListAction(this.hjxxParams).then((data)=>{
+				apps.log('企业获奖信息数据请求成功')
+			},(error)=>{
+				apps.log(error)
+			});
+			//获取企业不良行为BLXW(11,-1,"企业不良行为")
+			this.getArticleListAction(this.blxwParams).then((data)=>{
+				apps.log('企业不良行为数据请求成功')
+			},(error)=>{
+				apps.log(error)
+			});
+			
 		},
 		/*
 		 * 处理事件
 		 */
 		methods: {
-			handlePageClick(index){
-				apps.log(index);
-				this.pages.pageIndex = index;
+			handleTabNews(index){
+				this.xwdtActive = index;
 			},
+			handleTabPunish(index){
+				this.xzcfActive = index;
+			},
+			handleTabWinning(index){
+				this.hjxxActive = index;
+			}
+//			handlePageClick(index){
+//				apps.log(index);
+//				this.pages.pageIndex = index;
+//			},
+			
 			
 		},
 		/*
