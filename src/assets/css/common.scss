@@ -21,3 +21,8 @@ $color-footer: #ebf3ff;
     margin: auto;
     width: 1000px;
 }
+
+a{
+    color: $color-font;
+    cursor: pointer !important;
+}

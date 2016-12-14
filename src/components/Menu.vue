@@ -56,7 +56,7 @@
 	            display: inline-block;
 	            padding: 10px 23px;
 	            color: #fff;
-	            &:active{
+	            &:active,&:hover{
 	                background: darken(#023790,5%);
 	            }
 	            &.on{

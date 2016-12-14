@@ -34,8 +34,14 @@
 	.page-content {
 		li {
 			display: inline;
-			&.active {
-				border: #ccc 1px solid;
+			&.active a{
+				border-color: #ccc;
+				color: #ccc;
+			}
+			a{
+				padding:5px 10px;
+				border: #005EB6 1px solid;
+				color: #005EB6;
 			}
 		}
 	}

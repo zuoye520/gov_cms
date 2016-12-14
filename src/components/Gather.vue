@@ -44,6 +44,9 @@
 			&.property{
 				background: url(../assets/images/platform_2.jpg) center center no-repeat;
 			}
+			&:hover{
+		        opacity: 0.8;
+		    }
 		}
 	}
 </style>

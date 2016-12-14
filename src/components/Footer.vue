@@ -3,7 +3,7 @@
 	<div class="page">
 		<footer>
 			<div class="w1000"><p>主办：重庆市国土资源和房屋管理局   承办：重庆市房地产协会</p>
-			<p>技术支持：重庆市国土资源和房地产信息中心 \  重庆网能计算机系统工程有限公司</p>
+			<p>技术支持：重庆市国土资源和房地产信息中心 \  重庆万创惠科技有限公司</p>
 			<p>Copyright © 2003-2005 cqgtfw.gov.cn, All Rights Reserved.  渝ICP备11000962号 </p></div>
 		</footer>
 	</div>
