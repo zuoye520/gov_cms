@@ -85,12 +85,21 @@
 			}
 			&.praise{
 				background: $color-blue;
+				&:hover{
+					background: darken($color-blue,8%);
+			    }
 			}
 			&.complain{
 				background: #0b6fce;
+				&:hover{
+					background: darken(#0b6fce,5%);
+			    }
 			}
 			&.download{
 				background: #1680e5;
+				&:hover{
+					background: darken(#1680e5,8%);
+			    }
 			}
 		}
 	}

@@ -113,7 +113,7 @@ const request = function(url, data, config, type) {
 		if(parseInt(res.status) != 0) {
 			switch (res.status){
 				case 500:
-					alert('服务器开小差咯！');
+					console.error('服务器开小差咯！');
 					break;
 				default:
 					break;

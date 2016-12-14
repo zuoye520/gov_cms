@@ -115,7 +115,7 @@
 			.pages {
 				width: 232px;
 				height: 30px;
-				background: url(../assets/images/page.jpg);
+				/*background: url(../assets/images/page.jpg);*/
 				position: absolute;
 				bottom: 45px;
 				right: 30px;
