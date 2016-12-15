@@ -129,7 +129,7 @@
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
-							<li v-show="xwdtList.length <=0 && xwdtActive == 2">
+							<li v-show="xhdtList.length <=0 && xwdtActive == 2">
 								<p align="center">暂无相关文章</p>
 							</li>
 						</ul>
@@ -157,6 +157,9 @@
 									<p class="text-ellipsis fn-left">
 										<a v-link="{ name: 'newsDetails', params: {category : 7, id: item.id }}">{{item.title}}</a>
 									</p>
+								</li>
+								<li v-show="bgtList.length <=0">
+									<p align="center">暂无相关文章</p>
 								</li>
 							</ul>
 						</div>
@@ -335,8 +338,8 @@
 			}
 			li {
 				position: relative;
-				line-height: 1.8;
-				padding-bottom: 10px;
+				line-height: 1.6;
+				padding-bottom: 5px;
 				a {
 					color: #333;
 					&:hover {
@@ -394,12 +397,12 @@
 			border: 1px solid $color-gray3;
 			overflow: hidden;
 			ul {
-				padding: 25px 20px 20px;
+				padding: 15px 20px 20px;
 			}
 			li {
 				position: relative;
 				line-height: 1.8;
-				padding-bottom: 10px;
+				padding-bottom: 5px;
 				&:last-child {
 					padding-bottom: 0;
 				}

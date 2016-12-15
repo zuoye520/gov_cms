@@ -6,14 +6,14 @@
 				共{{pageNum}}页
 			</li>
 			<li v-if="pagesObj.pageIndex != 1">
-				<a @click="handlePageClick(--pagesObj.pageIndex)">
+				<a class="prev" @click="handlePageClick(pagesObj.pageIndex-1)">
 					上一页
 				</a>
 			</li>
 			<li v-else>
-				<a>
+				<span class="not">
 					上一页
-				</a>
+				</span>
 			</li>
 			<li v-for="index in pages" :class="{'active': pagesObj.pageIndex == index}">
 				<a @click="handlePageClick(index)">
@@ -21,14 +21,14 @@
 				</a>
 			</li>
 			<li v-if="pagesObj.pageIndex != pageNum">
-				<a @click="handlePageClick(++pagesObj.pageIndex)">
+				<a class="next" @click="handlePageClick(pagesObj.pageIndex+1)">
 					下一页
 				</a>
 			</li>
 			<li v-else>
-				<a>
+				<span class="not">
 					下一页
-				</a>
+				</span>
 			</li>
 		</ul>
 	</section>
@@ -46,12 +46,21 @@
 			&.sum-pages{
 				padding-right: 10px;
 			}
-			a{
+			a,span{
 				color: #999;
 				display: inline-block;
 				border: #d5d5d5 1px solid;
-				padding: 3px 5px;
+				padding: 3px 0;
+				width: 30px;
+				text-align: center;
 				background: #e9e9e9;
+				&.not{
+					width: 50px;
+					cursor: not-allowed !important;
+				}
+				&.prev,&.next{
+					width: 50px;
+				}
 			}
 			&.active a,a:hover{
 				background: #666;
