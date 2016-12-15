@@ -26,17 +26,19 @@
 		}
 		.info{
 			border: 1px solid $color-gray3;
-			padding: 30px 25px;
+			padding: 30px 25px 25px;
 			>p{
 				position: relative;
-				margin-bottom: 15px;
+				margin-bottom: 13px;
 				input,select{
 					border: 1px solid $color-gray2;
 					background: $color-gray4;
 				}
 				input{
 					width: 216px;
-					padding: 5px 0 5px 10px;
+					height: 28px;
+					line-height: 28px;
+					padding-left: 10px;
 				}
 				select{
 					display: inline-block;
@@ -57,7 +59,7 @@
 				}
 			}
 			.btn{
-				padding-top: 15px;
+				padding-top: 10px;
 				a{
 					display: block;
 					width: 100%;

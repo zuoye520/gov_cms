@@ -12,7 +12,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:;" class="complain fn-clear">
+					<a v-link="{ name: 'complaint'}" class="complain fn-clear">
 						<div class="fn-left aa">
 							<p>诚信投诉</p>
 							<p class="eg">ChengXinTouSu</p>

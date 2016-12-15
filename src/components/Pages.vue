@@ -1,47 +1,62 @@
 <template>
 	<!--pages-->
-	<div class="page">
-		<section class="page-content">
-			<ul>
-				<li v-if="pagesObj.pageIndex != 1">
-					<a @click="handlePageClick(--pagesObj.pageIndex)">
-						上一页
-					</a>
-				</li>
-				<li v-for="index in pages" :class="{'active': pagesObj.pageIndex == index}">
-					<a @click="handlePageClick(index)">
-						{{index}}
-					</a>
-				</li>
-				<li v-if="pagesObj.pageIndex != pageNum">
-					<a @click="handlePageClick(++pagesObj.pageIndex)">
-						下一页
-					</a>
-				</li>
-				<li>
-					<a>
-						共{{pageNum}}页
-					</a>
-				</li>
-			</ul>
-		</section>
-	</div>
+	<section class="page-content">
+		<ul v-show ="pageNum > 1">
+			<li class="sum-pages">
+				共{{pageNum}}页
+			</li>
+			<li v-if="pagesObj.pageIndex != 1">
+				<a @click="handlePageClick(--pagesObj.pageIndex)">
+					上一页
+				</a>
+			</li>
+			<li v-else>
+				<a>
+					上一页
+				</a>
+			</li>
+			<li v-for="index in pages" :class="{'active': pagesObj.pageIndex == index}">
+				<a @click="handlePageClick(index)">
+					{{index}}
+				</a>
+			</li>
+			<li v-if="pagesObj.pageIndex != pageNum">
+				<a @click="handlePageClick(++pagesObj.pageIndex)">
+					下一页
+				</a>
+			</li>
+			<li v-else>
+				<a>
+					下一页
+				</a>
+			</li>
+		</ul>
+	</section>
 </template>
 
 <!-- 添加 scoped “范围”属性CSS限制这个组件只 -->
 <style scoped lang="scss">
 	@import "../assets/css/common.scss";
 	.page-content {
+		padding-top: 30px;
+		text-align: center;
 		li {
+			color: #666;
 			display: inline;
-			&.active a{
-				border-color: #ccc;
-				color: #ccc;
+			&.sum-pages{
+				padding-right: 10px;
 			}
 			a{
-				padding:5px 10px;
-				border: #005EB6 1px solid;
-				color: #005EB6;
+				color: #999;
+				display: inline-block;
+				border: #d5d5d5 1px solid;
+				padding: 3px 5px;
+				background: #e9e9e9;
+			}
+			&.active a,a:hover{
+				background: #666;
+				color: #fff;
+				border-color: #666;
 			}
 		}
 	}

@@ -5,8 +5,8 @@
   "author": "zuozuo",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
+    "dev": "node build/resource-copy.js && node build/dev-server.js",
+    "build": "cross-env NODE_ENV=production node build/resource-copy.js && node build/build.js",
     "test": ""
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "babel-preset-stage-2": "^6.0.0",
     "babel-register": "^6.0.0",
     "connect-history-api-fallback": "^1.1.0",
+    "cross-env": "^3.1.3",
     "css-loader": "^0.23.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.3",

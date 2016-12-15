@@ -5,9 +5,9 @@ var utils = require('./utils')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 //拷贝文件功能文件 --zuozuo
-var fsCopy = require("./fs-copy.js");
-//定义配置文件 使用开发时配置文件--zuozuo
-fsCopy.copy("./resource/constants.dev.js","../src/utils/constants.js");
+//var fsCopy = require("./fs-copy.js");
+////定义配置文件 使用开发时配置文件--zuozuo
+//fsCopy.copy("./resource/constants.dev.js","../src/utils/constants.js");
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])

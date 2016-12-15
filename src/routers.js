@@ -31,6 +31,18 @@ const mapObj = {
 			require(['./views/NewsDetails.vue'], resolve)
 		}
 	},
+	 "/complaint" :{
+		name: 'complaint',
+		component(resolve) {
+			require(['./views/Complaint.vue'], resolve)
+		}
+	},
+	 "/projectInfo" :{
+		name: 'projectInfo',
+		component(resolve) {
+			require(['./views/ProjectInfo.vue'], resolve)
+		}
+	},
 };
 
 		
