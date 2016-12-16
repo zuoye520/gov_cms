@@ -43,6 +43,12 @@ const mapObj = {
 			require(['./views/ProjectInfo.vue'], resolve)
 		}
 	},
+	"/sincerityList" :{
+		name: 'sincerityList',
+		component(resolve) {
+			require(['./views/SincerityList.vue'], resolve)
+		}
+	},
 };
 
 		
