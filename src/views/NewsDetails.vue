@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="w1000">
 		<l-location :type = "category"></l-location>
 		<section class="article">
 			<div class="title">

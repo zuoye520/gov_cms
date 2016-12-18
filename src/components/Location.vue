@@ -58,6 +58,24 @@
 						case 11: //企业不良行为
 							str = "企业不良行为"
 							break;
+						case 12: //文件下载
+							str = "文件下载"
+							break;
+						case 13: //诚信投诉
+							str = "诚信投诉"	
+							break;	
+						case 14: //诚信表扬
+							str = "诚信表扬"	
+							break;
+						case 15: //企业列表
+							str = "企业列表"	
+							break;	
+						case 16: //项目信息展示
+							str = "项目信息展示"
+							break;	
+						case 17: //企业信息展示
+							str = "企业信息展示"
+							break;		
 						default:
 							str = "文章详情"
 							break;

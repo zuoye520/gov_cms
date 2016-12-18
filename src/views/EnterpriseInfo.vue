@@ -1,5 +1,5 @@
 <template>
-	<!--项目详情信息-->
+	<!--企业详情信息-->
 	<div class="w1000">
 		<l-location :type="category"></l-location>
 		<section class="info-cont">
@@ -7,15 +7,15 @@
 				<div class="fn-left swiper">
 					<div class="swiper-container">
 						<div class="swiper-wrapper info-swp">
-							<div class="swiper-slide" v-for="item in detail.picList">
-								<img :src="item.url" />
+							<div class="swiper-slide">
+								<img src="../assets/images/building.jpg" />
 							</div>
-							<!--<div class="swiper-slide">
+							<div class="swiper-slide">
 								<img src="../assets/images/banner.jpg" />
 							</div>
 							<div class="swiper-slide">
 								<img src="../assets/images/banner.jpg" />
-							</div>-->
+							</div>
 						</div>
 						<!-- Add Pagination -->
 						<div class="swiper-pagination"></div>
@@ -26,35 +26,35 @@
 				<div class="fn-left info-list w-r">
 					<div class="bor-t bor-r fn-clear">
 						<div class="title">项目名称：</div>
-						<div class="cont text-center f-w">{{detail.name|| '无'}}</div>
+						<div class="cont text-center f-w">阳光花庭</div>
 					</div>
 					<div class="bor-t bor-r fn-clear">
 						<div class="title">企业名称：</div>
-						<div class="cont">{{detail.group_name|| '无'}}</div>
+						<div class="cont">重庆市鸳鸯房地产开发公司</div>
 					</div>
 					<div class="bor-t bor-r fn-clear">
 						<div class="title">坐落地址：</div>
-						<div class="cont">{{detail.address|| '无'}}</div>
+						<div class="cont">重庆台湖镇B-07地块R2二类居住用地</div>
 					</div>
 					<div class="bor-t bor-r fn-clear">
 						<div class="title">占地面积：</div>
-						<div class="cont">{{detail.hold_area||0}}平方米</div>
+						<div class="cont">60000.00平方米</div>
 					</div>
 					<div class="bor-t bor-r fn-clear">
 						<div class="title">总建筑面积：</div>
-						<div class="cont">{{detail.build_area || 0}}平方米</div>
+						<div class="cont">30000.00平方米</div>
 					</div>
 					<div class="bor-t bor-r fn-clear">
 						<div class="title">物业类型：</div>
-						<div class="cont">{{detail.house_name|| '无'}}</div>
+						<div class="cont">鸳鸯物业</div>
 					</div>
 					<div class="bor-t bor-r fn-clear">
 						<div class="title">总户数：</div>
-						<div class="cont">{{detail.household_count || 0}}户</div>
+						<div class="cont">1875户</div>
 					</div>
 					<div class="bor-t bor-r fn-clear bor-b">
 						<div class="title">联系电话：</div>
-						<div class="cont">{{detail.tel || '无'}}</div>
+						<div class="cont">023-65458888</div>
 					</div>
 				</div>
 			</div>
@@ -63,67 +63,67 @@
 			<div class="info-list w-l fn-left">
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
 					<div class="title">交房标准：</div>
-					<div class="cont">{{detail.handed_standard|| '无'}}</div>
+					<div class="cont"> </div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
 					<div class="title">停车位：</div>
-					<div class="cont"> {{detail.park_count || 0}}个</div>
+					<div class="cont"> 1000个</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
 					<div class="title">开工时间：</div>
-					<div class="cont">{{detail.start_date | formatTime "yyyy-MM-dd"}}</div>
+					<div class="cont">2015-05-06</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
 					<div class="title">项目开发公司名称：</div>
-					<div class="cont">{{detail.develop_name|| '无'}}</div>
+					<div class="cont">重庆金科房地产开发有限公司</div>
 				</div>
 			</div>
 			<div class="fn-left info-list w-r">
 				<div class="bor-r bor-b fn-clear">
 					<div class="title">交房时间：</div>
-					<div class="cont">{{detail.handed_date | formatTime "yyyy-MM-dd"}}</div>
+					<div class="cont">2016-08-18</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
 					<div class="title">车位比：</div>
-					<div class="cont">{{detail.stall|| '无'}}</div>
+					<div class="cont">1:6</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
 					<div class="title">竣工时间：</div>
-					<div class="cont">{{detail.end_date | formatTime "yyyy-MM-dd"}}</div>
+					<div class="cont">2016-01-02</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
 					<div class="title">集团公司名称：</div>
-					<div class="cont">{{detail.group_name|| '无'}}</div>
+					<div class="cont">金科地产</div>
 				</div>
 			</div>
 		</section>
 		<section class="info-list">
 			<div class="bor-l bor-b bor-r fn-clear">
 				<div class="title">建筑设计单位名称：</div>
-				<div class="cont w790">{{detail.design_name|| '无'}}</div>
+				<div class="cont">重庆人和城建工程有限公司</div>
 			</div>
 			<div class="bor-l bor-b bor-r fn-clear">
 				<div class="title">施工单位名称：</div>
-				<div class="cont w790">{{detail.construction_name|| '无'}}</div>
+				<div class="cont">重庆人和城建工程有限公司</div>
 			</div>
 			<div class="bor-l bor-b bor-r fn-clear">
 				<div class="title">监理单位名称：</div>
-				<div class="cont w790">{{detail.manage_name|| '无'}}</div>
+				<div class="cont">重庆人和城建工程有限公司</div>
 			</div>
 		</section>
 		<section class="fn-clear">
 			<div class="info-list w-l fn-left">
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
 					<div class="title">景观设计单位名称：</div>
-					<div class="cont">{{detail.sight_name|| '无'}}</div>
+					<div class="cont">重庆建筑工程学院</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
 					<div class="title">业务银行名称：</div>
-					<div class="cont">{{detail.band_name|| '无'}}</div>
+					<div class="cont">中国民生银行</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
 					<div class="title">销售代理公司名称：</div>
-					<div class="cont">{{detail.saleagent_name|| '无'}}</div>
+					<div class="cont">无</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
 					<div class="title">权证号：</div>
@@ -137,34 +137,34 @@
 			<div class="fn-left info-list w-r">
 				<div class="bor-r bor-b fn-clear">
 					<div class="title">物业管理公司名称：</div>
-					<div class="cont">{{detail.house_name|| '无'}}</div>
+					<div class="cont">金科物业</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
 					<div class="title">广告代理公司名称：</div>
-					<div class="cont">{{detail.advertise_name|| '无'}}</div>
+					<div class="cont">重庆柯众广告</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
 					<div class="title">签订土地出让合同时间：</div>
-					<div class="cont">{{detail.land_transfer_date | formatTime "yyyy-MM-dd"}}</div>
+					<div class="cont">2010-02-01</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
 					<div class="title">办证时间：</div>
-					<div class="cont">无</div>
+					<div class="cont"></div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
 					<div class="title">开盘销售时间：</div>
-					<div class="cont">无</div>
+					<div class="cont"></div>
 				</div>
 			</div>
 		</section>
 		<section class="info-list">
 			<div class="bor-l bor-b bor-r fn-clear">
 				<div class="title">项目配套设施情况介绍：</div>
-				<div class="cont w790">{{detail.facility_situation || '无'}}</div>
+				<div class="cont"></div>
 			</div>
 			<div class="bor-l bor-b bor-r fn-clear">
 				<div class="title">项目情况介绍：</div>
-				<div class="cont w790">{{detail.project_situation || '无'}}</div>
+				<div class="cont"></div>
 			</div>
 		</section>
 		<section class="pic-cont">
@@ -175,7 +175,7 @@
 					<li><img src="../assets/images/building.jpg"/></li>
 					<li><img src="../assets/images/building.jpg"/></li>
 				</ul>
-			</div>-->
+			</div>
 			<div class="tab-bar">
 				<ol>
 					<li><a>开发企业获奖信息</a></li>
@@ -183,7 +183,7 @@
 					<li><a>诚信企业展示</a></li>
 					<li><a class="on">诚信项目展示</a></li>
 				</ol>
-			</div>
+			</div>-->
 		</section>
 	</div>
 </template>
@@ -235,9 +235,6 @@
 			&.f-w{
 				font-weight: bold;
 			}
-		}
-		.w790{
-			width: 790px !important;
 		}
 	}
 	.pic-cont{
@@ -296,7 +293,7 @@
 	import Pages from "../components/Pages.vue";
 
 	import {
-		getPDetail,
+		getEDetail,
 	} from '../vuex/actions.js';
 	export default {
 		/*
@@ -317,27 +314,27 @@
 				params: {
 					pid: 0,
 				},
-				category: 16
+				category: 1
 			}
 		},
-//		ready() {
-//			var swiper = new Swiper('.swiper-container', {
-//				pagination: '.swiper-pagination',
-//				paginationClickable: true,
-//				nextButton: '.swiper-button-next',
-//				prevButton: '.swiper-button-prev',
-//			});
-//
-//		},
+		ready() {
+			var swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				paginationClickable: true,
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+			});
+
+		},
 		/*
 		 * vuex
 		 */
 		vuex: {
 			getters: {
-				detail: (state) => state.modules.projectDetail,
+				enterpriseDetail: (state) => state.modules.enterpriseDetail,
 			},
 			actions: {
-				getPDetail,
+				getEDetail,
 			}
 		},
 		/*
@@ -348,19 +345,7 @@
 		 * 处理事件
 		 */
 		methods: {
-			initSwiper(){//初始化轮播图
-				setTimeout(()=>{
-					let swiper = new Swiper('.swiper-container', {
-						pagination: '.swiper-pagination',
-						paginationClickable: true,
-						loop : true,
-						autoplay: 2500,
-						autoplayDisableOnInteraction:false,
-						nextButton: '.swiper-button-next',
-						prevButton: '.swiper-button-prev',
-					});	
-				},1000);
-			},
+			
 		},
 		/*
 		 * 实例计算属性
@@ -377,9 +362,8 @@
 			}) {
 				apps.log(to.params.pid);
 				this.params.pid = to.params.pid || 0;
-				this.getPDetail(this.params).then((data) => {
-					this.initSwiper();
-					apps.log('项目详情数据请求成功')
+				this.getEDetail(this.params).then((data) => {
+					apps.log('企业详情数据请求成功')
 				}, (error) => {
 					apps.log(error)
 				});

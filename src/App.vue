@@ -1,11 +1,11 @@
 <template>
-	<article class="w640">
+	<article>
 		<!--header-->
 		<l-header></l-header>
 		<!--menu-->
 		<l-menu :menu-active ="menuActive"></l-menu>
 		<!--router-->
-		<div class="container w1000">
+		<div class="container">
 			<router-view class="view" keep-alive transition transition-mode="out-in"></router-view>
 		</div>
 		<!--links-->

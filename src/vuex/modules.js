@@ -21,10 +21,15 @@ const state = {
 	blxwList:[],//企业不良行为
 	articleList :[],//文章列表
 	articleDetail:{},//文章详情
-	meList:[],//诚信等级公示
-	maInfo:{},
+	eLeveList:[],//诚信等级公示
+	gradesList:[],//获取诚信企业评级列表
+	projectDetail:{},//获取企业项目详情
+	eList:[],//企业列表
+	enterpriseDetail:{},//获取企业详情
+	maList:[],//企业相关文章查询
 	sNew:null,
-	sFrom:{}
+	sFrom:{},
+	
 };
 
 /*
@@ -80,8 +85,8 @@ const mutations = {
 	[types.GET_ARTICLE_DETAIL](state, data) {
 		state.articleDetail = data;
 	},
-	[types.GET_M_E_LIST](state, data) {
-		state.meList = data;
+	[types.GET_E_LEVE_LIST](state, data) {
+		state.eLeveList = data;
 	},
 	[types.GET_M_A_INFO](state, data) {
 		state.maInfo = data;
@@ -91,7 +96,23 @@ const mutations = {
 	},
 	[types.POST_S_FROM](state, data) {
 		state.sFrom = data;
+	},
+	[types.GET_E_GRADES](state, data) {
+		state.gradesList = data;
+	},
+	[types.GET_P_DETAIL](state, data) {
+		state.projectDetail = data;
+	},
+	[types.GET_E_DETAIL](state, data) {
+		state.enterpriseDetail = data;
+	},
+	[types.GET_A_LIST](state, data) {
+		state.maList = data;
+	},
+	[types.GET_E_LIST](state, data) {
+		state.eList = data;
 	}
+	
 }
 /*
  * @DESC : 对外开放

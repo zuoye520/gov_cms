@@ -3,7 +3,7 @@
 		<section class="btns-cont">
 			<ul>
 				<li>
-					<a href="javascript:;" class="praise fn-clear">
+					<a v-link="{ name: 'complaint', params: { type: 2 }}" class="praise fn-clear">
 						<div class="fn-left aa">
 							<p>诚信表扬</p>
 							<p class="eg">ChengXinBiaoYang</p>
@@ -12,7 +12,7 @@
 					</a>
 				</li>
 				<li>
-					<a v-link="{ name: 'complaint'}" class="complain fn-clear">
+					<a v-link="{ name: 'complaint', params: { type: 1 }}" class="complain fn-clear">
 						<div class="fn-left aa">
 							<p>诚信投诉</p>
 							<p class="eg">ChengXinTouSu</p>
@@ -21,7 +21,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:;" class="download fn-clear">
+					<a v-link="{ name: 'newsList', params: { category: 12 }}" class="download fn-clear">
 						<div class="fn-left aa">
 							<p>文件下载</p>
 							<p class="eg">WenJianXiazai</p>
