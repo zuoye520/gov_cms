@@ -23,7 +23,7 @@
 						</a>
 					</dd>
 				</dl>
-				<p class="p-30" align="center" v-show ="articleList.list.length <= 0">暂无内容...</p>
+				<p class="p-30" align="center" v-show ="articleList.list && articleList.list.length <= 0">暂无内容...</p>
 			</div>
 			<div class="pages">
 				<z-pages :pages-obj = "pagesObj"></z-pages>
@@ -113,12 +113,12 @@
 				}
 			}
 			.pages {
-				width: 232px;
+				/*width: 232px;
 				height: 30px;
-				/*background: url(../assets/images/page.jpg);*/
+				background: url(../assets/images/page.jpg);
 				position: absolute;
 				bottom: 45px;
-				right: 30px;
+				right: 30px;*/
 			}
 		}
 	}

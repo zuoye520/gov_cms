@@ -10,9 +10,9 @@ var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.build.env
 //拷贝文件功能文件 --zuozuo
-var fsCopy = require("./fs-copy.js");
-//定义配置文件 使用开发时配置文件--zuozuo
-fsCopy.copy("./resource/constants.prod.js","../src/utils/constants.js");
+//var fsCopy = require("./fs-copy.js");
+////定义配置文件 使用开发时配置文件--zuozuo
+//fsCopy.copy("./resource/constants.prod.js","../src/utils/constants.js");
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {

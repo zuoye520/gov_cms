@@ -1,47 +1,71 @@
 <template>
 	<!--pages-->
-	<div class="page">
-		<section class="page-content">
-			<ul>
-				<li v-if="pagesObj.pageIndex != 1">
-					<a @click="handlePageClick(--pagesObj.pageIndex)">
-						上一页
-					</a>
-				</li>
-				<li v-for="index in pages" :class="{'active': pagesObj.pageIndex == index}">
-					<a @click="handlePageClick(index)">
-						{{index}}
-					</a>
-				</li>
-				<li v-if="pagesObj.pageIndex != pageNum">
-					<a @click="handlePageClick(++pagesObj.pageIndex)">
-						下一页
-					</a>
-				</li>
-				<li>
-					<a>
-						共{{pageNum}}页
-					</a>
-				</li>
-			</ul>
-		</section>
-	</div>
+	<section class="page-content">
+		<ul v-show ="pageNum > 1">
+			<li class="sum-pages">
+				共{{pageNum}}页
+			</li>
+			<li v-if="pagesObj.pageIndex != 1">
+				<a class="prev" @click="handlePageClick(pagesObj.pageIndex-1)">
+					上一页
+				</a>
+			</li>
+			<li v-else>
+				<span class="not">
+					上一页
+				</span>
+			</li>
+			<li v-for="index in pages" :class="{'active': pagesObj.pageIndex == index}">
+				<a @click="handlePageClick(index)">
+					{{index}}
+				</a>
+			</li>
+			<li v-if="pagesObj.pageIndex != pageNum">
+				<a class="next" @click="handlePageClick(pagesObj.pageIndex+1)">
+					下一页
+				</a>
+			</li>
+			<li v-else>
+				<span class="not">
+					下一页
+				</span>
+			</li>
+		</ul>
+	</section>
 </template>
 
 <!-- 添加 scoped “范围”属性CSS限制这个组件只 -->
 <style scoped lang="scss">
 	@import "../assets/css/common.scss";
 	.page-content {
+		padding-top: 30px;
+		text-align: center;
 		li {
+			color: #666;
 			display: inline;
-			&.active a{
-				border-color: #ccc;
-				color: #ccc;
+			&.sum-pages{
+				padding-right: 10px;
 			}
-			a{
-				padding:5px 10px;
-				border: #005EB6 1px solid;
-				color: #005EB6;
+			a,span{
+				color: #999;
+				display: inline-block;
+				border: #d5d5d5 1px solid;
+				padding: 3px 0;
+				width: 30px;
+				text-align: center;
+				background: #e9e9e9;
+				&.not{
+					width: 50px;
+					cursor: not-allowed !important;
+				}
+				&.prev,&.next{
+					width: 50px;
+				}
+			}
+			&.active a,a:hover{
+				background: #666;
+				color: #fff;
+				border-color: #666;
 			}
 		}
 	}
