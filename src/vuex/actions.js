@@ -240,7 +240,7 @@ export const getPDetail = ({ dispatch, state },params={}) => {
  */
 export const getEDetail = ({ dispatch, state },params={}) => {
 	return new Promise((resolve, reject) =>{
-		apps.get(GET_E_DETAIL).success((data)=>{
+		apps.get(GET_E_DETAIL+params.pid).success((data)=>{
 			apps.log(data);
 			dispatch(types.GET_E_DETAIL,data);
 			resolve("ok");

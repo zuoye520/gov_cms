@@ -204,9 +204,7 @@
 		 */
 		route: {
 			canDeactivate({to, next}) {
-				this.params.ename = null;
-				this.params.pname = null;
-				this.params.level = null;
+				apps.setSessionStorage('SEARCH_PARAMS',{});
 				this.params.search = null;
 				next();
 			},
@@ -217,10 +215,18 @@
 				this.params.category = to.params.category || 1; //category
 				this.category = parseInt(to.params.category);
 				this.params.pageIndex = 1;
-				if(to.params.ename){
-					this.params.ename = to.params.ename;
-					this.params.pname = to.params.pname;
-					this.params.level = to.params.level;
+				
+				let searchParams = apps.getSessionStorage('SEARCH_PARAMS',{});
+				if(searchParams.ename){
+					this.params.ename = searchParams.ename;
+					this.params.search = 'search';
+				}
+				if(searchParams.pname){
+					this.params.pname = searchParams.pname;
+					this.params.search = 'search';
+				}
+				if(searchParams.level !='请选择'){
+					this.params.level = searchParams.level;
 					this.params.search = 'search';
 				}
 				this.getArticleListAction(this.params).then((data) => {

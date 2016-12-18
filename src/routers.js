@@ -25,12 +25,6 @@ const mapObj = {
 			require(['./views/NewsList.vue'], resolve)
 		}
 	},
-	"/newsList/:category/:ename/:pname/:level" :{
-		name: 'searchNewsList',
-		component(resolve) {
-			require(['./views/NewsList.vue'], resolve)
-		}
-	},
 	"/newsDetails/:category/:id" :{
 		name: 'newsDetails',
 		component(resolve) {
@@ -56,12 +50,6 @@ const mapObj = {
 		}
 	},
 	"/enterpriseList" :{
-		name: 'elist',
-		component(resolve) {
-			require(['./views/EnterpriseList.vue'], resolve)
-		}
-	},
-	"/enterpriseList/:ename/:pname/:level" :{
 		name: 'enterpriseList',
 		component(resolve) {
 			require(['./views/EnterpriseList.vue'], resolve)
