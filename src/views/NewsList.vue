@@ -1,5 +1,5 @@
 <template>
-	<div class="fn-clear news-list">
+	<div class="fn-clear news-list w1000">
 		<section class="left-side fn-left">
 			<l-query></l-query>
 			<div class="gather-cont">
@@ -203,12 +203,26 @@
 		 * 路由数据钩 参数发生变化这里被激活
 		 */
 		route: {
+			canDeactivate({to, next}) {
+				this.params.ename = null;
+				this.params.pname = null;
+				this.params.level = null;
+				this.params.search = null;
+				next();
+			},
 			data({
 				to
 			}) {
 				apps.log(to.params.category);
 				this.params.category = to.params.category || 1; //category
 				this.category = parseInt(to.params.category);
+				this.params.pageIndex = 1;
+				if(to.params.ename){
+					this.params.ename = to.params.ename;
+					this.params.pname = to.params.pname;
+					this.params.level = to.params.level;
+					this.params.search = 'search';
+				}
 				this.getArticleListAction(this.params).then((data) => {
 					apps.log('列表数据请求成功')
 				}, (error) => {

@@ -39,3 +39,4 @@ configRouter(router);
 router.start(App, '#app');
 //解决移动端300毫秒延迟问题
 //FastClick.attach(document.body);
+

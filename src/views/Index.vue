@@ -1,12 +1,12 @@
 <template>
-	<div class="index">
+	<div class="index w1000">
 		<section class="banner-cont fn-clear m-t-15">
 			<div class="left-banner fn-left">
 				<!-- Swiper -->
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
 						<!--<div class="swiper-slide" v-for="item in bannerList"><img :src="item.picUrl"/></div>-->
-						<div class="swiper-slide" v-for="item in bannerList">
+						<div class="swiper-slide" v-for="item in bannerList" v-link="{ name: 'newsDetails', params: {category : 4, id: item.bizId }}">
 							<img :src="item.picUrl" />
 							<h3><p class="text-ellipsis">{{item.title}}</p></h3>
 						</div>
@@ -25,9 +25,7 @@
 						<div><span>诚信等级：</span>
 							<select v-model="queryParams.level">
 								<option>请选择</option>
-								<option>一级</option>
-								<option>二级</option>
-								<option>三级</option>
+								<option v-for="item in gradesList">{{item}}级</option>
 							</select>
 						</div>
 						<div><span></span><a class="btn" @click="handleQueryInfo">查询</a></div>
@@ -65,8 +63,8 @@
 						<p class="m-b-15"><span>用户名：</span><input type="text" id="" value="" /></p>
 						<p><span>密<i></i>码：</span><input type="password" id="" value="" /></p>
 						<div class="btns fn-clear">
-							<a class="btn-register fn-left">注册</a>
-							<a class="btn-login fn-right">登录</a>
+							<a class="btn-register fn-left" v-link="{ name: 'stepOne'}">注册</a>
+							<a class="btn-login fn-right" @click="handleLogin">登录</a>
 						</div>
 					</div>
 				</div>
@@ -166,43 +164,19 @@
 					</div>
 				</div>
 				<div class="blue-fill company-list">
-					<h3 class="fn-clear">诚信等级公示<a  class="fn-right">更多</a></h3>
+					<h3 class="fn-clear">诚信等级公示<a  class="fn-right" v-link="{ name: 'elist'}">更多</a></h3>
 					<div class="company-info ">
+						
 						<ul>
-							<li class="fn-clear">
+							<li class="fn-clear" v-for ="item in eLeveList">
 								<p class="company-name fn-clear fn-left">
-									<span>弘德房地产开发有限公司</span>
-									<span class="fn-right">一级</span>
+									<span>{{item.name}}</span>
+									<span class="fn-right">{{item.competency_grade}}级</span>
 								</p>
-								<div class="fn-right level">90 分</div>
+								<div class="fn-right level">{{item.score}} 分</div>
 							</li>
-							<li class="fn-clear">
-								<p class="company-name fn-clear fn-left">
-									<span>弘德房地产开发有限公司</span>
-									<span class="fn-right">一级</span>
-								</p>
-								<div class="fn-right level">90 分</div>
-							</li>
-							<li class="fn-clear">
-								<p class="company-name fn-clear fn-left">
-									<span>弘德房地产开发有限公司</span>
-									<span class="fn-right">一级</span>
-								</p>
-								<div class="fn-right level">90 分</div>
-							</li>
-							<li class="fn-clear">
-								<p class="company-name fn-clear fn-left">
-									<span>弘德房地产开发有限公司</span>
-									<span class="fn-right">一级</span>
-								</p>
-								<div class="fn-right level">90 分</div>
-							</li>
-							<li class="fn-clear">
-								<p class="company-name fn-clear fn-left">
-									<span>弘德房地产开发有限公司</span>
-									<span class="fn-right">一级</span>
-								</p>
-								<div class="fn-right level">90 分</div>
+							<li v-show="eLeveList.length <=0">
+								<p align="center">暂无相关企业</p>
 							</li>
 						</ul>
 					</div>
@@ -265,7 +239,7 @@
 			<div class="building-main fn-left">
 				<h2>诚信项目展示</h2>
 				<div>
-					<a>
+					<a v-link="{ name: 'projectInfo', params: {pid: projectList[0] && projectList[0].bizId}}">
 						<img :src="projectList[0]?projectList[0].picUrl:''" />
 						<p class="building-name">{{projectList[0]?projectList[0].title:''}}</p>
 					</a>
@@ -274,7 +248,7 @@
 			<div class="building-secondary fn-right m-b-15">
 				<ul class="fn-clear">
 					<li class="fn-left" v-for="item in projectListOne">
-						<a>
+						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}">
 							<img :src="item.picUrl" />
 							<p class="building-name">{{item.title}}</p>
 						</a>
@@ -284,7 +258,7 @@
 			<div class="building-secondary fn-right">
 				<ul class="fn-clear">
 					<li class="fn-left" v-for="item in projectListTwo">
-						<a>
+						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}">
 							<img :src="item.picUrl" />
 							<p class="building-name">{{item.title}}</p>
 						</a>
@@ -293,10 +267,10 @@
 			</div>
 		</section>
 		<section class="brand-cont">
-			<h3 class="fn-clear">诚信品牌<p class="fn-right"><a >更多</a></p> </h3>
+			<h3 class="fn-clear">诚信品牌<p class="fn-right"><a v-link="{ name: 'elist'}">更多</a></p> </h3>
 			<div class="brand-list">
 				<ul class="fn-clear">
-					<li class="fn-left" v-for="item in enterpriseLists">
+					<li class="fn-left" v-for="item in enterpriseLists" v-link="{ name: 'enterpriseInfo', params: {pid: item.bizId }}">
 						<a><img :src="item.picUrl" /></a>
 					</li>
 					<li v-show="enterpriseLists.length <=0">
@@ -645,6 +619,8 @@
 			.company-list {
 				.company-info {
 					border: 1px solid #ccc;
+					height: 225px;
+					overflow: hidden;
 					li {
 						padding: 12px 20px;
 						.company-name {
@@ -800,7 +776,8 @@
 	import {
 		getPicListAction,
 		getArticleListAction,
-		getMEListAction
+		getELeveListAction,
+		getEGradesList
 	} from '../vuex/actions.js';
 	import Pages from "../components/Pages.vue";
 	import Gather from "../components/Gather.vue";
@@ -877,6 +854,10 @@
 					pageIndex: 1,
 					category: 11,
 					type: 'BLXW'
+				},
+				cxdjgsParams: { //诚信等级公示
+					pageCount: 5,
+					pageIndex: 1,
 				}
 			}
 		},
@@ -896,12 +877,15 @@
 				hyzlList: (state) => state.modules.hyzlList, //行业自律
 				hjxxList: (state) => state.modules.hjxxList, //企业获奖信息
 				blxwList: (state) => state.modules.blxwList, //企业不良行为
-
+				gradesList: (state) => state.modules.gradesList, //获取诚信企业评级列表
+				eLeveList: (state) => state.modules.eLeveList, //获取诚信等级公示
+				
 			},
 			actions: {
 				getPicListAction,
 				getArticleListAction,
-				getMEListAction
+				getELeveListAction,
+				getEGradesList
 			}
 		},
 		/*
@@ -936,11 +920,16 @@
 			}, (error) => {
 				apps.log(error)
 			});
-
+			
+			
+			//获取诚信企业评级列表
+			this.getEGradesList().then((data) => {
+				apps.log('获取诚信企业评级列表')
+			}, (error) => {
+				apps.log(error)
+			});
 			//获取诚信等级公示
-			this.getMEListAction({
-				pageCount: 5
-			}).then((data) => {
+			this.getELeveListAction(this.cxdjgsParams).then((data) => {
 				apps.log('获取诚信等级公示')
 			}, (error) => {
 				apps.log(error)
@@ -1025,8 +1014,39 @@
 			handleTabQuery(index){//轮播旁边切换
 				this.qycxActive = index;
 			},
-			handleQueryInfo(){
-				alert('程序猿正在加班加点的做此功能...');
+			handleQueryInfo(){//搜索
+				let ename = this.queryParams.ename.trim();
+				let pname = this.queryParams.pname.trim();
+				if(ename.length <=0){
+					alert('请输入企业名称');
+					return;
+				}
+				if(pname.length <=0){
+					alert('请输入项目名称');
+					return;
+				}
+				if(this.queryParams.level=='请选择'){
+					alert('请选择诚信等级');
+					return;
+				}
+				this.queryParams.category = this.qycxActive==1 ? 0 : this.qycxActive==2 ? 10 : 11;
+				
+				if(this.qycxActive ==1){
+					this.$route.router.go({
+		                	name: 'enterpriseList',
+		                	params: this.queryParams
+	                });
+				}else{
+					let category = this.qycxActive==2 ? 10: 11;
+					this.$route.router.go({
+		                	name: 'searchNewsList',
+		                	params: this.queryParams
+	                });
+				}
+				
+			},
+			handleLogin(){//登录
+				alert('程序猿正在加班加点开发此功能..');
 			}
 
 		},
@@ -1055,7 +1075,11 @@
 			data({
 				to
 			}) {
-
+				//还原数据
+				this.qycxActive = 1;
+				this.queryParams.ename ="";
+				this.queryParams.pname ="";
+				this.queryParams.level ="请选择";
 			}
 		}
 	}

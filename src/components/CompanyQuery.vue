@@ -5,7 +5,14 @@
 			<div class="info">
 				<p><input type="text" name="" id="" value="" placeholder="请输入开发企业名称"/></p>
 				<p><input type="text" name="" id="" value="" placeholder="请输入开发企业项目"/></p>
-				<p class="fn-clear"><span>信息类别</span><select><option>- 请选择 -</option><option>1</option><option>2</option></select></p>
+				<p class="fn-clear"><span>信息类别</span>
+					<select>
+					<option>请选择</option>
+					<option>信息身份</option>
+					<option>获奖信息</option>
+					<option>不良行为</option>
+					</select>
+				</p>
 				<div class="btn"><a href="javascript:;">确<i></i>定</a></div>
 			</div>
 		</section>

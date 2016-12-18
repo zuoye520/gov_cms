@@ -1,8 +1,8 @@
 <template>
-	<div class="fn-clear wapper">
+	<div class="fn-clear wapper w1000">
 		<section class="left-side fn-left">
 			<l-query></l-query>
-			<div class="gather-cont m-t-15">
+			<div class="gather-cont">
 				<l-gather></l-gather>
 			</div>
 			<l-btns></l-btns>
@@ -10,7 +10,7 @@
 		<section class="right-side fn-left">
 			<l-location :type="category"></l-location>
 			<div class="comp-cont">
-				<h3>诚信投诉</h3>
+				<h3>诚信{{name}}</h3>
 				<div>
 					<span class="title">行业分类<i>*</i></span>
 					<p>
@@ -48,7 +48,7 @@
 				</div>
 				<div class="fn-clear">
 					<div class="fn-left">
-						<span class="title">投诉人姓名<i>*</i></span>
+						<span class="title">{{name}}人姓名<i>*</i></span>
 						<p class="fn-left">
 							<input type="text" id="" value="" class="w155"/>
 						</p>
@@ -63,7 +63,7 @@
 					<p><input type="text" id="" value="" class="w493" /></p>
 				</div>
 				<div class="fn-clear">
-					<p class="fn-left title">投诉人要求</p>
+					<p class="fn-left title">{{name}}人要求</p>
 					<p><textarea placeholder="请输入您的要求" class="require"></textarea></p>
 				</div>
 				<div class="btn-submit"><span class="title"></span><a>提交需求</a></div>
@@ -196,7 +196,8 @@
 	import Pages from "../components/Pages.vue";
 
 	import {
-		getArticleListAction,
+		getSNewAction,
+		postSFromAction
 	} from '../vuex/actions.js';
 	export default {
 		/*
@@ -214,11 +215,20 @@
 		 */
 		data() {
 			return {
-				params: {
-					pageCount: 10,
-					pageIndex: 1
+				name:"投诉",
+				params:{
+					address:null,
+					des:null,
+					enterprise:null,
+					id:null,
+					name:null,
+					phone:null,
+					req:null,
+					submitor:null,
+					title:null,
+					type:1,
 				},
-				category: 1
+				category: 12
 			}
 		},
 		/*
@@ -226,10 +236,10 @@
 		 */
 		vuex: {
 			getters: {
-				articleList: (state) => state.modules.articleList,
 			},
 			actions: {
-				getArticleListAction,
+				getSNewAction,
+				postSFromAction
 			}
 		},
 		/*
@@ -240,11 +250,9 @@
 		 * 处理事件
 		 */
 		methods: {
-			handlePageClick(index) {
-				apps.log('跳转到第：' + index + "页")
-				this.params.pageIndex = index;
-				this.getArticleListAction(this.params).then((data) => {
-					apps.log('banner数据请求成功')
+			handleSForm(){
+				this.postSFromAction(this.params).then((data) => {
+					alert('提交成功！');
 				}, (error) => {
 					apps.log(error)
 				});
@@ -254,13 +262,6 @@
 		 * 实例计算属性
 		 */
 		computed: {
-			pagesObj() {
-				return {
-					pageCount: this.params.pageCount,
-					pageIndex: this.params.pageIndex,
-					total: this.articleList.total
-				};
-			}
 		},
 		/*
 		 * 路由数据钩 参数发生变化这里被激活
@@ -269,11 +270,15 @@
 			data({
 				to
 			}) {
-				apps.log(to.params.category);
-				this.params.category = to.params.category || 1; //category
-				this.category = parseInt(to.params.category);
-				this.getArticleListAction(this.params).then((data) => {
-					apps.log('列表数据请求成功')
+				apps.log(to.params.type)
+				this.params.type = to.params.type || 1;
+				
+				this.name = this.params.type == 1 ? '投诉':'表扬';
+				this.category = this.params.type == 1 ? 13 : 14;
+				//获取文章id
+				this.getSNewAction().then((data) => {
+					this.params.id = data;
+					apps.log('企业详情数据请求成功')
 				}, (error) => {
 					apps.log(error)
 				});
