@@ -2,170 +2,240 @@
 	<!--企业详情信息-->
 	<div class="w1000">
 		<l-location :type="category"></l-location>
-		<section class="info-cont">
-			<div class="fn-clear">
-				<div class="fn-left swiper">
-					<div class="swiper-container">
-						<div class="swiper-wrapper info-swp">
-							<div class="swiper-slide">
-								<img src="../assets/images/building.jpg" />
-							</div>
-							<div class="swiper-slide">
-								<img src="../assets/images/banner.jpg" />
-							</div>
-							<div class="swiper-slide">
-								<img src="../assets/images/banner.jpg" />
-							</div>
-						</div>
-						<!-- Add Pagination -->
-						<div class="swiper-pagination"></div>
-						<div class="swiper-button-prev"></div>
-						<div class="swiper-button-next"></div>
-					</div>
+		<section class="fn-clear m-t-30" style="border-top: 1px solid #ccc;">
+			<div class="info-list w-l fn-left">
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">企业名称：</div>
+					<div class="cont">{{detail.name || '无'}}</div>
 				</div>
-				<div class="fn-left info-list w-r">
-					<div class="bor-t bor-r fn-clear">
-						<div class="title">项目名称：</div>
-						<div class="cont text-center f-w">阳光花庭</div>
-					</div>
-					<div class="bor-t bor-r fn-clear">
-						<div class="title">企业名称：</div>
-						<div class="cont">重庆市鸳鸯房地产开发公司</div>
-					</div>
-					<div class="bor-t bor-r fn-clear">
-						<div class="title">坐落地址：</div>
-						<div class="cont">重庆台湖镇B-07地块R2二类居住用地</div>
-					</div>
-					<div class="bor-t bor-r fn-clear">
-						<div class="title">占地面积：</div>
-						<div class="cont">60000.00平方米</div>
-					</div>
-					<div class="bor-t bor-r fn-clear">
-						<div class="title">总建筑面积：</div>
-						<div class="cont">30000.00平方米</div>
-					</div>
-					<div class="bor-t bor-r fn-clear">
-						<div class="title">物业类型：</div>
-						<div class="cont">鸳鸯物业</div>
-					</div>
-					<div class="bor-t bor-r fn-clear">
-						<div class="title">总户数：</div>
-						<div class="cont">1875户</div>
-					</div>
-					<div class="bor-t bor-r fn-clear bor-b">
-						<div class="title">联系电话：</div>
-						<div class="cont">023-65458888</div>
-					</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">企业性质：</div>
+					<div class="cont"> {{detail.kind || '无'}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">企业类型：</div>
+					<div class="cont">{{detail.classkind || '无'}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">企业组织机构代码：</div>
+					<div class="cont">{{detail.orgcode || '无'}}</div>
+				</div>
+			</div>
+			<div class="fn-left info-list w-r">
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">传真：</div>
+					<div class="cont">{{detail.fax || '无'}}</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">电子邮箱：</div>
+					<div class="cont">{{detail.email || '无'}}</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">企业资质等级：</div>
+					<div class="cont">{{detail.competency_grade || 0}}级</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">资质等级证书号：</div>
+					<div class="cont">{{detail.competency_cert || '无'}}</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="fn-clear">
+			<div class="info-list w-l fn-left">
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">成立日期：</div>
+					<div class="cont">{{detail.establish_date | formatTime "yyyy-MM-dd"}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">资质证书批准日期：</div>
+					<div class="cont">{{detail.competency_date | formatTime "yyyy-MM-dd"}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">资质证书截止日期：</div>
+					<div class="cont">{{detail.competency_enddate | formatTime "yyyy-MM-dd"}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">工商注册日期：</div>
+					<div class="cont">{{detail.register_date | formatTime "yyyy-MM-dd"}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">执照到期日期：</div>
+					<div class="cont">{{detail.register_enddate | formatTime "yyyy-MM-dd"}}</div>
+				</div>
+			</div>
+			<div class="fn-left info-list w-r">
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">注册资本（万元）：</div>
+					<div class="cont">{{detail.register_cost || '无'}}</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">资产总额（万元）：</div>
+					<div class="cont">{{detail.total_cost || '无'}}</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">邮编：</div>
+					<div class="cont">{{detail.postcode || '无'}}</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">主营业务：</div>
+					<div class="cont">{{detail.business_main || '无'}}</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">股东成员：</div>
+					<div class="cont">{{detail.membership || '无'}}</div>
 				</div>
 			</div>
 		</section>
 		<section class="fn-clear">
 			<div class="info-list w-l fn-left">
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
-					<div class="title">交房标准：</div>
-					<div class="cont"> </div>
+					<div class="title">在职员工（人）：</div>
+					<div class="cont">{{detail.headcount || '无'}}</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
-					<div class="title">停车位：</div>
-					<div class="cont"> 1000个</div>
+					<div class="title">曾经开发项目名称：</div>
+					<div class="cont">{{detail.project_oldname || '无'}}</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
-					<div class="title">开工时间：</div>
-					<div class="cont">2015-05-06</div>
+					<div class="title">目前开发项目名称：</div>
+					<div class="cont">{{detail.project_nowname || '无'}}</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
-					<div class="title">项目开发公司名称：</div>
-					<div class="cont">重庆金科房地产开发有限公司</div>
+					<div class="title">累计完成投资额（万元）：</div>
+					<div class="cont">{{detail.invest_cost || '无'}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">累计开工面积（万m2）：</div>
+					<div class="cont">{{detail.start_area || '无'}}</div>
 				</div>
 			</div>
 			<div class="fn-left info-list w-r">
 				<div class="bor-r bor-b fn-clear">
-					<div class="title">交房时间：</div>
-					<div class="cont">2016-08-18</div>
+					<div class="title">累计竣工面积（万m2）：</div>
+					<div class="cont">{{detail.end_area || '无'}}</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
-					<div class="title">车位比：</div>
-					<div class="cont">1:6</div>
+					<div class="title">累计销售面积（万m2）：</div>
+					<div class="cont">{{detail.sale_area || '无'}}</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
-					<div class="title">竣工时间：</div>
-					<div class="cont">2016-01-02</div>
+					<div class="title">累计销售总额（万元）：</div>
+					<div class="cont">{{detail.sale_cost || '无'}}</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
-					<div class="title">集团公司名称：</div>
-					<div class="cont">金科地产</div>
+					<div class="title">累计纳税额（万元）：</div>
+					<div class="cont">{{detail.tax || '无'}}</div>
 				</div>
-			</div>
-		</section>
-		<section class="info-list">
-			<div class="bor-l bor-b bor-r fn-clear">
-				<div class="title">建筑设计单位名称：</div>
-				<div class="cont">重庆人和城建工程有限公司</div>
-			</div>
-			<div class="bor-l bor-b bor-r fn-clear">
-				<div class="title">施工单位名称：</div>
-				<div class="cont">重庆人和城建工程有限公司</div>
-			</div>
-			<div class="bor-l bor-b bor-r fn-clear">
-				<div class="title">监理单位名称：</div>
-				<div class="cont">重庆人和城建工程有限公司</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">诚信建设分管领导：</div>
+					<div class="cont">{{detail.sub_leader || '无'}}</div>
+				</div>
 			</div>
 		</section>
 		<section class="fn-clear">
 			<div class="info-list w-l fn-left">
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
-					<div class="title">景观设计单位名称：</div>
-					<div class="cont">重庆建筑工程学院</div>
+					<div class="title">诚信建设分管领导联系电话：</div>
+					<div class="cont">{{detail.sub_tel || '无'}}</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
-					<div class="title">业务银行名称：</div>
-					<div class="cont">中国民生银行</div>
+					<div class="title">是否加入房协：</div>
+					<div class="cont">{{detail.house_society || '无'}}</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
-					<div class="title">销售代理公司名称：</div>
-					<div class="cont">无</div>
+					<div class="title">子公司及相应资质等级：</div>
+					<div class="cont">{{detail.sub_company || '无'}}</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
-					<div class="title">权证号：</div>
-					<div class="cont">无</div>
+					<div class="title">法人代表：</div>
+					<div class="cont">{{detail.delegate || '无'}}</div>
 				</div>
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
-					<div class="title">预售许可证号：</div>
-					<div class="cont">无</div>
+					<div class="title">企业注册号：</div>
+					<div class="cont">{{detail.certificate_no || '无'}}</div>
 				</div>
 			</div>
 			<div class="fn-left info-list w-r">
 				<div class="bor-r bor-b fn-clear">
-					<div class="title">物业管理公司名称：</div>
-					<div class="cont">金科物业</div>
+					<div class="title">法人代表联系电话：</div>
+					<div class="cont">{{detail.delegate_tel || '无'}}</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
-					<div class="title">广告代理公司名称：</div>
-					<div class="cont">重庆柯众广告</div>
+					<div class="title">申报单位：</div>
+					<div class="cont">{{detail.declarunit || '无'}}</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
-					<div class="title">签订土地出让合同时间：</div>
-					<div class="cont">2010-02-01</div>
+					<div class="title">填表人：</div>
+					<div class="cont">{{detail.fillperson || '无'}}</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
-					<div class="title">办证时间：</div>
-					<div class="cont"></div>
+					<div class="title">填表人联系方式：</div>
+					<div class="cont">{{detail.tel_fillperson || '无'}}</div>
 				</div>
 				<div class="bor-r bor-b fn-clear">
-					<div class="title">开盘销售时间：</div>
-					<div class="cont"></div>
+					<div class="title">申报状态：</div>
+					<div class="cont">{{detail.state || '无'}}</div>
+				</div>
+			</div>
+		</section>
+		
+		
+		<section class="fn-clear">
+			<div class="info-list w-l fn-left">
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">审批意见：</div>
+					<div class="cont">{{detail.comments || '无'}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">审批日期(生效日期)：</div>
+					<div class="cont">{{detail.approval_date | formatTime "yyyy-MM-dd"}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">企业用户（用户名）属于某个用户：</div>
+					<div class="cont">{{detail.username || '无'}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">更新状态：</div>
+					<div class="cont">{{detail.updatestate || '无'}}</div>
+				</div>
+				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+					<div class="title">企业更新（审批意见）：</div>
+					<div class="cont">{{detail.updatecomments || '无'}}</div>
+				</div>
+			</div>
+			<div class="fn-left info-list w-r">
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">分值：</div>
+					<div class="cont">{{detail.score || '无'}}</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">顺序：</div>
+					<div class="cont">{{detail.sort || '无'}}</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">企业网站：</div>
+					<div class="cont">{{detail.homepage || '无'}}</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">公司地址：</div>
+					<div class="cont">{{detail.address || '无'}}</div>
+				</div>
+				<div class="bor-r bor-b fn-clear">
+					<div class="title">注册地址：</div>
+					<div class="cont">{{detail.register_address || '无'}}</div>
 				</div>
 			</div>
 		</section>
 		<section class="info-list">
 			<div class="bor-l bor-b bor-r fn-clear">
-				<div class="title">项目配套设施情况介绍：</div>
-				<div class="cont"></div>
+				<div class="title">经营范围：</div>
+				<div class="cont">{{detail.business_scope || '无'}}</div>
 			</div>
-			<div class="bor-l bor-b bor-r fn-clear">
+			<!--<div class="bor-l bor-b bor-r fn-clear">
 				<div class="title">项目情况介绍：</div>
-				<div class="cont"></div>
-			</div>
+				<div class="cont">{{detail.orgcode}}</div>
+			</div>-->
 		</section>
 		<section class="pic-cont">
 			<!--<h3>诚信展示图片</h3>
@@ -175,15 +245,15 @@
 					<li><img src="../assets/images/building.jpg"/></li>
 					<li><img src="../assets/images/building.jpg"/></li>
 				</ul>
-			</div>
+			</div>-->
 			<div class="tab-bar">
 				<ol>
 					<li><a>开发企业获奖信息</a></li>
 					<li><a>开发企业不良行为信息</a></li>
-					<li><a>诚信企业展示</a></li>
-					<li><a class="on">诚信项目展示</a></li>
+					<li><a v-link="{ name: 'enterpriseInfo', params: {pid: params.pid }}" class="on">诚信企业展示</a></li>
+					<li><a v-link="{ name: 'projectInfo', params: {pid: params.pid }}">诚信项目展示</a></li>
 				</ol>
-			</div>-->
+			</div>
 		</section>
 	</div>
 </template>
@@ -314,7 +384,7 @@
 				params: {
 					pid: 0,
 				},
-				category: 1
+				category: 17
 			}
 		},
 		ready() {
@@ -331,7 +401,7 @@
 		 */
 		vuex: {
 			getters: {
-				enterpriseDetail: (state) => state.modules.enterpriseDetail,
+				detail: (state) => state.modules.enterpriseDetail,
 			},
 			actions: {
 				getEDetail,

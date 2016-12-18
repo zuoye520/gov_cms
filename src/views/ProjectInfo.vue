@@ -180,8 +180,8 @@
 				<ol>
 					<li><a>开发企业获奖信息</a></li>
 					<li><a>开发企业不良行为信息</a></li>
-					<li><a>诚信企业展示</a></li>
-					<li><a class="on">诚信项目展示</a></li>
+					<li><a v-link="{ name: 'enterpriseInfo', params: {pid: params.pid}}" >诚信企业展示</a></li>
+					<li><a v-link="{ name: 'projectInfo', params: {pid: params.pid }}" class="on">诚信项目展示</a></li>
 				</ol>
 			</div>
 		</section>

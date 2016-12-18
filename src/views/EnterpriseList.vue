@@ -13,12 +13,12 @@
 				<ul>
 					<li class="fn-clear" v-for="item in eList.list">
 						<div class="company-logo fn-left">
-							<img v-if="item.url" :src="item.url" />
+							<img v-if="item.url" :src="item.logo" />
 							<img v-else src="../assets/images/brand1.jpg" />
 						</div>
 						<div class="company-info fn-left">
 							<h3>{{item.name}}</h3>
-							<p>腾讯科技(2.2.2)腾讯公司成立于1998年11月，是目前中国最大的互联网综合服务提供商之一，也是中国服务用户最多的互联网</p>
+							<p>{{item.des}}</p>
 							<p class="score"><strong>{{item.score}}</strong>分</p>
 						</div>
 					</li>
@@ -186,19 +186,22 @@
 		 */
 		route: {
 			canDeactivate({to, next}) {
-				delete this.params.ename;
-				delete this.params.pname;
-				delete this.params.level;
+				apps.setSessionStorage('SEARCH_PARAMS',{});
 				next();
 			},
 			data({
 				to
 			}) {
 				this.params.pageIndex = 1;
-				if(to.params.ename){
-					this.params.ename = to.params.ename;
-					this.params.pname = to.params.pname;
-					this.params.level = to.params.level;
+				let searchParams = apps.getSessionStorage('SEARCH_PARAMS',{});
+				if(searchParams.ename){
+					this.params.ename = searchParams.ename;
+				}
+				if(searchParams.pname){
+					this.params.pname = searchParams.pname;
+				}
+				if(searchParams.level !='请选择'){
+					this.params.level = searchParams.level;
 				}
 				this.getEList(this.params).then((data) => {
 					apps.log('企业列表数据请求成功')

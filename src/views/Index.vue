@@ -164,7 +164,7 @@
 					</div>
 				</div>
 				<div class="blue-fill company-list">
-					<h3 class="fn-clear">诚信等级公示<a  class="fn-right" v-link="{ name: 'elist'}">更多</a></h3>
+					<h3 class="fn-clear">诚信等级公示<a  class="fn-right" v-link="{ name: 'enterpriseList'}">更多</a></h3>
 					<div class="company-info ">
 						
 						<ul>
@@ -267,7 +267,7 @@
 			</div>
 		</section>
 		<section class="brand-cont">
-			<h3 class="fn-clear">诚信品牌<p class="fn-right"><a v-link="{ name: 'elist'}">更多</a></p> </h3>
+			<h3 class="fn-clear">诚信品牌<p class="fn-right"><a v-link="{ name: 'enterpriseList'}">更多</a></p> </h3>
 			<div class="brand-list">
 				<ul class="fn-clear">
 					<li class="fn-left" v-for="item in enterpriseLists" v-link="{ name: 'enterpriseInfo', params: {pid: item.bizId }}">
@@ -803,8 +803,8 @@
 				xzcfActive: 1, //默认显示行政处罚
 				hjxxActive: 1, //默认显示获奖信息
 				queryParams:{//企业信息查询参数
-					ename:"",
-					pname:"",
+					ename:'',
+					pname:'',
 					level:"请选择"
 				},
 				xwdtParams: { //新闻动态
@@ -1015,32 +1015,34 @@
 				this.qycxActive = index;
 			},
 			handleQueryInfo(){//搜索
-				let ename = this.queryParams.ename.trim();
-				let pname = this.queryParams.pname.trim();
-				if(ename.length <=0){
-					alert('请输入企业名称');
-					return;
-				}
-				if(pname.length <=0){
-					alert('请输入项目名称');
-					return;
-				}
-				if(this.queryParams.level=='请选择'){
-					alert('请选择诚信等级');
-					return;
-				}
+//				let ename = this.queryParams.ename.trim();
+//				let pname = this.queryParams.pname.trim();
+//				if(ename.length <=0){
+//					alert('请输入企业名称');
+//					return;
+//				}
+//				if(pname.length <=0){
+//					alert('请输入项目名称');
+//					return;
+//				}
+//				if(this.queryParams.level=='请选择'){
+//					alert('请选择诚信等级');
+//					return;
+//				}
 				this.queryParams.category = this.qycxActive==1 ? 0 : this.qycxActive==2 ? 10 : 11;
 				
+				apps.setSessionStorage('SEARCH_PARAMS',this.queryParams);
 				if(this.qycxActive ==1){
 					this.$route.router.go({
-		                	name: 'enterpriseList',
-		                	params: this.queryParams
+		                	name: 'enterpriseList'
 	                });
 				}else{
 					let category = this.qycxActive==2 ? 10: 11;
 					this.$route.router.go({
-		                	name: 'searchNewsList',
-		                	params: this.queryParams
+		                	name: 'newsList',
+		                	params:{
+		                		category:category
+		                	}
 	                });
 				}
 				
