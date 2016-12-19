@@ -70,11 +70,14 @@
 						case 15: //企业列表
 							str = "企业列表"	
 							break;	
-						case 16: //项目信息展示
-							str = "项目信息展示"
+						case 16: //项目详情
+							str = "项目详情"
 							break;	
 						case 17: //企业信息展示
 							str = "企业信息展示"
+							break;
+						case 18: //企业项目列表
+							str = "企业项目列表"
 							break;		
 						default:
 							str = "文章详情"

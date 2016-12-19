@@ -17,6 +17,8 @@ export const GET_P_DETAIL = 'GET_P_DETAIL';
 export const GET_E_LIST = 'GET_E_LIST';
 export const GET_E_DETAIL = 'GET_E_DETAIL';
 export const GET_A_LIST = 'GET_A_LIST';
+export const GET_P_E_LIST = 'GET_P_E_LIST';
+
 
 
 

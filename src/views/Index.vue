@@ -87,10 +87,11 @@
 					<h3 class="fn-clear">开发企业诚信信息<a  class="fn-right">更多</a></h3>
 					<div class="news-list sincerity">
 						<ul>
-							<li class="text-ellipsis">
-								<a>成都市关于促进我市房地产市场平稳健康发展我市房地产市场平发展我市房地产市场平稳健康发展若</a>
+							<li class="text-ellipsis" v-for ="item in maList.list">
+								<a>{{item.name}}</a>
 							</li>
-							<li class="text-ellipsis">
+							
+							<!--<li class="text-ellipsis">
 								<a>成都市关于促进我市房地产市场平稳健康发展若</a>
 							</li>
 							<li class="text-ellipsis">
@@ -101,8 +102,11 @@
 							</li>
 							<li class="text-ellipsis">
 								<a>成都市关于促进我市房地产市场平稳健康发展我市房地产市场平发展我市房地产市场平稳健康发展若</a>
-							</li>
+							</li>-->
 						</ul>
+						<div v-show="maList.list && maList.list.length <=0">
+								<p align="center">暂无相关文章</p>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -138,13 +142,17 @@
 						<h3><a  class="news on">开发企业诚信信息更新</a><a  class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
-								<li class="fn-clear">
+								<li class="fn-clear" v-for ="item in maList.list">
 									<p class="text-ellipsis fn-left">
-										<a>地产市场平稳健康发展我市康发展市地产市场平稳健康发展我市康发展我市房场平稳健康发展我市房地产市</a>
+										<a>{{item.title}}</a>
 									</p>
 									<i class="fn-right">详情</i>
 								</li>
+								<li v-show="maList.list && maList.list.length <=0">
+									<p align="center">暂无相关文章</p>
+								</li>
 							</ul>
+							
 						</div>
 					</div>
 					<div class="blue-half exposure-cont fn-right">
@@ -777,7 +785,8 @@
 		getPicListAction,
 		getArticleListAction,
 		getELeveListAction,
-		getEGradesList
+		getEGradesList,
+		getAList
 	} from '../vuex/actions.js';
 	import Pages from "../components/Pages.vue";
 	import Gather from "../components/Gather.vue";
@@ -858,6 +867,11 @@
 				cxdjgsParams: { //诚信等级公示
 					pageCount: 5,
 					pageIndex: 1,
+				},
+				qywzParams: { //企业文章列表
+					categoryid:0,
+					pageCount: 5,
+					pageIndex: 1,
 				}
 			}
 		},
@@ -879,13 +893,14 @@
 				blxwList: (state) => state.modules.blxwList, //企业不良行为
 				gradesList: (state) => state.modules.gradesList, //获取诚信企业评级列表
 				eLeveList: (state) => state.modules.eLeveList, //获取诚信等级公示
-				
+				maList : (state) => state.modules.maList, //获取诚信等级公示
 			},
 			actions: {
 				getPicListAction,
 				getArticleListAction,
 				getELeveListAction,
-				getEGradesList
+				getEGradesList,
+				getAList
 			}
 		},
 		/*
@@ -983,7 +998,13 @@
 			}, (error) => {
 				apps.log(error)
 			});
-
+			
+			//获取企业文章列表
+			this.getAList(this.qywzParams).then((data) => {
+				apps.log('企业文章列表')
+			}, (error) => {
+				apps.log(error)
+			});
 		},
 		/*
 		 * 处理事件

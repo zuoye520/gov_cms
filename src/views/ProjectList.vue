@@ -12,18 +12,18 @@
 			<div>
 				<dl>
 					<dt class="fn-clear"><span>【 序号 】</span><span class="p-l-30">【 标签 】</span><span class="fn-right p-r-20">【 时间 】</span></dt>
-					<dd v-for="item in articleList.list">
-						<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { category : category ,id: item.id }}">
+					<dd v-for="item in peList.list">
+						<a class="fn-clear"  v-link="{ name: 'projectInfo', params: {pid: item.id }}">
 							<p class="num fn-left">{{$index+1}}</p>
 							<div class="content fn-left">
-								<h3>{{item.title}} </h3>
+								<h3>{{item.name}} </h3>
 								<p class="text-ellipsis-2">{{item.content}} </p>
 							</div>
-							<div class="fn-right time">[{{item.publishTime | formatTime "yyyy-MM-dd"}}]</div>
+							<div class="fn-right time">[{{item.time | formatTime "yyyy-MM-dd"}}]</div>
 						</a>
 					</dd>
 				</dl>
-				<p class="p-30" align="center" v-show ="articleList.list && articleList.list.length <= 0">暂无内容...</p>
+				<p class="p-30" align="center" v-show ="peList.list && peList.list.length <= 0">暂无内容...</p>
 			</div>
 			<div class="pages">
 				<z-pages :pages-obj = "pagesObj"></z-pages>
@@ -133,7 +133,7 @@
 	import Pages from "../components/Pages.vue";
 
 	import {
-		getArticleListAction,
+		getPEList
 	} from '../vuex/actions.js';
 	export default {
 		/*
@@ -153,9 +153,10 @@
 			return {
 				params: {
 					pageCount: 10,
-					pageIndex: 1
+					pageIndex: 1,
+					eid:null
 				},
-				category : 1
+				category : 18
 			}
 		},
 		/*
@@ -163,10 +164,10 @@
 		 */
 		vuex: {
 			getters: {
-				articleList:(state)=> state.modules.articleList,
+				peList: (state) => state.modules.peList,
 			},
 			actions: {
-				getArticleListAction,
+				getPEList
 			}
 		},
 		/*
@@ -180,13 +181,17 @@
 			handlePageClick(index){
 				apps.log('跳转到第：'+index+"页")
 				this.params.pageIndex = index;
-				this.getArticleListAction(this.params).then((data) => {
+				this.getPEList(this.params).then((data) => {
 					apps.log('分页数据请求成功')
 				}, (error) => {
 					apps.log(error)
 				});
 			}
 		},
+		/*
+		 * 定义过滤器
+		 */
+		filters: {},
 		/*
 		 * 实例计算属性
 		 */
@@ -195,7 +200,7 @@
 				return {
 					pageCount : this.params.pageCount,
 					pageIndex : this.params.pageIndex,
-					total : this.articleList.total
+					total : this.peList.total
 				};
 			}
 		},
@@ -205,41 +210,19 @@
 		route: {
 			canDeactivate({to, next}) {
 //				apps.setSessionStorage('SEARCH_PARAMS',{});
-//				delete this.params.search;
-				delete this.params.enterpriseId;
 				next();
 			},
 			data({
 				to
 			}) {
-				apps.log(to.params.category);
-				this.params.category = to.params.category || 1; //category
-				this.category = parseInt(to.params.category);
 				this.params.pageIndex = 1;
-				
-				this.params.enterpriseId = to.params.enterpriseId || null;//企业id
-				
-				//搜索相关信息
-//				let searchParams = apps.getSessionStorage('SEARCH_PARAMS',{});
-//				if(searchParams.ename){
-//					this.params.ename = searchParams.ename;
-//					this.params.search = 'search';
-//				}
-//				if(searchParams.pname){
-//					this.params.pname = searchParams.pname;
-//					this.params.search = 'search';
-//				}
-//				if(searchParams.level){
-//					this.params.level = searchParams.level;
-//					this.params.search = 'search';
-//				}
-				
-				
-				this.getArticleListAction(this.params).then((data) => {
-					apps.log('列表数据请求成功')
+				this.params.eid = to.params.eid;
+				this.getPEList(this.params).then((data) => {
+					apps.log('企业项目列表数据请求成功')
 				}, (error) => {
 					apps.log(error)
 				});
+				
 			}
 		}
 	}
