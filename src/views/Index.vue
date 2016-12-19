@@ -166,11 +166,11 @@
 				<div class="blue-fill company-list">
 					<h3 class="fn-clear">诚信等级公示<a  class="fn-right" v-link="{ name: 'enterpriseList'}">更多</a></h3>
 					<div class="company-info ">
-						
+
 						<ul>
 							<li class="fn-clear" v-for ="item in eLeveList">
 								<p class="company-name fn-clear fn-left">
-									<span>{{item.name}}</span>
+									<span><a v-link="{name : 'enterpriseInfo',params: {pid : item.id}}">{{item.name}}</a></span>
 									<span class="fn-right">{{item.competency_grade}}级</span>
 								</p>
 								<div class="fn-right level">{{item.score}} 分</div>
@@ -285,7 +285,7 @@
 <style scoped lang="scss">
 	@import "../assets/css/common.scss";
 	/*公共样式*/
-	
+
 	.blue-fill {
 		margin-bottom: 15px;
 		h3 {
@@ -332,7 +332,7 @@
 			}
 		}
 	}
-	
+
 	.blue-half {
 		width: 100%;
 		height: 100%;
@@ -408,7 +408,7 @@
 		}
 	}
 	/*公共样式结束*/
-	
+
 	.banner-cont {
 		.left-banner {
 			width: 448px;
@@ -512,7 +512,7 @@
 			}
 		}
 	}
-	
+
 	.content {
 		.left-content {
 			.blue-fill {
@@ -645,19 +645,19 @@
 			}
 		}
 	}
-	
+
 	.news-list.policy {
 		height: 250px !important;
 	}
-	
+
 	.news-list.sincerity {
 		height: 236px !important;
 	}
-	
+
 	.news-list.win-info {
 		height: 299px !important;
 	}
-	
+
 	.building-cont {
 		.building-main,
 		.building-secondary {
@@ -731,7 +731,7 @@
 			}
 		}
 	}
-	
+
 	.brand-cont {
 		h3 {
 			padding: 5px 30px;
@@ -879,7 +879,7 @@
 				blxwList: (state) => state.modules.blxwList, //企业不良行为
 				gradesList: (state) => state.modules.gradesList, //获取诚信企业评级列表
 				eLeveList: (state) => state.modules.eLeveList, //获取诚信等级公示
-				
+
 			},
 			actions: {
 				getPicListAction,
@@ -920,8 +920,8 @@
 			}, (error) => {
 				apps.log(error)
 			});
-			
-			
+
+
 			//获取诚信企业评级列表
 			this.getEGradesList().then((data) => {
 				apps.log('获取诚信企业评级列表')
@@ -999,7 +999,7 @@
 						autoplayDisableOnInteraction:false,
 						nextButton: '.swiper-button-next',
 						prevButton: '.swiper-button-prev',
-					});	
+					});
 				},1000);
 			},
 			handleTabNews(index) {//tabbar切换
@@ -1030,7 +1030,7 @@
 //					return;
 //				}
 				this.queryParams.category = this.qycxActive==1 ? 0 : this.qycxActive==2 ? 10 : 11;
-				
+
 				apps.setSessionStorage('SEARCH_PARAMS',this.queryParams);
 				if(this.qycxActive ==1){
 					this.$route.router.go({
@@ -1045,7 +1045,7 @@
 		                	}
 	                });
 				}
-				
+
 			},
 			handleLogin(){//登录
 				alert('程序猿正在加班加点开发此功能..');
