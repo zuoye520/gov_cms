@@ -33,9 +33,6 @@ import apps from "../utils/apps.js";
 					},
 				}
 			},
-			props: {
-				
-			},
 			/*
 			 * 实例计算属性
 			 */
@@ -47,8 +44,6 @@ import apps from "../utils/apps.js";
 			 */
 			methods: {
 				handleQueryInfo(){
-					
-					
 					apps.setSessionStorage('SEARCH_PARAMS',this.queryParams);
 					if(this.queryParams.type =='信息身份'){
 						this.$route.router.go({
