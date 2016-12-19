@@ -11,9 +11,9 @@
 			<l-location :type = "category"></l-location>
 			<div class="company-list">
 				<ul>
-					<li class="fn-clear" v-for="item in eList.list">
+					<li class="fn-clear" v-for="item in eList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">
 						<div class="company-logo fn-left">
-							<img v-if="item.url" :src="item.logo" />
+							<img v-if="item.logo" :src="item.logo" />
 							<img v-else src="../assets/images/brand1.jpg" />
 						</div>
 						<div class="company-info fn-left">
@@ -90,7 +90,7 @@
 							}
 						}
 						>p {
-							height: 40px;
+							/*height: 40px;*/
 							overflow: hidden;
 						}
 						.score {
@@ -186,23 +186,23 @@
 		 */
 		route: {
 			canDeactivate({to, next}) {
-				apps.setSessionStorage('SEARCH_PARAMS',{});
+//				apps.setSessionStorage('SEARCH_PARAMS',{});
 				next();
 			},
 			data({
 				to
 			}) {
 				this.params.pageIndex = 1;
-				let searchParams = apps.getSessionStorage('SEARCH_PARAMS',{});
-				if(searchParams.ename){
-					this.params.ename = searchParams.ename;
-				}
-				if(searchParams.pname){
-					this.params.pname = searchParams.pname;
-				}
-				if(searchParams.level !='请选择'){
-					this.params.level = searchParams.level;
-				}
+//				let searchParams = apps.getSessionStorage('SEARCH_PARAMS',{});
+//				if(searchParams.ename){
+//					this.params.ename = searchParams.ename;
+//				}
+//				if(searchParams.pname){
+//					this.params.pname = searchParams.pname;
+//				}
+//				if(searchParams.level !='请选择'){
+//					this.params.level = searchParams.level;
+//				}
 				this.getEList(this.params).then((data) => {
 					apps.log('企业列表数据请求成功')
 				}, (error) => {

@@ -25,6 +25,12 @@ const mapObj = {
 			require(['./views/NewsList.vue'], resolve)
 		}
 	},
+	"/newsList/:category/:enterpriseId" :{
+		name: 'newsEList',
+		component(resolve) {
+			require(['./views/NewsList.vue'], resolve)
+		}
+	},
 	"/newsDetails/:category/:id" :{
 		name: 'newsDetails',
 		component(resolve) {
@@ -55,6 +61,13 @@ const mapObj = {
 			require(['./views/EnterpriseList.vue'], resolve)
 		}
 	},
+	"/projectList/:eid" :{
+		name: 'projectList',
+		component(resolve) {
+			require(['./views/ProjectList.vue'], resolve)
+		}
+	},
+	
 	"/stepOne" :{
 		name: 'stepOne',
 		component(resolve) {

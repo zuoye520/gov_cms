@@ -59,7 +59,7 @@
 <script>
 	import apps from "../utils/apps.js";
 	import Location from "../components/Location.vue";
-	
+	import { Toast, Indicator } from 'mint-ui';
 	import {
 		getArticleDetailAction,
 	} from '../vuex/actions.js';
@@ -121,11 +121,13 @@
 			data({
 				to
 			}) {
+				Indicator.open();
 				this.params.id = to.params.id || 1;//文章id
 				this.category = parseInt(to.params.category) || 99;
 				apps.log(this.category);
 				this.getArticleDetailAction(this.params).then((data) => {
 					apps.log('文章详情数据请求成功')
+					Indicator.close();
 				}, (error) => {
 					apps.log(error)
 				});

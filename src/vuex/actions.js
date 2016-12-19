@@ -16,15 +16,17 @@ const 	GET_ARTICLE_LIST = "xhlc/api/a/list/";//获取文章列表/xhlc/api/a/lis
 const 	GET_ARTICLE_DETAIL = "xhlc/api/a/";//获取文章详情/xhlc/api/a/:id
 const 	GET_E_LEVE_LIST = "xhlc/api/e/levelList";//获取诚信等级公示
 const 	GET_M_A_INFO = "xhlc/api/m/a/";//开发企业获奖信息查询/xhlc/api/m/a/:category
-const 	GET_S_NEW = "xhlc/api/s/new";//企业投诉／表扬获取文章id /xhlc/api/s/new
-const 	POST_S_FROM = "xhlc/api/s/";//企业投诉／表扬 /xhlc/api/s/:type
-
 const 	GET_E_GRADES = "xhlc/api/e/grades";//获取诚信企业评级列表
 const 	GET_P_E_LIST = "xhlc/api/p/e/";//获取企业项目列表 xhlc/api/p/e/:eid
 const 	GET_P_DETAIL = "xhlc/api/p/";//获取企业项目详情 xhlc/api/p/:pid
 const 	GET_A_LIST = "xhlc/api/a/list/";//获取企业文章列表 xhlc/api/a/list/:category/:enterpriseId
 const 	GET_E_LIST = "xhlc/api/e/";//获取企业列表 xhlc/api/e/
 const 	GET_E_DETAIL = "xhlc/api/e/";//获取企业详情 xhlc/api/e/:eid
+const 	POST_FILE = "xhlc/api/f/upload/attach/Appeal/";//上传文件接口 xhlc/api/f/upload/attach/Appeal/:appealId
+const 	GET_INDUSTRY = "xhlc/api/s/industry";//获取行业分类 xhlc/api/s/industry
+const 	GET_S_NEW = "xhlc/api/s/new";//企业投诉／表扬获取文章id /xhlc/api/s/new
+const 	POST_S_FROM = "xhlc/api/s/";//企业投诉／表扬/xhlc/api/s/:type/:code
+
 
 /*
  * @DESC:获取首页图片信息
@@ -52,8 +54,11 @@ export const getPicListAction = ({ dispatch, state },params={}) => {
 export const getArticleListAction = ({ dispatch, state },params={}) => {
 	return new Promise((resolve, reject) =>{
 		let URL = GET_ARTICLE_LIST+params.category
-		if(params.search){
+		if(params.search){//搜索情况
 			URL = URL+"/"+params.search;
+		}
+		if(params.enterpriseId){//有企业id的情况
+			URL = URL+"/"+params.enterpriseId;
 		}
 		apps.get(URL,params).success((data)=>{
 			apps.log(data);
@@ -116,6 +121,23 @@ export const getMAInfoAction = ({ dispatch, state },params={}) => {
     });
 }
 
+
+
+/*
+ * @DESC:获取行业分类
+ * @Author:zuozuo
+ * @Date：2016.12.11
+ */
+export const getIndustry = ({ dispatch, state },params={}) => {
+	return new Promise((resolve, reject) =>{
+		apps.get(GET_INDUSTRY).success((data)=>{
+			apps.log(data);
+			resolve(data);
+	    }).businessError(900,(msg, data)=>{
+    		reject(msg);
+		});
+    });
+}
 /*
  * @DESC:企业投诉／表扬获取文章id
  * @Author:zuozuo
@@ -139,8 +161,12 @@ export const getSNewAction = ({ dispatch, state },params={}) => {
  * @Date：2016.12.11
  */
 export const postSFromAction = ({ dispatch, state },params={}) => {
+	let code = params.code;
+	let type = parseInt(params.type);
+	delete params.type;
+	delete params.code;
 	return new Promise((resolve, reject) =>{
-		apps.get(POST_S_FROM+params.type).success((data)=>{
+		apps.post(POST_S_FROM+type+"/"+code,params).success((data)=>{
 			apps.log(data);
 //			dispatch(types.POST_S_FROM,data);
 			resolve("ok");
@@ -174,7 +200,7 @@ export const getEGradesList = ({ dispatch, state },params={}) => {
  */
 export const getPEList = ({ dispatch, state },params={}) => {
 	return new Promise((resolve, reject) =>{
-		apps.get(GET_P_E_LIST).success((data)=>{
+		apps.get(GET_P_E_LIST+params.eid,params).success((data)=>{
 			apps.log(data);
 			dispatch(types.GET_P_E_LIST,data);
 			resolve("ok");
@@ -206,7 +232,7 @@ export const getEList = ({ dispatch, state },params={}) => {
  */
 export const getAList = ({ dispatch, state },params={}) => {
 	return new Promise((resolve, reject) =>{
-		apps.get(GET_A_LIST).success((data)=>{
+		apps.get(GET_A_LIST+params.categoryid,params).success((data)=>{
 			apps.log(data);
 			dispatch(types.GET_A_LIST,data);
 			resolve("ok");
@@ -249,3 +275,20 @@ export const getEDetail = ({ dispatch, state },params={}) => {
     		});
     });
 }
+
+/*
+ * @DESC:获取企业详情
+ * @Author:zuozuo
+ * @Date：2016.12.16
+ */
+export const postFile = ({ dispatch, state },params={}) => {
+	return new Promise((resolve, reject) =>{
+		apps.get(POST_FILE+params.appealId,params).success((data)=>{
+			apps.log(data);
+			resolve("ok");
+	    }).businessError(900,(msg, data)=>{
+        		reject(msg);
+		});
+    });
+}
+

@@ -7,10 +7,10 @@
 				<p><input type="text" v-model="queryParams.pname" placeholder="请输入开发企业项目"/></p>
 				<p class="fn-clear"><span>信息类别</span>
 					<select v-model="queryParams.type">
-					<option>请选择</option>
-					<option>信息身份</option>
-					<option>获奖信息</option>
-					<option>不良行为</option>
+						<option>请选择</option>
+						<option>信息身份</option>
+						<option>获奖信息</option>
+						<option>不良行为</option>
 					</select>
 				</p>
 				<div class="btn"><a @click= "handleQueryInfo">确<i></i>定</a></div>
@@ -29,12 +29,9 @@ import apps from "../utils/apps.js";
 					queryParams:{//企业信息查询参数
 						ename:'',
 						pname:'',
-						type:"请选择"
+						type:'请选择'
 					},
 				}
-			},
-			props: {
-				
 			},
 			/*
 			 * 实例计算属性
@@ -47,15 +44,16 @@ import apps from "../utils/apps.js";
 			 */
 			methods: {
 				handleQueryInfo(){
-					
-					
 					apps.setSessionStorage('SEARCH_PARAMS',this.queryParams);
-					if(this.queryParams.type =='信息身份'){
+//					this.queryParams.ename = '';
+//					this.queryParams.pname = '';
+//					this.queryParams.type = '请选择';
+					if(this.queryParams.type =='信息身份'||this.queryParams.type =='请选择'){
 						this.$route.router.go({
 			                	name: 'enterpriseList'
 		                });
 					}else{
-						let category = this.qycxActive=='获奖信息' ? 10: 11;
+						let category = this.queryParams.type=='获奖信息' ? 10: 11;
 						this.$route.router.go({
 			                	name: 'newsList',
 			                	params:{
@@ -98,6 +96,7 @@ import apps from "../utils/apps.js";
 				select{
 					display: inline-block;
 					width: 142px;
+					height: 33px;
 					color: $color-gray2;
 					padding: 5px 0 5px 10px;
 					float: left;

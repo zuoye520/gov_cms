@@ -25,6 +25,7 @@ const state = {
 	gradesList:[],//获取诚信企业评级列表
 	projectDetail:{},//获取企业项目详情
 	eList:[],//企业列表
+	peList:[],//项目列表
 	enterpriseDetail:{},//获取企业详情
 	maList:[],//企业相关文章查询
 	sNew:null,
@@ -111,6 +112,9 @@ const mutations = {
 	},
 	[types.GET_E_LIST](state, data) {
 		state.eList = data;
+	},
+	[types.GET_P_E_LIST](state, data) {
+		state.peList = data;
 	}
 	
 }
