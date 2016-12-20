@@ -14,7 +14,7 @@
 					<li class="fn-clear" v-for="item in eList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">
 						<div class="company-logo fn-left">
 							<img v-if="item.logo" :src="item.logo" />
-							<img v-else src="../assets/images/brand1.jpg" />
+							<img v-else src="../assets/images/deflaut.jpg" />
 						</div>
 						<div class="company-info fn-left">
 							<h3>{{item.name}}</h3>
@@ -163,7 +163,15 @@
 		 * 处理事件
 		 */
 		methods: {
-
+			handlePageClick(index){
+				apps.log('跳转到第：'+index+"页")
+				this.params.pageIndex = index;
+				this.getEList(this.params).then((data) => {
+					apps.log('分页数据请求成功')
+				}, (error) => {
+					apps.log(error)
+				});
+			}
 		},
 		/*
 		 * 定义过滤器

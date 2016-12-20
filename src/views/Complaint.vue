@@ -230,6 +230,7 @@
 				width: 120px;
 				height: 30px;
 				border: #ccc 1px solid;
+				cursor: pointer;
 			}
 		}
 	}

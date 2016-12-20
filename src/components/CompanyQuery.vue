@@ -45,9 +45,6 @@ import apps from "../utils/apps.js";
 			methods: {
 				handleQueryInfo(){
 					apps.setSessionStorage('SEARCH_PARAMS',this.queryParams);
-//					this.queryParams.ename = '';
-//					this.queryParams.pname = '';
-//					this.queryParams.type = '请选择';
 					if(this.queryParams.type =='信息身份'||this.queryParams.type =='请选择'){
 						this.$route.router.go({
 			                	name: 'enterpriseList'
