@@ -6,8 +6,9 @@
 				<p><input type="text" v-model="queryParams.ename" placeholder="请输入开发企业名称"/></p>
 				<p><input type="text" v-model="queryParams.pname" placeholder="请输入开发企业项目"/></p>
 				<p class="fn-clear"><span>信息类别</span>
-					<select v-model="queryParams.type">
+					<select v-model="queryParams.level">
 						<option>请选择</option>
+						<!--<option>{{queryParams.level}}</option>-->
 						<option>信息身份</option>
 						<option>获奖信息</option>
 						<option>不良行为</option>
@@ -26,11 +27,17 @@ import apps from "../utils/apps.js";
 		 */
 		data() {
 				return {
-					queryParams:{//企业信息查询参数
-						ename:'',
-						pname:'',
-						type:'请选择'
-					},
+//					queryParams:{//企业信息查询参数
+//						ename:'',
+//						pname:'',
+//						type:'请选择'
+//					},
+				}
+			},
+			props: {
+				queryParams: {
+					type: Object,
+					default: {},
 				}
 			},
 			/*
@@ -44,19 +51,12 @@ import apps from "../utils/apps.js";
 			 */
 			methods: {
 				handleQueryInfo(){
-					apps.setSessionStorage('SEARCH_PARAMS',this.queryParams);
-					if(this.queryParams.type =='信息身份'||this.queryParams.type =='请选择'){
-						this.$route.router.go({
-			                	name: 'enterpriseList'
-		                });
+//					apps.setSessionStorage('SEARCH_PARAMS',this.queryParams);
+					if(this.queryParams.level =='信息身份'||this.queryParams.level =='请选择'){
+						window.location.href =`/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
 					}else{
 						let category = this.queryParams.type=='获奖信息' ? 10: 11;
-						this.$route.router.go({
-			                	name: 'newsList',
-			                	params:{
-			                		category:category
-			                	}
-		                });
+						window.location.href =`/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
 					}
 				}
 			}
