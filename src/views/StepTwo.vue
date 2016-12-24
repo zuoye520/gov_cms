@@ -1,9 +1,9 @@
 <template>
 	<div class="wapper">
-		<l-step></l-step>
+		<l-step :menu-active="menuActive"></l-step>
 		<section class="tips fn-clear">
 			<p class="fn-left"><i class="edit fn-left"></i>填写主体信息</p>
-			<a class="fn-right"><i class="help fn-left"></i>备案帮助</a>
+			<a class="fn-right" href="http://www.idcc.cn/help/beian/index.htm" target="_blank"><i class="help fn-left"></i>备案帮助</a>
 		</section>
 		<section class="step-cont w1000">
 			<h3>请务必填写真实有效信息</h3>
@@ -428,6 +428,7 @@
 		 */
 		data() {
 			return {
+				menuActive :2,
 				params: {
 					pageCount: 10,
 					pageIndex: 1

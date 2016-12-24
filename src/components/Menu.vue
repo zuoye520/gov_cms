@@ -10,7 +10,7 @@
 				<li><a v-link="{ name: 'newsList', params: { category: 5 }}" :class="{'on':menuActive == 5}">协会动态</a></li>
 				<li><a v-link="{ name: 'enterpriseList'}" :class="{'on':menuActive == 99}">诚信品牌</a></li>
 				<li><a v-link="{ name: 'newsList', params: { category: 7 }}" :class="{'on':menuActive == 7}">曝光台</a></li>
-				<li><a v-link="{ name: 'complaint', params: { type: 2 }}" :class="{'on':menuActive == 101}">诚信表扬</a></li>
+				<li><a v-link="{ name: 'complaint', params: { type: 0 }}" :class="{'on':menuActive == 101}">诚信表扬</a></li>
 				<li><a v-link="{ name: 'complaint', params: { type: 1 }}" :class="{'on':menuActive == 100}">诚信投诉</a></li>
 				<li><a v-link="{ name: 'newsList', params: { category: 6 }}" :class="{'on':menuActive == 6}">管理规则</a></li>
 			</ul>

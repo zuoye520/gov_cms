@@ -71,7 +71,7 @@
 				<div class="code fn-clear">
 					<span class="title">验证码</span>
 					<p class="fn-left" style="width: 400px;">
-						<input class="fn-left" type="text" id="" value="" class="" v-model="params.code" />
+						<input class="fn-left" type="text" id="" value="" class="" v-model="code" />
 						<img class="fn-left m-l-10" @click="handleCode" :src="codeUrl"/>
 					</p>
 				</div>
@@ -285,9 +285,9 @@
 					imgUrl: '',
 					industry: '请选择',
 					theme: '',
-					code:'',
-					type: 0
 				},
+				type:1,
+				code:'',
 				category: 12,
 				imagesTitle: null, //附件名称
 				codeUrl:''
@@ -361,7 +361,7 @@
 				let describe = this.params.describe.trim();
 				let complainantName = this.params.complainantName.trim();
 				let complainantTel = this.params.complainantTel.trim();
-				let code = this.params.code.trim();
+				let code = this.code.trim();
 				if(this.params.industry == '请选择') {
 					alert('请选择行业类别');
 					return;
@@ -390,7 +390,7 @@
 					alert('请输入验证码');
 					return;
 				}
-				this.postSFromAction(this.params).then((data) => {
+				this.postSFromAction(this.params,this.type,this.code).then((data) => {
 					alert('提交成功！');
 					window.location.reload();
 				}, (error) => {
@@ -414,10 +414,12 @@
 				to
 			}) {
 				apps.log(to.params.type)
-				this.params.type = parseInt(to.params.type) || 0;
+				this.type = parseInt(to.params.type) || 0;
 
-				this.name = this.params.type == 0 ? '投诉' : '表扬';
-				this.category = this.params.type == 0 ? 13 : 14;
+//				this.name = this.params.type == 0 ? '表扬' : '表扬';
+//				this.category = this.params.type == 0 ? 13 : 14;
+				this.name = '表扬';
+				this.category = 14;
 				//获取生成的ID
 				this.getSNewAction().then((data) => {
 					this.params.id = data;
