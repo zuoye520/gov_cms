@@ -127,16 +127,16 @@
 				</div>
 				<div class="fn-clear">
 					<div class="blue-half honesty-cont fn-left">
-						<h3><a  class="news on">开发企业诚信信息更新</a><a  class="more">更多</a></h3>
+						<h3><a  class="news on">开发企业诚信信息更新</a><a v-link="{ name: 'enterpriseList'}" class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
-								<li class="fn-clear" v-for ="item in maList.list">
+								<li class="fn-clear" v-for ="item in cxeList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">
 									<p class="text-ellipsis fn-left">
-										<a>{{item.title}}</a>
+										<a>{{item.name}}</a>
 									</p>
-									<i class="fn-right">详情</i>
+									<i class="fn-right" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">详情</i>
 								</li>
-								<li v-show="maList.list && maList.list.length <=0">
+								<li v-show="cxeList.list && cxeList.list.length <=0">
 									<p align="center">暂无相关文章</p>
 								</li>
 							</ul>
@@ -397,6 +397,7 @@
 				}
 				i {
 					display: inline-block;
+					cursor: pointer;
 					font-style: normal;
 					color: $color-gray2;
 				}
@@ -774,7 +775,8 @@
 		getArticleListAction,
 		getELeveListAction,
 		getEGradesList,
-		getAList
+		getAList,
+		getCXEList
 	} from '../vuex/actions.js';
 	import Pages from "../components/Pages.vue";
 	import Gather from "../components/Gather.vue";
@@ -860,7 +862,8 @@
 					categoryid:0,
 					pageCount: 5,
 					pageIndex: 1,
-				}
+				},
+				cxeList:[]
 			}
 		},
 		/*
@@ -881,14 +884,15 @@
 				blxwList: (state) => state.modules.blxwList, //企业不良行为
 				gradesList: (state) => state.modules.gradesList, //获取诚信企业评级列表
 				eLeveList: (state) => state.modules.eLeveList, //获取诚信等级公示
-				maList : (state) => state.modules.maList, //获取诚信等级公示
+//				maList : (state) => state.modules.maList, //获取诚信等级公示
 			},
 			actions: {
 				getPicListAction,
 				getArticleListAction,
 				getELeveListAction,
 				getEGradesList,
-				getAList
+				getAList,
+				getCXEList
 			}
 		},
 		/*
@@ -993,6 +997,18 @@
 			}, (error) => {
 				apps.log(error)
 			});
+			
+			//获取诚信企业列表
+			this.getCXEList({
+				pageCount:5,
+				pageIndex:1,
+			}).then((data) => {
+				apps.log('获取诚信企业列表成功');
+				this.cxeList = data;
+			}, (error) => {
+				apps.log(error);
+			});
+			
 		},
 		/*
 		 * 处理事件
@@ -1038,7 +1054,7 @@
 
 			},
 			handleLogin(){//登录
-				alert('程序猿正在加班加点开发此功能..');
+//				alert('程序猿正在加班加点开发此功能..');
 			}
 
 		},

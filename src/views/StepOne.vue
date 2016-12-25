@@ -186,7 +186,7 @@
 		MessageBox,
 	} from 'mint-ui';
 	import {
-		postRUFromAction,
+		getVCCheck,
 		getSNewAction
 	} from '../vuex/actions.js';
 	export default {
@@ -226,7 +226,7 @@
 			getters: {
 			},
 			actions: {
-				postRUFromAction,
+				getVCCheck,
 				getSNewAction
 			}
 		},
@@ -239,10 +239,6 @@
 		 */
 		methods: {
 			handleSubmit(){
-				this.$route.router.go({
-                		name: 'stepTwo'
-                });
-                return;
 				if(!this.reEmail.test(this.params.pin)){
 					Toast('请输入正确的邮箱地址');
 					return;
@@ -264,12 +260,21 @@
 					return;
 				}
 				this.params.pwd = this.password1;
-//				this.postRUFromAction(this.params,this.code).then((data) => {
-//					apps.log('注册成功');
-//					alert('恭喜你注册成功！');
-//				}, (error) => {
-//					apps.log(error)
-//				});
+				this.getVCCheck(this.params,this.code).then((data) => {
+					if(data){
+						Toast('注册成功！');
+						this.params.code = this.code;
+						this.params.eId = this.eId;
+						apps.setSessionStorage('REGISTER_INFO',this.params);
+						this.$route.router.go({
+		                		name: 'stepTwo'
+		                });
+					}else{
+						Toast('验证码错误');
+					}
+				}, (error) => {
+					apps.log(error)
+				});
 			},
 			handleCode(){
 				this.codeUrl = INTERFACE_URL+"xhlc/api/vc/"+this.eId+"?"+Math.random();

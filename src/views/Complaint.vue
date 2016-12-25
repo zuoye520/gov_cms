@@ -328,7 +328,7 @@
 					url: INTERFACE_URL+"xhlc/api/f/upload/attach/Appeal/"+this.params.id,
 					dataType: 'json',
 					done: (e, data) =>{
-						console.log(data.result.data[0].url);
+						apps.log(data.result.data[0].url);
 						this.imagesTitle = data.result.data[0].title;
 						this.params.imgUrl = data.result.data[0].url;
 						Indicator.close();
@@ -339,7 +339,7 @@
 					},
 					progressall: (e, data)=> {
 						Indicator.open('上传中...');
-						console.log(data);
+						apps.log(data);
 //						var progress = parseInt(data.loaded / data.total * 100, 10);
 //						$('#progress .progress-bar').css(
 //							'width',
@@ -363,31 +363,31 @@
 				let complainantTel = this.params.complainantTel.trim();
 				let code = this.code.trim();
 				if(this.params.industry == '请选择') {
-					alert('请选择行业类别');
+					Toast('请选择行业类别');
 					return;
 				}
 				if(enterpriseName.length <= 0) {
-					alert('请输入企业名称');
+					Toast('请输入企业名称');
 					return;
 				}
 				if(theme.length <= 0) {
-					alert('请输入事件主题');
+					Toast('请输入事件主题');
 					return;
 				}
 				if(describe.length <= 0) {
-					alert('请输入事件描述');
+					Toast('请输入事件描述');
 					return;
 				}
 				if(complainantName.length <= 0) {
-					alert('请输入姓名');
+					Toast('请输入姓名');
 					return;
 				}
 				if(complainantTel.length <= 0) {
-					alert('请输入联系方式');
+					Toast('请输入联系方式');
 					return;
 				}
 				if(code.length <4) {
-					alert('请输入验证码');
+					Toast('请输入验证码');
 					return;
 				}
 				this.postSFromAction(this.params,this.type,this.code).then((data) => {

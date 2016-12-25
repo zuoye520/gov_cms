@@ -13,47 +13,55 @@
 					<div class="fn-clear m-b-35">
 						<p class="title">主办单位所属区域：</p>
 						<div class="info three-level">
-							<select><option>重庆</option></select>
-							<select><option>重庆</option></select>
-							<select><option>重庆</option></select>
+							<select v-model="modelArea1">
+								<option v-for="item in area1" :value="item.code">{{item.text}}</option>
+							</select>
+							<select v-model="modelArea2" v-show="area2.length > 0">
+								<option v-for="item in area2" :value="item.code">{{item.text}}</option>
+							</select>
+							<select v-model="modelArea3" v-show="area3.length > 0">
+								<option v-for="item in area3" :value="item.code">{{item.text}}</option>
+							</select>
 						</div>
 					</div>
 					<div class="fn-clear m-b-35">
 						<p class="title">主办单位证件类型：</p>
 						<div class="info">
-							<select><option>工商营业执照</option></select>
+							<select v-model="params.cardType">
+								<option>工商营业执照</option>
+							</select>
 						</div>
 					</div>
 					<div class="fn-clear m-b-35">
 						<p class="title">主办单位证件号码：</p>
 						<div class="info">
-							<input type="text" name="" id="" value="9575535352323113QWE" />
+							<input type="text" v-model ="params.cardNumber"/>
 						</div>
 					</div>
 					<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>主办单位或主办人名称：</p>
 						<div class="info">
-							<input type="text" name="" id="" value="重庆万创惠科技有限公司" />
+							<input type="text" v-model ="params.name" />
 						</div>
-						<a class="tips-graphic ">工商营业执照主办单位名称图示</a>
+						<!--<a class="tips-graphic ">工商营业执照主办单位名称图示</a>-->
 					</div>
 					<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>主办单位证件住所：</p>
 						<div class="info">
-							<input type="text" name="" id="" value="重庆市南岸区万达广场7栋8-3" />
+							<input type="text"  v-model ="params.regAddress" />
 						</div>
-						<a class="tips-graphic">工商营业执照证件住所图示</a>
+						<!--<a class="tips-graphic">工商营业执照证件住所图示</a>-->
 					</div>
 					<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>主办单位通讯地址：</p>
 						<div class="info">
-							<input type="text" name="" id="" value="重庆市南岸区万达广场7栋8-3" />
+							<input type="text"  v-model ="params.address" />
 						</div>
 					</div>
 					<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>投资人或主管单位：</p>
 						<div class="info">
-							<input type="text" name="" id="" value="重庆万创惠科技有限公司" />
+							<input type="text" v-model ="params.vc"  />
 						</div>
 					</div>
 				</div>
@@ -62,56 +70,58 @@
 					<div class="fn-clear m-b-15">
 						<p class="title"><i>*</i>负者人姓名：</p>
 						<div class="info">
-							<input type="text" name="" id="" value="张国俊" />
+							<input type="text" v-model ="params.ceo"/>
 						</div>
 					</div>
 					<div class="tips-warn m-b-15">单位用户请填写法人姓名</div>
 					<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>负责人证件类型：</p>
 						<div class="info">
-							<select><option>身份证</option></select>
+							<select v-model ="params.ceoCardType">
+								<option>身份证</option>
+							</select>
 						</div>
 					</div>
 					<div class="fn-clear m-b-35">
-						<p class="title">负责人证件号码：</p>
+						<p class="title"><i>*</i>负责人证件号码：</p>
 						<div class="info">
-							<input type="text" name="" id="" value="50035219852662" />
+							<input type="text" v-model ="params.ceoCardNumber"/>
 						</div>
 					</div>
 					<div class="fn-clear m-b-15 tel">
 						<p class="title"><i>*</i>办公室电话：</p>
 						<div class="info">
-							<span>086-023-</span>
-							<input type="text" name="" id="" value="" class="w178" />
-							<span>-</span>
-							<input type="text" name="" id="" value="" class="w117"/>
+							<!--<span>086-023-</span>-->
+							<input type="text"  placeholder="" v-model ="params.tel"/>
+							<!--<span>-</span>
+							<input type="text" name="" id="" value="" class="w117"/>-->
 						</div>
 					</div>
-					<div class="tips-warn m-b-15">单位用户请填写法人姓名</div>
+					<!--<div class="tips-warn m-b-15">单位用户请填写法人姓名</div>-->
 					<div class="fn-clear m-b-15">
 						<p class="title"><i>*</i>手机号码：</p>
 						<div class="info">
-							<input type="text" name="" id="" value="18626225453" />
+							<input type="text" v-model ="params.phone" />
 						</div>
 					</div>
 					<div class="tips-warn m-b-15">外地号码需在备注中说明“号码为外地号码，拨打需加拨0”</div>
 					<div class="fn-clear m-b-35 proving">
 						<p class="title"><i>*</i>手机验证码：</p>
 						<div class="info">
-							<input type="text" name="" id="" value="" class="w178"/>
+							<input type="text" class="w178"/>
 							<a>获取验证码</a>
 						</div>
 					</div>
 					<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>电子邮件地址：</p>
 						<div class="info">
-							<input type="text" name="" id="" value="18626225458@qq.com" />
+							<input type="text"  v-model ="params.email"/>
 						</div>
 					</div>
 					<div class="fn-clear m-b-35">
 						<p class="title">备注：</p>
 						<div class="info">
-							<textarea></textarea>
+							<textarea v-model ="params.des"></textarea>
 						</div>
 					</div>
 				</div>
@@ -122,36 +132,39 @@
 							<li>
 								<h5>主办单位证件</h5>
 								<div class="id-pic">
-									<img src="../assets/images/upload.jpg"/>
-									<input type="file" name="" id="" value="" />
+									<img v-show ="!fileUrl1" src="../assets/images/upload.jpg"/>
+									<img v-show ="fileUrl1" :src="fileUrl1"/>
+									<input id="file1" type="file" name="files[]" multiple>
 								</div>
-								<p>工商营业执照图片等待上传</p>
+								<p v-show ="!fileUrl1">工商营业执照图片等待上传</p>
 							</li>
 							<li>
 								<h5>主办负责人证件</h5>
 								<div class="id-pic">
-									<img src="../assets/images/upload.jpg"/>
-									<input type="file" name="" id="" value="" />
+									<img v-show ="!fileUrl2" src="../assets/images/upload.jpg"/>
+									<img v-show ="fileUrl2" :src="fileUrl1"/>
+									<input id="file2" type="file" name="files[]" multiple>
 								</div>
-								<p>张国俊身份证图片等待上传</p>
+								<p v-show ="!fileUrl2">身份证图片正面等待上传</p>
 							</li>
 							<li>
 								<h5>负责人证件</h5>
 								<div class="id-pic">
-									<img src="../assets/images/upload.jpg"/>
-									<input type="file" name="" id="" value="" />
+									<img v-show ="!fileUrl3" src="../assets/images/upload.jpg"/>
+									<img v-show ="fileUrl3" :src="fileUrl1"/>
+									<input id="file3" type="file" name="files[]" multiple>
 								</div>
-								<p>张国俊身份证图片等待上传</p>
+								<p v-show ="!fileUrl3">身份证图片正面等待上传</p>
 							</li>
 						</ul>
 					</div>
-					<div class="btn-upload"><a>上传资料</a></div>
+					<!--<div class="btn-upload"><a>上传资料</a></div>-->
 				</div>
 			</div>
 		</section>
 		<section class="btn-grp w1000 text-center">
-			<a class="submit">提交审核</a>
-			<a>返<i class="p-l-20"></i>回</a>
+			<a class="submit" @click ="validate">提交审核</a>
+			<a v-back-link>返<i class="p-l-20"></i>回</a>
 		</section>
 	</div>
 </template>
@@ -402,14 +415,17 @@
 
 <script>
 	import apps from "../utils/apps.js";
+	import {INTERFACE_URL} from "../utils/constants.js";
 	import Location from "../components/Location.vue";
 	import Gather from "../components/Gather.vue";
 	import Btns from "../components/Btns.vue";
 	import CompanyQuery from "../components/CompanyQuery.vue";
 	import Pages from "../components/Pages.vue";
 	import Step from "../components/Step.vue";
+	import { Toast, Indicator } from 'mint-ui';
 	import {
-		getArticleListAction,
+		postREFromAction,
+		getArea
 	} from '../vuex/actions.js';
 	export default {
 		/*
@@ -428,12 +444,38 @@
 		 */
 		data() {
 			return {
-				menuActive :2,
-				params: {
-					pageCount: 10,
-					pageIndex: 1
+				params:{
+					address:'',
+					area1:'重庆市',
+					area2:'',
+					area3:'',
+					cardNumber:'',
+					cardType:'工商营业执照',
+					ceo:'',
+					ceoCardNumber:'',
+					ceoCardType:'身份证',
+					des:'',
+					email:'',
+					name:'',
+					phone:'',
+					pin:'',
+					pwd:'',
+					regAddress:'',
+					tel:'',
+					vc:'',
 				},
-				category: 1
+				fileUrl1:'',
+				fileUrl2:'',
+				fileUrl3:'',
+				area1:[],
+				area2:[],
+				area3:[],
+				code1:'500000',
+				code2:'',
+				code3:'',
+				code:'',
+				bizId :'',
+				menuActive :2,
 			}
 		},
 		/*
@@ -441,27 +483,194 @@
 		 */
 		vuex: {
 			getters: {
-				articleList: (state) => state.modules.articleList,
 			},
 			actions: {
-				getArticleListAction,
+				postREFromAction,
+				getArea
 			}
 		},
 		/*
 		 * 实例被创建后调用，但是还没有开始 DOM 编译
 		 */
-		created() {},
+		created() {
+			this.handleArea1(0);
+		},
+		ready(){
+			this.handleFile1();
+			this.handleFile2();
+			this.handleFile3();
+		},
 		/*
 		 * 处理事件
 		 */
 		methods: {
-			handlePageClick(index) {
-				apps.log('跳转到第：' + index + "页")
-				this.params.pageIndex = index;
-				this.getArticleListAction(this.params).then((data) => {
-					apps.log('banner数据请求成功')
+			validate(){
+				let cardNumber = this.params.cardNumber.trim();
+				let name = this.params.name.trim();
+				let regAddress = this.params.regAddress.trim();
+				let address = this.params.address.trim();
+				let vc = this.params.vc.trim();
+				let ceo = this.params.ceo.trim();
+				let ceoCardNumber = this.params.ceoCardNumber.trim();
+				let tel = this.params.tel.trim();
+				let phone = this.params.phone.trim();
+				let email = this.params.email.trim();
+				if(cardNumber.length <=0){
+					Toast('请填写主办单位证件号码');
+					return;
+				}
+				if(name.length <=0){
+					Toast('请填写主办单位或主办人名称');
+					return;
+				}
+				if(regAddress.length <=0){
+					Toast('请填写主办单位证件住所');
+					return;
+				}
+				if(address.length <=0){
+					Toast('请填写主办单位通讯地址');
+					return;
+				}
+				if(vc.length <=0){
+					Toast('请填写投资人或主管单位');
+					return;
+				}
+				if(ceo.length <=0){
+					Toast('请填写负者人姓名');
+					return;
+				}
+				if(ceoCardNumber.length <=0){
+					Toast('请填写负责人证件号码');
+					return;
+				}
+				if(tel.length <=0){
+					Toast('请填写办公室电话');
+					return;
+				}
+				if(phone.length <=0){
+					Toast('请填写手机号码');
+					return;
+				}
+				if(email.length <=0){
+					Toast('请填写电子邮件地址');
+					return;
+				}
+				if(this.fileUrl1.length <=0){
+					Toast('请上传工商营业执照图片');
+					return;
+				}
+				if(this.fileUrl2.length <=0){
+					Toast('请上传身份证图片正面');
+					return;
+				}
+				
+				this.handleSubmit();
+			},
+			handleSubmit(){
+				Indicator.open();
+				this.postREFromAction(this.params,this.code).then((data) => {
+					apps.log('提交信息成功');
+					Indicator.close();
+					alert('提交成功,等待审核...');
+					
+					this.$route.router.replace('index');
+				}, (error) => {
+					apps.log(error);
+					Indicator.close();
+				});
+			},
+			handleArea1(code){
+				this.getArea({
+					parent:code
+				}).then((data) => {
+					this.area1 = data;
+					this.handleArea2(this.code1);
 				}, (error) => {
 					apps.log(error)
+				});
+			},
+			handleArea2(code){
+				this.getArea({
+					parent:code
+				}).then((data) => {
+					this.area2 = data;
+					if(data.length >0){
+						this.params.area2 = data[0].text;
+						this.code2 = data[0].code;
+						this.handleArea3(data[0].code);
+					}else{
+						this.params.area2 = '';
+						this.area3 = [];
+						this.params.area3 = '';
+					}
+					
+				}, (error) => {
+					apps.log(error)
+				});
+			},
+			handleArea3(code){
+				this.getArea({
+					parent:code
+				}).then((data) => {
+					this.area3 = data;
+					this.params.area3 = data[0].text;
+					this.code3 = data[0].code;
+				}, (error) => {
+					apps.log(error)
+				});
+			},
+			handleFile1(){
+				$('#file1').fileupload({
+					url:INTERFACE_URL + "xhlc/api/f/upload/EnterpriseCard/RegEnterprise/"+this.bizId,
+					dataType: 'json',
+					done: (e, data) =>{
+						console.log(e);
+						console.log(data);
+						Indicator.close();
+						this.fileUrl1 = data.result.data[0].url;
+						Toast('上传成功');
+					},
+					progressall: (e, data)=> {
+						Indicator.open('上传中...');
+						console.log(e);
+						console.log(data);
+					}
+				});
+			},
+			handleFile2(){
+				$('#file2').fileupload({
+					url:INTERFACE_URL + "xhlc/api/f/upload/CEOCard/RegEnterprise/"+this.bizId,
+					dataType: 'json',
+					done: (e, data) =>{
+						console.log(e);
+						console.log(data);
+						this.fileUrl2 = data.result.data[0].url;
+						Indicator.close();
+						Toast('上传成功');
+					},
+					progressall: (e, data)=> {
+						Indicator.open('上传中...');
+						console.log(e);
+						console.log(data);
+					}
+				});
+			},
+			handleFile3(){
+				$('#file3').fileupload({
+					url:INTERFACE_URL + "xhlc/api/f/upload/UserCard/RegEnterprise/"+this.bizId,
+					dataType: 'json',
+					done: (e, data) =>{
+						console.log(e);
+						console.log(data);
+						this.fileUrl3 = data.result.data[0].url;
+						Indicator.close();
+						Toast('上传成功');
+					},
+					progressall: (e, data)=> {
+						Indicator.open('上传中...');
+						console.log(e);
+						console.log(data);
+					}
 				});
 			}
 		},
@@ -469,13 +678,43 @@
 		 * 实例计算属性
 		 */
 		computed: {
-			pagesObj() {
-				return {
-					pageCount: this.params.pageCount,
-					pageIndex: this.params.pageIndex,
-					total: this.articleList.total
-				};
-			}
+			modelArea1:{
+	            get(){
+	                return this.code1;
+	            },
+	            set(newValue){
+	                this.code1= newValue; 
+	                let objArea = this.area1.filter((item,index)=>{
+	                		return newValue == item.code;
+	                })[0];
+	                this.params.area1 = objArea.text;
+	                this.handleArea2(objArea.code)
+	            }
+	        },
+	        modelArea2:{
+	            get(){
+	                return this.code2;
+	            },
+	            set(newValue){
+	                this.code2= newValue; 
+	                let objArea = this.area2.filter((item,index)=>{
+	                		return newValue == item.code;
+	                })[0];
+	                this.params.area2 = objArea.text;
+	            }
+	        },
+	        modelArea3:{
+	            get(){
+	                return this.code3;
+	            },
+	            set(newValue){
+	                this.code3= newValue; 
+	                let objArea = this.area3.filter((item,index)=>{
+	                		return newValue == item.code;
+	                })[0];
+	                this.params.area3 = objArea.text;
+	            }
+	        },
 		},
 		/*
 		 * 路由数据钩 参数发生变化这里被激活
@@ -484,14 +723,17 @@
 			data({
 				to
 			}) {
-				apps.log(to.params.category);
-				this.params.category = to.params.category || 1; //category
-				this.category = parseInt(to.params.category);
-				this.getArticleListAction(this.params).then((data) => {
-					apps.log('列表数据请求成功')
-				}, (error) => {
-					apps.log(error)
-				});
+				let stepOneParams = apps.getSessionStorage('REGISTER_INFO',{});
+				this.params.pin = stepOneParams.pin;
+				this.params.pwd = stepOneParams.pwd;
+				this.code = stepOneParams.code;
+				this.bizId = stepOneParams.eId;
+//				setTimeout(()=>{
+//					this.handleFile1();
+//				},3000);
+				
+//				this.handleFile2();
+//				this.handleFile3();
 			}
 		}
 	}
