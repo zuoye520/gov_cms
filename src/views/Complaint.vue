@@ -416,10 +416,10 @@
 				apps.log(to.params.type)
 				this.type = parseInt(to.params.type) || 0;
 
-//				this.name = this.params.type == 0 ? '表扬' : '表扬';
-//				this.category = this.params.type == 0 ? 13 : 14;
-				this.name = '表扬';
-				this.category = 14;
+				this.name = this.type == 0 ? '表扬' : '投诉';
+				this.category = this.type == 0 ? 14 : 13;
+//				this.name = '表扬';
+//				this.category = 14;
 				//获取生成的ID
 				this.getSNewAction().then((data) => {
 					this.params.id = data;
