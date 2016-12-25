@@ -29,7 +29,8 @@ const 	POST_S_FROM = "xhlc/api/s/";//企业投诉／表扬/xhlc/api/s/:type/:cod
 const 	POST_R_U_FROM = "xhlc/api/r/u/";//提交注册信息 xhlc/api/r/u/:code
 const 	GET_R_E_NEW = "xhlc/api/r/e/new";//获取企业信息id /xhlc/api/r/e/new
 const 	GET_R_AREA = "xhlc/api/r/area/";//获取行政区划 /xhlc/api/r/area/:parent
-const 	POST_R_E_FROM = "xhlc/api/r/e";//企业信息填写  /xhlc/api/r/e
+const 	POST_R_E_FROM = "xhlc/api/r/e/";//企业信息填写  /xhlc/api/r/e:code
+const 	GET_VC_CHECK = "xhlc/api/vc/check/";//验证验证码是否有效  xhlc/api/vc/check/:code
 
 /*
  * @DESC:获取首页图片信息
@@ -228,6 +229,22 @@ export const getEList = ({ dispatch, state },params={}) => {
     		});
     });
 }
+
+/*
+ * @DESC:获取诚信企业列表
+ * @Author:zuozuo
+ * @Date：2016.12.16
+ */
+export const getCXEList = ({ dispatch, state },params={}) => {
+	return new Promise((resolve, reject) =>{
+		apps.get(GET_E_LIST,params).success((data)=>{
+			resolve(data);
+	    }).businessError(900,(msg, data)=>{
+        		reject(msg);
+    		});
+    });
+}
+
 /*
  * @DESC:获取企业文章列表
  * @Author:zuozuo
@@ -310,3 +327,52 @@ export const postRUFromAction = ({ dispatch, state },params={},code='') => {
     		});
     });
 }
+
+/*
+ * @DESC:提交注册信息时验证验证码是否有效
+ * @Author:zuozuo
+ * @Date：2016.12.25
+ */
+export const getVCCheck = ({ dispatch, state },params={},code='') => {
+	return new Promise((resolve, reject) =>{
+		apps.get(GET_VC_CHECK+code,params).success((data)=>{
+			apps.log(data);
+			resolve(data);
+	    }).businessError(900,(msg, data)=>{
+        		reject(msg);
+    		});
+    });
+}
+
+/*
+ * @DESC:提交企业注册信息
+ * @Author:zuozuo
+ * @Date：2016.12.25
+ */
+export const postREFromAction = ({ dispatch, state },params={},code='') => {
+	return new Promise((resolve, reject) =>{
+		apps.post(POST_R_E_FROM+code,params).success((data)=>{
+			apps.log(data);
+			resolve("ok");
+	    }).businessError(900,(msg, data)=>{
+        		reject(msg);
+    		});
+    });
+}
+
+/*
+ * @DESC:获取省份地区
+ * @Author:zuozuo
+ * @Date：2016.12.25
+ */
+export const getArea = ({ dispatch, state },params={}) => {
+	return new Promise((resolve, reject) =>{
+		apps.post(GET_R_AREA+params.parent).success((data)=>{
+			apps.log(data);
+			resolve(data);
+	    }).businessError(900,(msg, data)=>{
+        		reject(msg);
+    		});
+    });
+}
+
