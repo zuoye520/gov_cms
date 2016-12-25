@@ -1036,35 +1036,16 @@
 				this.qycxActive = index;
 			},
 			handleQueryInfo(){//搜索
-//				let ename = this.queryParams.ename.trim();
-//				let pname = this.queryParams.pname.trim();
-//				if(ename.length <=0){
-//					alert('请输入企业名称');
-//					return;
-//				}
-//				if(pname.length <=0){
-//					alert('请输入项目名称');
-//					return;
-//				}
-//				if(this.queryParams.level=='请选择'){
-//					alert('请选择诚信等级');
-//					return;
-//				}
-				this.queryParams.category = this.qycxActive==1 ? 0 : this.qycxActive==2 ? 10 : 11;
 
-				apps.setSessionStorage('SEARCH_PARAMS',this.queryParams);
+				let level =  this.queryParams.level;
+				if(level !='请选择'){
+					level = level.substring(0,level.length-1);
+				}
 				if(this.qycxActive ==1){
-					this.$route.router.go({
-		                	name: 'enterpriseList'
-	                });
+					window.location.href =`/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				}else{
 					let category = this.qycxActive==2 ? 10: 11;
-					this.$route.router.go({
-		                	name: 'newsList',
-		                	params:{
-		                		category:category
-		                	}
-	                });
+					window.location.href =`/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				}
 
 			},

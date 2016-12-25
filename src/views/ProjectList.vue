@@ -1,7 +1,7 @@
 <template>
 	<div class="fn-clear news-list w1000">
 		<section class="left-side fn-left">
-			<l-query></l-query>
+			<l-query :query-params ='queryParams'></l-query>
 			<div class="gather-cont">
 				<l-gather></l-gather>
 			</div>
@@ -151,6 +151,11 @@
 		 */
 		data() {
 			return {
+				queryParams:{//搜索参数
+					ename:'',
+					pname:'',
+					level:'请选择'
+				},
 				params: {
 					pageCount: 10,
 					pageIndex: 1,

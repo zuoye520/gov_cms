@@ -1,7 +1,7 @@
 <template>
 	<div class="fn-clear news-list w1000">
 		<section class="left-side fn-left">
-			<l-query></l-query>
+			<l-query :query-params ='queryParams'></l-query>
 			<div class="gather-cont">
 				<l-gather></l-gather>
 			</div>
@@ -151,6 +151,11 @@
 		 */
 		data() {
 			return {
+				queryParams:{//搜索参数
+					ename:'',
+					pname:'',
+					level:'请选择'
+				},
 				params: {
 					pageCount: 10,
 					pageIndex: 1
@@ -204,9 +209,11 @@
 		 */
 		route: {
 			canDeactivate({to, next}) {
-//				apps.setSessionStorage('SEARCH_PARAMS',{});
+//				delete this.params.enterpriseId;
+//				delete this.params.ename;
+//				delete this.params.pname;
+//				delete this.params.level;
 //				delete this.params.search;
-				delete this.params.enterpriseId;
 				next();
 			},
 			data({
@@ -218,22 +225,16 @@
 				this.params.pageIndex = 1;
 				
 				this.params.enterpriseId = to.params.enterpriseId || null;//企业id
-				
 				//搜索相关信息
-//				let searchParams = apps.getSessionStorage('SEARCH_PARAMS',{});
-//				if(searchParams.ename){
-//					this.params.ename = searchParams.ename;
-//					this.params.search = 'search';
-//				}
-//				if(searchParams.pname){
-//					this.params.pname = searchParams.pname;
-//					this.params.search = 'search';
-//				}
-//				if(searchParams.level){
-//					this.params.level = searchParams.level;
-//					this.params.search = 'search';
-//				}
+				this.queryParams.ename = decodeURIComponent(apps._GET('ename'))!='null' ? decodeURIComponent(apps._GET('ename')):'';
+				this.queryParams.pname = decodeURIComponent(apps._GET('pname'))!='null' ? decodeURIComponent(apps._GET('pname')):'';
+				this.queryParams.level = decodeURIComponent(apps._GET('level'))!='null' ? decodeURIComponent(apps._GET('level')):'请选择';
+				this.queryParams.search = decodeURIComponent(apps._GET('search'))!='null' ? decodeURIComponent(apps._GET('search')):'';
 				
+				this.params.ename = this.queryParams.ename ?this.queryParams.ename : null;
+				this.params.pname = this.queryParams.pname ?this.queryParams.pname : null;
+				this.params.level = this.queryParams.level!='请选择' ?this.queryParams.level : null;
+				this.params.search = this.queryParams.search ?this.queryParams.search : null;
 				
 				this.getArticleListAction(this.params).then((data) => {
 					apps.log('列表数据请求成功')

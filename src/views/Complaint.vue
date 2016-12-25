@@ -1,7 +1,7 @@
 <template>
 	<div class="fn-clear wapper w1000">
 		<section class="left-side fn-left">
-			<l-query></l-query>
+			<l-query :query-params ='queryParams'></l-query>
 			<div class="gather-cont">
 				<l-gather></l-gather>
 			</div>
@@ -230,6 +230,7 @@
 				width: 120px;
 				height: 30px;
 				border: #ccc 1px solid;
+				cursor: pointer;
 			}
 		}
 	}
@@ -266,6 +267,11 @@
 		 */
 		data() {
 			return {
+				queryParams:{//搜索参数
+					ename:'',
+					pname:'',
+					level:'请选择'
+				},
 				name: "投诉",
 				industryList: [],
 				params: {
