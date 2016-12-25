@@ -3,11 +3,19 @@
 		<l-location :type = "category"></l-location>
 		<section class="article">
 			<div class="title">
-				<h1>{{articleDetail.title}}</h1>
+				<h1>{{articleDetail.title || '没有相关文章信息哟~'}}</h1>
 				<div class="time">{{articleDetail.publishTime | formatTime "yyyy-MM-dd"}}</div>
 			</div>
 			<div class="text-info">
 				{{{articleDetail.content}}}
+			</div>
+			<div class="attachs" v-show="isAttachs">
+				<h6>附件下载：</h6>
+				<ul>
+					<li v-for="item in articleDetail.attachs">
+						<a v-link="item.url" target="_blank">{{item.title}}</a>
+					</li>
+				</ul>
 			</div>
 			<div class="btn-close"><a v-back-link>返回</a></div>
 		</section>
@@ -16,6 +24,26 @@
 <!-- 添加 scoped “范围”属性CSS限制这个组件只 -->
 <style scoped lang="scss">
 @import "../assets/css/common.scss";
+.attachs{
+	padding: 10px;
+	border: #F66 1px dashed;
+	li{
+		line-height: 26px;
+	}
+	h6{
+		font-size: 18px;
+		padding-bottom: 10px;
+		color: #F66;
+	}
+	a{
+		color: #369;
+		text-decoration: underline;
+		&:hover{
+			color: #F66;
+		}
+	}
+	
+}
 .article{
 	position: relative;
 	.title{
@@ -36,7 +64,7 @@
 		min-height: 240px;
 	}
 	.btn-close{
-		padding: 100px 0 35px;
+		padding: 50px 0 35px;
 		a{
 			display: block;
 			width: 100%;
@@ -112,7 +140,10 @@
 		 * 实例计算属性
 		 */
 		computed: {
-			
+			isAttachs(){
+				let attachs = this.articleDetail.attachs || [];
+				return attachs.length > 0 ? true :false;
+			}
 		},
 		/*
 		 * 路由数据钩 参数发生变化这里被激活

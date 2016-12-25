@@ -83,32 +83,20 @@
 					</div>
 				</div>
 				<l-btns></l-btns>
-				<div class="blue-fill">
+
+				<!--<div class="blue-fill">
 					<h3 class="fn-clear">开发企业诚信信息<a  class="fn-right">更多</a></h3>
 					<div class="news-list sincerity">
 						<ul>
 							<li class="text-ellipsis" v-for ="item in maList.list">
 								<a>{{item.name}}</a>
 							</li>
-
-							<!--<li class="text-ellipsis">
-								<a>成都市关于促进我市房地产市场平稳健康发展若</a>
-							</li>
-							<li class="text-ellipsis">
-								<a>成都市关于促进我市房地产市场平稳健康发展若</a>
-							</li>
-							<li class="text-ellipsis">
-								<a>成都市关于促进我市房地产市场平稳健康发展若</a>
-							</li>
-							<li class="text-ellipsis">
-								<a>成都市关于促进我市房地产市场平稳健康发展我市房地产市场平发展我市房地产市场平稳健康发展若</a>
-							</li>-->
 						</ul>
 						<div v-show="maList.list && maList.list.length <=0">
 								<p align="center">暂无相关文章</p>
 							</div>
 					</div>
-				</div>
+				</div>-->
 			</div>
 			<div class="right-content fn-right">
 				<div class="blue-half news-cont">

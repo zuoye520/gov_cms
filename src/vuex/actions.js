@@ -26,7 +26,10 @@ const 	POST_FILE = "xhlc/api/f/upload/attach/Appeal/";//上传文件接口 xhlc/
 const 	GET_INDUSTRY = "xhlc/api/s/industry";//获取行业分类 xhlc/api/s/industry
 const 	GET_S_NEW = "xhlc/api/s/new";//企业投诉／表扬获取文章id /xhlc/api/s/new
 const 	POST_S_FROM = "xhlc/api/s/";//企业投诉／表扬/xhlc/api/s/:type/:code
-
+const 	POST_R_U_FROM = "xhlc/api/r/u/";//提交注册信息 xhlc/api/r/u/:code
+const 	GET_R_E_NEW = "xhlc/api/r/e/new";//获取企业信息id /xhlc/api/r/e/new
+const 	GET_R_AREA = "xhlc/api/r/area/";//获取行政区划 /xhlc/api/r/area/:parent
+const 	POST_R_E_FROM = "xhlc/api/r/e";//企业信息填写  /xhlc/api/r/e
 
 /*
  * @DESC:获取首页图片信息
@@ -160,13 +163,13 @@ export const getSNewAction = ({ dispatch, state },params={}) => {
  * @Author:zuozuo
  * @Date：2016.12.11
  */
-export const postSFromAction = ({ dispatch, state },params={}) => {
-	let code = params.code;
-	let type = parseInt(params.type);
-	delete params.type;
-	delete params.code;
+export const postSFromAction = ({ dispatch, state },params={},type=1,code='') => {
+//	let code = params.code;
+//	let type = parseInt(params.type);
+//	delete params.type;
+//	delete params.code;
 	return new Promise((resolve, reject) =>{
-		apps.post(POST_S_FROM+type+"/"+code,params).success((data)=>{
+		apps.post(POST_S_FROM+parseInt(type)+"/"+code,params).success((data)=>{
 			apps.log(data);
 //			dispatch(types.POST_S_FROM,data);
 			resolve("ok");
@@ -292,3 +295,18 @@ export const postFile = ({ dispatch, state },params={}) => {
     });
 }
 
+/*
+ * @DESC:提交注册信息
+ * @Author:zuozuo
+ * @Date：2016.12.24
+ */
+export const postRUFromAction = ({ dispatch, state },params={},code='') => {
+	return new Promise((resolve, reject) =>{
+		apps.post(POST_R_U_FROM+code,params).success((data)=>{
+			apps.log(data);
+			resolve("ok");
+	    }).businessError(900,(msg, data)=>{
+        		reject(msg);
+    		});
+    });
+}

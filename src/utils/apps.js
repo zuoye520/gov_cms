@@ -116,7 +116,7 @@ const request = function(url, data, config, type) {
 					console.error('服务器开小差咯！');
 					break;
 				case 1001:
-					alert('没有找到相关文章');
+					alert(res.errMsg);
 					break;	
 				default:
 					break;

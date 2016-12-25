@@ -2,15 +2,15 @@
 	<!--step-->
 	<nav>
 		<ul class="step-list fn-clear w1000">
-			<li class="on">
+			<li :class="{'on':menuActive==1}">
 				<p class="mumber">1</p>
 				<p class="step-cont">账户注册</p>
 			</li>
-			<li>
+			<li :class="{'on':menuActive==2}">
 				<p class="mumber">2</p>
 				<p class="step-cont">企业信息填写</p>
 			</li>
-			<li>
+			<li :class="{'on':menuActive==3}">
 				<p class="mumber">3</p>
 				<p class="step-cont">提交审核</p>
 			</li>

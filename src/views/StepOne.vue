@@ -1,37 +1,37 @@
 <template>
 	<div class="wapper">
-		<l-step></l-step>
+		<l-step :menu-active="menuActive"></l-step>
 		<section class="tips fn-clear">
 			<p class="fn-left"><i class="edit fn-left"></i>填写主体信息</p>
-			<a class="fn-right"><i class="help fn-left"></i>备案帮助</a>
+			<a class="fn-right" href="http://www.idcc.cn/help/beian/index.htm" target="_blank"><i class="help fn-left"></i>备案帮助</a>
 		</section>
 		<section class="step-cont w1000">
 			<h3>请务必填写真实有效信息</h3>
 			<div class="content">
 				<div class="fn-clear info m-b-20">
 					<div class="title">邮<i></i>箱：</div>
-					<p><input type="email" id="" value="" /></p>
+					<p><input type="email" v-model="params.pin" /></p>
 				</div>
 				<div class="fn-clear info">
 					<div class="title">密<i></i>码：</div>
-					<p><input type="password" id="" value="" /></p>
+					<p><input type="password" v-model="password1"/></p>
 				</div>
 				<p class="warn text-left">字母、数字或英文符号，最短8位，区分大小写</p>
 				<div class="fn-clear info">
 					<div class="title">确认密码：</div>
-					<p><input type="password" id="" value="" /></p>
+					<p><input type="password" v-model="password2"/></p>
 				</div>
 				<p class="warn text-left">请再次输入密码</p>
 				<div class="fn-clear info m-b-20 code">
 					<div class="title">验<i></i>证<i></i>码：</div>
-					<p><input type="email" id="" value="" /></p>
+					<p><input type="email" id="" value="" v-model="code"/></p>
 				</div>
 				<div class="fn-clear info m-b-20 code-pic">
-					<div class="pic-cont fn-left"><img src="../assets/images/building.jpg" /></div>
-					<a>看不清，换一张</a>
+					<div class="pic-cont fn-left"><img :src="codeUrl" /></div>
+					<a @click ="handleCode">看不清，换一张</a>
 				</div>
 				<div class="btn">
-					<a>注<i></i>册</a>
+					<a @click="handleSubmit">注<i></i>册</a>
 				</div>
 			</div>
 		</section>
@@ -174,6 +174,7 @@
 
 <script>
 	import apps from "../utils/apps.js";
+	import {INTERFACE_URL} from "../utils/constants.js";
 	import Location from "../components/Location.vue";
 	import Gather from "../components/Gather.vue";
 	import Btns from "../components/Btns.vue";
@@ -181,7 +182,12 @@
 	import Pages from "../components/Pages.vue";
 	import Step from "../components/Step.vue";
 	import {
-		getArticleListAction,
+		Toast,
+		MessageBox,
+	} from 'mint-ui';
+	import {
+		postRUFromAction,
+		getSNewAction
 	} from '../vuex/actions.js';
 	export default {
 		/*
@@ -200,11 +206,17 @@
 		 */
 		data() {
 			return {
-				params: {
-					pageCount: 10,
-					pageIndex: 1
+				menuActive :1,
+				eId:null,
+				params:{
+					pin:'',
+					pwd:''
 				},
-				category: 1
+				password1:'',
+				password2:'',
+				code:'', //验证码
+				codeUrl:'',
+				reEmail:/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 			}
 		},
 		/*
@@ -212,10 +224,10 @@
 		 */
 		vuex: {
 			getters: {
-				articleList: (state) => state.modules.articleList,
 			},
 			actions: {
-				getArticleListAction,
+				postRUFromAction,
+				getSNewAction
 			}
 		},
 		/*
@@ -226,27 +238,47 @@
 		 * 处理事件
 		 */
 		methods: {
-			handlePageClick(index) {
-				apps.log('跳转到第：' + index + "页")
-				this.params.pageIndex = index;
-				this.getArticleListAction(this.params).then((data) => {
-					apps.log('banner数据请求成功')
-				}, (error) => {
-					apps.log(error)
-				});
+			handleSubmit(){
+				this.$route.router.go({
+                		name: 'stepTwo'
+                });
+                return;
+				if(!this.reEmail.test(this.params.pin)){
+					Toast('请输入正确的邮箱地址');
+					return;
+				}
+				if(!this.password1 || !this.password2){
+					Toast('请输入密码');
+					return;
+				}
+				if(this.password1.length <8){
+					Toast('请输入8位以上的密码！');
+					return;
+				}
+				if(this.password1 != this.password2){
+					Toast('密码和确认密码不一致哟，请再次确认！');
+					return;
+				}
+				if(this.code.length !=4){
+					Toast('请输入4位验证码');
+					return;
+				}
+				this.params.pwd = this.password1;
+//				this.postRUFromAction(this.params,this.code).then((data) => {
+//					apps.log('注册成功');
+//					alert('恭喜你注册成功！');
+//				}, (error) => {
+//					apps.log(error)
+//				});
+			},
+			handleCode(){
+				this.codeUrl = INTERFACE_URL+"xhlc/api/vc/"+this.eId+"?"+Math.random();
 			}
 		},
 		/*
 		 * 实例计算属性
 		 */
 		computed: {
-			pagesObj() {
-				return {
-					pageCount: this.params.pageCount,
-					pageIndex: this.params.pageIndex,
-					total: this.articleList.total
-				};
-			}
 		},
 		/*
 		 * 路由数据钩 参数发生变化这里被激活
@@ -255,11 +287,11 @@
 			data({
 				to
 			}) {
-				apps.log(to.params.category);
-				this.params.category = to.params.category || 1; //category
-				this.category = parseInt(to.params.category);
-				this.getArticleListAction(this.params).then((data) => {
-					apps.log('列表数据请求成功')
+				//获取生成的ID
+				this.getSNewAction().then((data) => {
+					this.eId = data;
+					this.codeUrl = INTERFACE_URL+"xhlc/api/vc/"+this.eId+"?"+Math.random();
+					apps.log('获取企业ID成功');
 				}, (error) => {
 					apps.log(error)
 				});
