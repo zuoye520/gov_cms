@@ -53,10 +53,10 @@ import apps from "../utils/apps.js";
 				handleQueryInfo(){
 //					apps.setSessionStorage('SEARCH_PARAMS',this.queryParams);
 					if(this.queryParams.level =='信息身份'||this.queryParams.level =='请选择'){
-						window.location.href =`/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
+						window.location.href =`/site/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
 					}else{
 						let category = this.queryParams.type=='获奖信息' ? 10: 11;
-						window.location.href =`/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
+						window.location.href =`/site/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
 					}
 				}
 			}

@@ -1044,10 +1044,10 @@
 					level = level.substring(0,level.length-1);
 				}
 				if(this.qycxActive ==1){
-					window.location.href =`/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
+					window.location.href =`/site/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				}else{
 					let category = this.qycxActive==2 ? 10: 11;
-					window.location.href =`/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
+					window.location.href =`/site/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				}
 			},
 			handleLogin(){//登录
