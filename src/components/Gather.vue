@@ -3,13 +3,13 @@
 		<section class="gather">
 			<ul>
 				<li>
-					<a href="javascript:;" class="intermediary">
+					<a href="http://www.cqfdpjxh.org.cn" class="intermediary">
 						<p>重庆市房地产中介</p>
 						<p>机构诚信信息平台</p>
 					</a>
 				</li>
 				<li>
-					<a href="javascript:;" class="property">
+					<a href="http://www.cqpma.com/" class="property">
 						<p>重庆市物业企业</p>
 						<p>诚信信息平台</p>
 					</a>
@@ -33,7 +33,7 @@
 			width: 100%;
 			height: 70px;
 			p{
-				text-align: center;	
+				text-align: center;
 				font-size: 24px;
 				font-weight: bold;
 				color: #fff;
