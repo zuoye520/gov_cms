@@ -8,7 +8,7 @@
 		<section class="step-cont w1000">
 			<h3>请务必填写真实有效信息</h3>
 			<div class="content">
-				<h4>主办单位信息</h4>
+				<h4>企业相关信息</h4>
 				<div class="module">
 					<div class="fn-clear m-b-35">
 						<p class="title">主办单位所属区域：</p>
@@ -24,39 +24,33 @@
 							</select>
 						</div>
 					</div>
-					<div class="fn-clear m-b-35">
+					<!--<div class="fn-clear m-b-35">
 						<p class="title">主办单位证件类型：</p>
 						<div class="info">
 							<select v-model="params.cardType">
 								<option>工商营业执照</option>
 							</select>
 						</div>
-					</div>
+					</div>-->
 					<div class="fn-clear m-b-35">
-						<p class="title">主办单位证件号码：</p>
+						<p class="title"><i>*</i>统一社会信用代码：</p>
 						<div class="info">
 							<input type="text" v-model ="params.cardNumber"/>
 						</div>
 					</div>
 					<div class="fn-clear m-b-35">
-						<p class="title"><i>*</i>主办单位或主办人名称：</p>
+						<p class="title"><i>*</i>法人姓名：</p>
 						<div class="info">
 							<input type="text" v-model ="params.name" />
 						</div>
 						<!--<a class="tips-graphic ">工商营业执照主办单位名称图示</a>-->
 					</div>
 					<div class="fn-clear m-b-35">
-						<p class="title"><i>*</i>主办单位证件住所：</p>
+						<p class="title"><i>*</i>法人身份证号码：</p>
 						<div class="info">
 							<input type="text"  v-model ="params.regAddress" />
 						</div>
 						<!--<a class="tips-graphic">工商营业执照证件住所图示</a>-->
-					</div>
-					<div class="fn-clear m-b-35">
-						<p class="title"><i>*</i>主办单位通讯地址：</p>
-						<div class="info">
-							<input type="text"  v-model ="params.address" />
-						</div>
 					</div>
 					<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>投资人或主管单位：</p>
@@ -64,32 +58,14 @@
 							<input type="text" v-model ="params.vc"  />
 						</div>
 					</div>
-				</div>
-				<h4>主办单位负责人信息</h4>
-				<div class="module">
-					<div class="fn-clear m-b-15">
-						<p class="title"><i>*</i>负者人姓名：</p>
-						<div class="info">
-							<input type="text" v-model ="params.ceo"/>
-						</div>
-					</div>
-					<div class="tips-warn m-b-15">单位用户请填写法人姓名</div>
 					<div class="fn-clear m-b-35">
-						<p class="title"><i>*</i>负责人证件类型：</p>
+						<p class="title"><i>*</i>详细地址：</p>
 						<div class="info">
-							<select v-model ="params.ceoCardType">
-								<option>身份证</option>
-							</select>
+							<input type="text"  v-model ="params.address" />
 						</div>
 					</div>
-					<div class="fn-clear m-b-35">
-						<p class="title"><i>*</i>负责人证件号码：</p>
-						<div class="info">
-							<input type="text" v-model ="params.ceoCardNumber"/>
-						</div>
-					</div>
-					<div class="fn-clear m-b-15 tel">
-						<p class="title"><i>*</i>办公室电话：</p>
+					<div class="fn-clear m-b-35 tel">
+						<p class="title">办公室电话：</p>
 						<div class="info">
 							<!--<span>086-023-</span>-->
 							<input type="text"  placeholder="" v-model ="params.tel"/>
@@ -97,6 +73,37 @@
 							<input type="text" name="" id="" value="" class="w117"/>-->
 						</div>
 					</div>
+					<div class="fn-clear">
+						<p class="title">公司邮箱：</p>
+						<div class="info">
+							<input type="text"  v-model ="params.email"/>
+						</div>
+					</div>
+				</div>
+				<h4>诚信管理员相关信息</h4>
+				<div class="module">
+					<div class="fn-clear m-b-15">
+						<p class="title"><i>*</i>诚信管理员姓名：</p>
+						<div class="info">
+							<input type="text" v-model ="params.ceo"/>
+						</div>
+					</div>
+					<div class="tips-warn m-b-15">单位用户请填写法人姓名</div>
+					<!--<div class="fn-clear m-b-35">
+						<p class="title"><i>*</i>负责人证件类型：</p>
+						<div class="info">
+							<select v-model ="params.ceoCardType">
+								<option>身份证</option>
+							</select>
+						</div>
+					</div>-->
+					<div class="fn-clear m-b-35">
+						<p class="title"><i>*</i>诚信管理员身份证号码：</p>
+						<div class="info">
+							<input type="text" v-model ="params.ceoCardNumber"/>
+						</div>
+					</div>
+					
 					<!--<div class="tips-warn m-b-15">单位用户请填写法人姓名</div>-->
 					<div class="fn-clear m-b-15">
 						<p class="title"><i>*</i>手机号码：</p>
@@ -112,16 +119,12 @@
 							<a>获取验证码</a>
 						</div>
 					</div>
+					
 					<div class="fn-clear m-b-35">
-						<p class="title"><i>*</i>电子邮件地址：</p>
+						<p class="title"><i>*</i>qq号码：</p>
 						<div class="info">
-							<input type="text"  v-model ="params.email"/>
-						</div>
-					</div>
-					<div class="fn-clear m-b-35">
-						<p class="title">备注：</p>
-						<div class="info">
-							<textarea v-model ="params.des"></textarea>
+							<!--<textarea v-model ="params.des"></textarea>-->
+							<input type="text" v-model ="params.des" />
 						</div>
 					</div>
 				</div>
@@ -130,7 +133,7 @@
 					<div class="upload-list">
 						<ul class="fn-clear">
 							<li>
-								<h5>主办单位证件</h5>
+								<h5>企业营业执照（正本或副本）</h5>
 								<div class="id-pic">
 									<img v-show ="!fileUrl1" src="../assets/images/upload.jpg"/>
 									<img v-show ="fileUrl1" :src="fileUrl1"/>
@@ -139,7 +142,7 @@
 								<p v-show ="!fileUrl1">工商营业执照图片等待上传</p>
 							</li>
 							<li>
-								<h5>主办负责人证件</h5>
+								<h5>法人身份证（正反面）</h5>
 								<div class="id-pic">
 									<img v-show ="!fileUrl2" src="../assets/images/upload.jpg"/>
 									<img v-show ="fileUrl2" :src="fileUrl1"/>
@@ -148,7 +151,7 @@
 								<p v-show ="!fileUrl2">身份证图片正面等待上传</p>
 							</li>
 							<li>
-								<h5>负责人证件</h5>
+								<h5>诚信管理员身份证（正反面）</h5>
 								<div class="id-pic">
 									<img v-show ="!fileUrl3" src="../assets/images/upload.jpg"/>
 									<img v-show ="fileUrl3" :src="fileUrl1"/>
@@ -516,19 +519,19 @@
 				let phone = this.params.phone.trim();
 				let email = this.params.email.trim();
 				if(cardNumber.length <=0){
-					Toast('请填写主办单位证件号码');
+					Toast('请填写统一社会信用代码');
 					return;
 				}
 				if(name.length <=0){
-					Toast('请填写主办单位或主办人名称');
+					Toast('请填写法人姓名');
 					return;
 				}
 				if(regAddress.length <=0){
-					Toast('请填写主办单位证件住所');
+					Toast('请填写法人身份证号码');
 					return;
 				}
 				if(address.length <=0){
-					Toast('请填写主办单位通讯地址');
+					Toast('请填写详细地址');
 					return;
 				}
 				if(vc.length <=0){
@@ -536,25 +539,25 @@
 					return;
 				}
 				if(ceo.length <=0){
-					Toast('请填写负者人姓名');
+					Toast('请填写诚信管理员姓名');
 					return;
 				}
 				if(ceoCardNumber.length <=0){
-					Toast('请填写负责人证件号码');
+					Toast('请填写诚信管理员身份证号码');
 					return;
 				}
-				if(tel.length <=0){
-					Toast('请填写办公室电话');
-					return;
-				}
+//				if(tel.length <=0){
+//					Toast('请填写办公室电话');
+//					return;
+//				}
 				if(phone.length <=0){
 					Toast('请填写手机号码');
 					return;
 				}
-				if(email.length <=0){
-					Toast('请填写电子邮件地址');
-					return;
-				}
+//				if(email.length <=0){
+//					Toast('请填写电子邮件地址');
+//					return;
+//				}
 				if(this.fileUrl1.length <=0){
 					Toast('请上传工商营业执照图片');
 					return;
@@ -701,6 +704,7 @@
 	                		return newValue == item.code;
 	                })[0];
 	                this.params.area2 = objArea.text;
+	                this.handleArea3(objArea.code)
 	            }
 	        },
 	        modelArea3:{

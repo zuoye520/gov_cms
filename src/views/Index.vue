@@ -240,7 +240,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="building-secondary fn-right m-b-15">
+			<div class="building-secondary fn-left m-b-15">
 				<ul class="fn-clear">
 					<li class="fn-left" v-for="item in projectListOne">
 						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}">
@@ -250,7 +250,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="building-secondary fn-right">
+			<div class="building-secondary fn-left">
 				<ul class="fn-clear">
 					<li class="fn-left" v-for="item in projectListTwo">
 						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}">
@@ -675,7 +675,7 @@
 			}
 		}
 		.building-main {
-			width: 400px;
+			width: 402px;
 			height: 295px;
 			position: relative;
 			h2 {
