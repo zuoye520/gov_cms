@@ -730,6 +730,7 @@
 				let stepOneParams = apps.getSessionStorage('REGISTER_INFO',{});
 				this.params.pin = stepOneParams.pin;
 				this.params.pwd = stepOneParams.pwd;
+				this.params.id = stepOneParams.eId;
 				this.code = stepOneParams.code;
 				this.bizId = stepOneParams.eId;
 //				setTimeout(()=>{
