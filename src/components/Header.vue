@@ -6,7 +6,8 @@
 				<div class="logo fn-left"></div>
 				<div class="title">
 					<div>重庆市房地产行业诚信信息平台</div>
-					<p>CHONGQINGSHIFANGDICHANHANGYECHENGXINXINXIPINGTAI</p>
+					<!--<p>CHONGQINGSHIFANGDICHANHANGYECHENGXINXINXIPINGTAI</p>-->
+					<p>重庆市房地产业协会</p>
 				</div>
 			</h1>
 		</header>
