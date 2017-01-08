@@ -11,7 +11,7 @@
 				<h4>企业相关信息</h4>
 				<div class="module">
 					<div class="fn-clear m-b-35">
-						<p class="title">主办单位所属区域：</p>
+						<p class="title">企业所属区域：</p>
 						<div class="info three-level">
 							<select v-model="modelArea1">
 								<option v-for="item in area1" :value="item.code">{{item.text}}</option>
@@ -52,12 +52,12 @@
 						</div>
 						<!--<a class="tips-graphic">工商营业执照证件住所图示</a>-->
 					</div>
-					<div class="fn-clear m-b-35">
+					<!--<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>投资人或主管单位：</p>
 						<div class="info">
 							<input type="text" v-model ="params.vc"  />
 						</div>
-					</div>
+					</div>-->
 					<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>详细地址：</p>
 						<div class="info">
@@ -465,7 +465,7 @@
 					pwd:'',
 					regAddress:'',
 					tel:'',
-					vc:'',
+//					vc:'',
 				},
 				fileUrl1:'',
 				fileUrl2:'',
@@ -512,7 +512,7 @@
 				let name = this.params.name.trim();
 				let regAddress = this.params.regAddress.trim();
 				let address = this.params.address.trim();
-				let vc = this.params.vc.trim();
+//				let vc = this.params.vc.trim();
 				let ceo = this.params.ceo.trim();
 				let ceoCardNumber = this.params.ceoCardNumber.trim();
 				let tel = this.params.tel.trim();
@@ -534,10 +534,10 @@
 					Toast('请填写详细地址');
 					return;
 				}
-				if(vc.length <=0){
-					Toast('请填写投资人或主管单位');
-					return;
-				}
+//				if(vc.length <=0){
+//					Toast('请填写投资人或主管单位');
+//					return;
+//				}
 				if(ceo.length <=0){
 					Toast('请填写诚信管理员姓名');
 					return;
