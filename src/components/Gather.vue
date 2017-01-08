@@ -3,13 +3,13 @@
 		<section class="gather">
 			<ul>
 				<li>
-					<a href="http://www.cqfdpjxh.org.cn" class="intermediary">
+					<a href="http://www.cqfdpjxh.org.cn" target="_blank" class="intermediary">
 						<p>重庆市房地产中介</p>
 						<p>机构诚信信息平台</p>
 					</a>
 				</li>
 				<li>
-					<a href="http://www.cqpma.com/" class="property">
+					<a href="http://www.cqpma.com" target="_blank" class="property">
 						<p>重庆市物业企业</p>
 						<p>诚信信息平台</p>
 					</a>
