@@ -141,7 +141,7 @@
 								</div>
 								<p v-show ="!fileUrl1">工商营业执照图片等待上传</p>
 							</li>
-							<li>
+							<!--<li>
 								<h5>法人身份证（正反面）</h5>
 								<div class="id-pic">
 									<img v-show ="!fileUrl2" src="../assets/images/upload.jpg"/>
@@ -149,7 +149,7 @@
 									<input id="file2" type="file" name="files[]" multiple>
 								</div>
 								<p v-show ="!fileUrl2">身份证图片正面等待上传</p>
-							</li>
+							</li>-->
 							<li>
 								<h5>诚信管理员身份证（正反面）</h5>
 								<div class="id-pic">
@@ -562,10 +562,10 @@
 					Toast('请上传工商营业执照图片');
 					return;
 				}
-				if(this.fileUrl2.length <=0){
-					Toast('请上传身份证图片正面');
-					return;
-				}
+//				if(this.fileUrl2.length <=0){
+//					Toast('请上传身份证图片正面');
+//					return;
+//				}
 				
 				this.handleSubmit();
 			},

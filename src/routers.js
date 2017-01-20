@@ -105,6 +105,7 @@ export default function(router) {
 				break;
 			case 'newsList':
 				router.app.menuActive = parseInt(transition.to.params.category) || 0;
+				
 				break;
 			case 'newsDetails':
 				router.app.menuActive = parseInt(transition.to.params.category) || 0;
@@ -113,9 +114,15 @@ export default function(router) {
 				transition.to.params.type == 1?router.app.menuActive =100:router.app.menuActive =101;
 				
 				break;	
+			case 'enterpriseList':
+				transition.to.query.category == 20?router.app.menuActive =20:router.app.menuActive =0;
+				break;	
 			default:
 				router.app.menuActive =0;
 				break;
+		}
+		if(typeof(transition.to.query)!="undefined" && transition.to.query.type ==30){
+			router.app.menuActive =30;
 		}
 	})
 }

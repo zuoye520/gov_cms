@@ -205,6 +205,8 @@
 			data({
 				to
 			}) {
+				apps.log(to.query.category);
+				this.category = to.query.category && parseInt(to.query.category);
 				this.params.pageIndex = 1;
 				this.queryParams.ename = decodeURIComponent(apps._GET('ename'))!='null' ? decodeURIComponent(apps._GET('ename')):'';
 				this.queryParams.pname = decodeURIComponent(apps._GET('pname'))!='null' ? decodeURIComponent(apps._GET('pname')):'';

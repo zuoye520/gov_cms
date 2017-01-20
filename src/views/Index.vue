@@ -126,7 +126,7 @@
 				</div>
 				<div class="fn-clear">
 					<div class="blue-half honesty-cont fn-left">
-						<h3><a  class="news on">开发企业诚信信息更新</a><a v-link="{ name: 'enterpriseList'}" class="more">更多</a></h3>
+						<h3><a  class="news on">开发企业诚信信息更新</a><a v-link="{ name: 'enterpriseList',query:{category:23}}" class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
 								<li class="fn-clear" v-for ="item in cxeList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">
@@ -159,16 +159,16 @@
 					</div>
 				</div>
 				<div class="blue-fill company-list">
-					<h3 class="fn-clear">诚信等级公示<a  class="fn-right" v-link="{ name: 'enterpriseList'}">更多</a></h3>
+					<h3 class="fn-clear">诚信等级公示<a  class="fn-right" v-link="{ name: 'enterpriseList',query:{category:22}}">更多</a></h3>
 					<div class="company-info ">
 						
 						<ul>
 							<li class="fn-clear" v-for ="item in eLeveList">
 								<p class="company-name fn-clear fn-left">
 									<span>{{item.name}}</span>
-									<span class="fn-right">{{item.competency_grade}}级</span>
+									<span class="fn-right">{{item.score}}分</span>
 								</p>
-								<div class="fn-right level">{{item.score}} 分</div>
+								<div class="fn-right level">{{item.competency_grade}} 级</div>
 							</li>
 							<li v-show="eLeveList.length <=0">
 								<p align="center">暂无相关企业</p>
@@ -203,7 +203,13 @@
 					</div>
 				</div>
 				<div class="blue-half winning-cont news-cont">
-					<h3><a @click="handleTabWinning(1)" :class="{'on':hjxxActive == 1}" class="news ">开发企业获奖信息</a><a @click="handleTabWinning(2)" :class="{'on':hjxxActive == 2}" class="news">开发企业不良行为信息</a></h3>
+					<h3 class="fn-clear">
+						<p class="fn-left">
+							<a @click="handleTabWinning(1)" :class="{'on':hjxxActive == 1}" class="news ">企业获奖信息</a>
+							<a @click="handleTabWinning(2)" :class="{'on':hjxxActive == 2}" class="news">企业不良行为信息</a>
+						</p>
+						<span class="fn-right more" @click ="handleLinkList">更多</span>
+					</h3>
 					<div class="news-list win-info">
 						<ul>
 							<li class="fn-clear" v-for="item in hjxxList" v-show="hjxxActive == 1">
@@ -262,7 +268,7 @@
 			</div>
 		</section>
 		<section class="brand-cont">
-			<h3 class="fn-clear">诚信品牌<p class="fn-right"><a v-link="{ name: 'enterpriseList'}">更多</a></p> </h3>
+			<h3 class="fn-clear">诚信品牌<p class="fn-right"><a v-link="{ name: 'enterpriseList',query:{category:20}}">更多</a></p> </h3>
 			<div class="brand-list">
 				<ul class="fn-clear">
 					<li class="fn-left" v-for="item in enterpriseLists" v-link="{ name: 'enterpriseInfo', params: {pid: item.bizId }}">
@@ -581,6 +587,15 @@
 				.news-list {
 					height: 267px;
 				}
+				.more{
+					padding-right: 10px;
+					color: #333;
+					cursor: pointer;
+					font-size: 16px;
+					&:hover{
+						text-decoration: underline;
+					}
+				}
 			}
 			.honesty-cont {
 				width: 409px;
@@ -745,18 +760,19 @@
 		}
 		.brand-list {
 			li {
-				width: 238px;
-				height: 60px;
-				margin-right: 16px;
+				overflow: hidden;
+				width: 188px;
+				height: 188px;
+				margin-right: 12px;
 				margin-bottom: 15px;
-				&:nth-child(4n) {
+				border: 1px solid #999;
+				&:nth-child(5n) {
 					margin-right: 0;
 				}
 				a {
-					border: 1px solid #999;
 					display: inline-block;
-					width: 238px;
-					height: 60px;
+					width: 100%;
+					height: 100%;
 					overflow: hidden;
 					img {
 						width: 100%;
@@ -769,6 +785,7 @@
 </style>
 <script>
 	import apps from "../utils/apps.js";
+	import {context} from "../utils/constants.js";
 	import {
 		getPicListAction,
 		getArticleListAction,
@@ -1044,14 +1061,19 @@
 					level = level.substring(0,level.length-1);
 				}
 				if(this.qycxActive ==1){
-					window.location.href =`/site/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
+					window.location.href =`${context}/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				}else{
 					let category = this.qycxActive==2 ? 10: 11;
-					window.location.href =`/site/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
+					window.location.href =`${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				}
 			},
-			handleLogin(){//登录
-//				alert('程序猿正在加班加点开发此功能..');
+			handleLinkList(){//点击更多
+				this.$route.router.go({
+                		name: 'newsList',
+                		params:{
+                			category:this.hjxxActive ==1? 10:11
+                		}
+                });
 			}
 
 		},
