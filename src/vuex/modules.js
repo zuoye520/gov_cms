@@ -30,6 +30,7 @@ const state = {
 	maList:[],//企业相关文章查询
 	sNew:null,
 	sFrom:{},
+	aeList:[],//获奖信息和不良信息
 	
 };
 
@@ -115,8 +116,10 @@ const mutations = {
 	},
 	[types.GET_P_E_LIST](state, data) {
 		state.peList = data;
+	},
+	[types.GET_A_ELIST](state, data) {
+		state.aeList = data;
 	}
-	
 }
 /*
  * @DESC : 对外开放

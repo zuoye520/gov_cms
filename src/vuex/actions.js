@@ -32,6 +32,9 @@ const 	GET_R_AREA = "xhlc/api/r/area/";//获取行政区划 /xhlc/api/r/area/:pa
 const 	POST_R_E_FROM = "xhlc/api/r/e/";//企业信息填写  /xhlc/api/r/e:code
 const 	GET_VC_CHECK = "xhlc/api/vc/check/";//验证验证码是否有效  xhlc/api/vc/check/:code
 
+const 	GET_A_ELIST = "xhlc/api/a/elist/";//获取不良信息和获奖信息列表  xhlc/api/a/elist/:categoryId
+
+
 /*
  * @DESC:获取首页图片信息
  * @Author:zuozuo
@@ -376,3 +379,19 @@ export const getArea = ({ dispatch, state },params={}) => {
     });
 }
 
+/*
+ * @DESC:获取企业文章列表
+ * @Author:zuozuo
+ * @Date：2016.12.16
+ */
+export const getAEList = ({ dispatch, state },params={}) => {
+	return new Promise((resolve, reject) =>{
+		apps.get(GET_A_ELIST+params.category,params).success((data)=>{
+			apps.log(data);
+			dispatch(types.GET_A_ELIST,data);
+			resolve("ok");
+	    }).businessError(900,(msg, data)=>{
+        		reject(msg);
+    		});
+    });
+}
