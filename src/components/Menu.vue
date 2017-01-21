@@ -10,8 +10,8 @@
 					<!--<a v-link="{ name: 'newsList', params: { category: 3 }}" :class="{'on':menuActive == 3}">信息公示</a>-->
 					<div class="sub-menu">
 						<p v-link="{ name: 'enterpriseList',query:{category:19,type:30}}">企业公示</p>
-						<p @click="handleQueryInfo(1)">获奖信息</p>
-						<p @click="handleQueryInfo(2)">不良行为</p>
+						<p v-link="{ name: 'eList',query:{category:10,type:30}}">获奖信息</p>
+						<p v-link="{ name: 'eList',query:{category:11,type:30}}">不良行为</p>
 					</div>
 				</li>
 				<li><a v-link="{ name: 'newsList', params: { category: 4 }}" :class="{'on':menuActive == 4}">新闻动态</a></li>
@@ -52,10 +52,10 @@ import {context} from "../utils/constants.js";
 			methods: {
 				handleQueryInfo(type){
 					if(type ==1){
-						window.location.href =`${context}/enterpriseList?type=30&category=10&ename=&pname=&level=请选择`;
+						window.location.href =`${context}/newsList/10?type=30&search=search&ename=&pname=&level=获奖信息`;
 					}
 					if(type ==2){
-						window.location.href =`${context}/newsList/11?type=30&search=search&ename=&pname=&level=请选择`;
+						window.location.href =`${context}/newsList/11?type=30&search=search&ename=&pname=&level=不良行为`;
 					}
 				}
 			}

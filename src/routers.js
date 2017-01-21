@@ -25,6 +25,12 @@ const mapObj = {
 			require(['./views/NewsList.vue'], resolve)
 		}
 	},
+	"/eList" :{
+		name: 'eList',
+		component(resolve) {
+			require(['./views/EList.vue'], resolve)
+		}
+	},
 	"/newsList/:category/:enterpriseId" :{
 		name: 'newsEList',
 		component(resolve) {

@@ -177,7 +177,13 @@
 					</div>
 				</div>
 				<div class="blue-half news-cont">
-					<h3><a  @click="handleTabPunish(1)" :class="{'on':xzcfActive == 1}" class="news">行政处罚</a><a @click="handleTabPunish(2)" :class="{'on':xzcfActive == 2}" class="news">行业自律</a></h3>
+					<h3 class="fn-clear">
+						<p class="fn-left">
+							<a @click="handleTabPunish(1)" :class="{'on':xzcfActive == 1}" class="news">行政处罚</a>
+							<a @click="handleTabPunish(2)" :class="{'on':xzcfActive == 2}" class="news">行业自律</a>
+						</p>
+						<span class="fn-right more" @click ="handleLinkList('xzcf')">更多</span>
+					</h3>
 					<div class="news-list policy">
 						<ul>
 							<li class="fn-clear" v-for="item in xzcfList" v-show="xzcfActive == 1">
@@ -208,7 +214,7 @@
 							<a @click="handleTabWinning(1)" :class="{'on':hjxxActive == 1}" class="news ">企业获奖信息</a>
 							<a @click="handleTabWinning(2)" :class="{'on':hjxxActive == 2}" class="news">企业不良行为信息</a>
 						</p>
-						<span class="fn-right more" @click ="handleLinkList">更多</span>
+						<span class="fn-right more" @click ="handleLinkList('hjxx')">更多</span>
 					</h3>
 					<div class="news-list win-info">
 						<ul>
@@ -1067,11 +1073,17 @@
 					window.location.href =`${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				}
 			},
-			handleLinkList(){//点击更多
+			handleLinkList(type){//点击更多
+				let category = null;
+				if(type == 'hjxx'){
+					category = this.hjxxActive ==1? 10:11
+				}else{
+					category = this.xzcfActive ==1? 8:9
+				}
 				this.$route.router.go({
                 		name: 'newsList',
                 		params:{
-                			category:this.hjxxActive ==1? 10:11
+                			category:category
                 		}
                 });
 			}
