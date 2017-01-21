@@ -13,4 +13,3 @@ module.exports = {
     context : "/site",
     contextPublic : ""
 }
-

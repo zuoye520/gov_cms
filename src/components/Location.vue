@@ -78,7 +78,23 @@
 							break;
 						case 18: //企业项目列表
 							str = "企业项目列表"
+							break;	
+						case 19: //企业公示
+							str = "企业公示"
+							break;	
+						case 20: //诚信品牌
+							str = "诚信品牌"
+							break;
+						case 21: //信息身份
+							str = "信息身份"
+							break;	
+						case 22: //诚信等级公示
+							str = "诚信等级公示"
+							break;
+						case 23: //开发企业诚信信息更新
+							str = "开发企业诚信信息更新"
 							break;		
+							
 						default:
 							str = "文章详情"
 							break;

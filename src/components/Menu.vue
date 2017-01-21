@@ -6,17 +6,17 @@
 				<li><a v-link="{ name: 'index'}" :class="{'on':menuActive == 0}">首 页</a></li>
 				<li><a v-link="{ name: 'newsList', params: { category: 2 }}" :class="{'on':menuActive == 2}">政策法规</a></li>
 				<li class="sub">
-					<a >信息公示</a>
+					<a :class="{'on':menuActive == 30}">信息公示</a>
 					<!--<a v-link="{ name: 'newsList', params: { category: 3 }}" :class="{'on':menuActive == 3}">信息公示</a>-->
 					<div class="sub-menu">
-						<p v-link="{ name: 'enterpriseList'}">企业公示</p>
+						<p v-link="{ name: 'enterpriseList',query:{category:19,type:30}}">企业公示</p>
 						<p @click="handleQueryInfo(1)">获奖信息</p>
 						<p @click="handleQueryInfo(2)">不良行为</p>
 					</div>
 				</li>
 				<li><a v-link="{ name: 'newsList', params: { category: 4 }}" :class="{'on':menuActive == 4}">新闻动态</a></li>
 				<li><a v-link="{ name: 'newsList', params: { category: 5 }}" :class="{'on':menuActive == 5}">协会动态</a></li>
-				<li><a v-link="{ name: 'enterpriseList'}" :class="{'on':menuActive == 99}">诚信品牌</a></li>
+				<li><a v-link="{ name: 'enterpriseList',query:{category:20}}" :class="{'on':menuActive == 20}">诚信品牌</a></li>
 				<li><a v-link="{ name: 'newsList', params: { category: 7 }}" :class="{'on':menuActive == 7}">曝光台</a></li>
 				<li><a v-link="{ name: 'complaint', params: { type: 0 }}" :class="{'on':menuActive == 101}">诚信表扬</a></li>
 				<li><a v-link="{ name: 'complaint', params: { type: 1 }}" :class="{'on':menuActive == 100}">诚信投诉</a></li>
@@ -26,6 +26,7 @@
 	</div>
 </template>
 <script>
+import {context} from "../utils/constants.js";
 	export default {
 		/*
 		 * 接收父组件数据
@@ -51,10 +52,10 @@
 			methods: {
 				handleQueryInfo(type){
 					if(type ==1){
-						window.location.href =`/site/enterpriseList?ename=&pname=&level=请选择`;
+						window.location.href =`${context}/enterpriseList?type=30&category=10&ename=&pname=&level=请选择`;
 					}
 					if(type ==2){
-						window.location.href =`/site/newsList/10?search=search&ename=&pname=&level=请选择`;
+						window.location.href =`${context}/newsList/11?type=30&search=search&ename=&pname=&level=请选择`;
 					}
 				}
 			}

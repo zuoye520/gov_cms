@@ -4,11 +4,11 @@
 		<header>
 			<h1 class="w1000 fn-clear title-cont">
 				<div class="logo fn-left"></div>
-				<div class="title">
+				<!--<div class="title">
 					<div>重庆市房地产行业诚信信息平台</div>
-					<!--<p>CHONGQINGSHIFANGDICHANHANGYECHENGXINXINXIPINGTAI</p>-->
+					<p>CHONGQINGSHIFANGDICHANHANGYECHENGXINXINXIPINGTAI</p>
 					<p>重庆市房地产业协会</p>
-				</div>
+				</div>-->
 			</h1>
 		</header>
 	</div>
@@ -27,22 +27,21 @@
             height: 100px;
             font-weight: normal;
             color: #fff;
-            //padding-top: 10px;
+            padding-top: 10px;
             >div{
                 font-size: 38px;
                 letter-spacing: 5px;
             }
             >p{
-                font-size: 38px;
+                font-size: 16px;
                 letter-spacing: 2px;
             }
         }
         .logo{
-            margin-top: 9px;
-            width: 100px;
-            height: 100px;
+            width: 100%;
+            height: 120px;
             margin-right: 20px;
-            background: url(../assets/images/logo.png) center center no-repeat;
+            background: url(../assets/images/logo.png) left top no-repeat;
         }
     }
 

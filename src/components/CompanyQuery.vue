@@ -21,6 +21,7 @@
 </template>
 <script>
 import apps from "../utils/apps.js";
+import {context} from "../utils/constants.js";
 	export default {
 		/*
 		 * 接收父组件数据
@@ -53,10 +54,10 @@ import apps from "../utils/apps.js";
 				handleQueryInfo(){
 //					apps.setSessionStorage('SEARCH_PARAMS',this.queryParams);
 					if(this.queryParams.level =='信息身份'||this.queryParams.level =='请选择'){
-						window.location.href =`/site/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
+						window.location.href =`${context}/enterpriseList?category=21&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
 					}else{
-						let category = this.queryParams.type=='获奖信息' ? 10: 11;
-						window.location.href =`/site/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
+						let category = this.queryParams.level=='获奖信息' ? 10: 11;
+						window.location.href =`${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
 					}
 				}
 			}
