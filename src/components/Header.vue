@@ -27,23 +27,24 @@
             height: 100px;
             font-weight: normal;
             color: #fff;
-            padding-top: 10px;
+            //padding-top: 10px;
             >div{
                 font-size: 38px;
                 letter-spacing: 5px;
             }
             >p{
-                font-size: 16px;
+                font-size: 38px;
                 letter-spacing: 2px;
             }
         }
         .logo{
+            margin-top: 9px;
             width: 100px;
             height: 100px;
             margin-right: 20px;
             background: url(../assets/images/logo.png) center center no-repeat;
         }
     }
-   
+
 }
 </style>

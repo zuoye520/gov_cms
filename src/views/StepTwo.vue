@@ -88,7 +88,7 @@
 							<input type="text" v-model ="params.ceo"/>
 						</div>
 					</div>
-					<div class="tips-warn m-b-15">单位用户请填写法人姓名</div>
+					<!--<div class="tips-warn m-b-15">单位用户请填写法人姓名</div>-->
 					<!--<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>负责人证件类型：</p>
 						<div class="info">
@@ -103,7 +103,7 @@
 							<input type="text" v-model ="params.ceoCardNumber"/>
 						</div>
 					</div>
-					
+
 					<!--<div class="tips-warn m-b-15">单位用户请填写法人姓名</div>-->
 					<div class="fn-clear m-b-15">
 						<p class="title"><i>*</i>手机号码：</p>
@@ -119,7 +119,7 @@
 							<a>获取验证码</a>
 						</div>
 					</div>
-					
+
 					<div class="fn-clear m-b-35">
 						<p class="title"><i>*</i>qq号码：</p>
 						<div class="info">
@@ -192,14 +192,14 @@
 			width: 23px;
 			height: 22px;
 			background: url(../assets/images/icons.png) 0 -407px no-repeat;
-			margin-right: 10px;	
+			margin-right: 10px;
 		}
 		.help{
 			display: inline-block;
 			width: 22px;
 			height: 22px;
 			background: url(../assets/images/icons.png) 0 -345px no-repeat;
-			margin-right: 10px;	
+			margin-right: 10px;
 		}
 	}
 	.step-cont{
@@ -311,7 +311,7 @@
 					position: absolute;
 					pointer-events: none;
 				}
-				
+
 				.tips-warn:after {
 					border-color: rgba(241, 241, 241, 0);
 					border-bottom-color: #f1f1f1;
@@ -357,7 +357,7 @@
 									width: 100%;
 									height: 100%;
 								}
-							}	
+							}
 						}
 					}
 					.btn-upload{
@@ -381,7 +381,7 @@
 					}
 				}
 			}
-			
+
 		}
 	}
 	.btn-grp{
@@ -566,7 +566,7 @@
 					Toast('请上传身份证图片正面');
 					return;
 				}
-				
+
 				this.handleSubmit();
 			},
 			handleSubmit(){
@@ -575,7 +575,7 @@
 					apps.log('提交信息成功');
 					Indicator.close();
 					alert('提交成功,等待审核...');
-					
+
 					this.$route.router.replace('index');
 				}, (error) => {
 					apps.log(error);
@@ -606,7 +606,7 @@
 						this.area3 = [];
 						this.params.area3 = '';
 					}
-					
+
 				}, (error) => {
 					apps.log(error)
 				});
@@ -686,7 +686,7 @@
 	                return this.code1;
 	            },
 	            set(newValue){
-	                this.code1= newValue; 
+	                this.code1= newValue;
 	                let objArea = this.area1.filter((item,index)=>{
 	                		return newValue == item.code;
 	                })[0];
@@ -699,7 +699,7 @@
 	                return this.code2;
 	            },
 	            set(newValue){
-	                this.code2= newValue; 
+	                this.code2= newValue;
 	                let objArea = this.area2.filter((item,index)=>{
 	                		return newValue == item.code;
 	                })[0];
@@ -712,7 +712,7 @@
 	                return this.code3;
 	            },
 	            set(newValue){
-	                this.code3= newValue; 
+	                this.code3= newValue;
 	                let objArea = this.area3.filter((item,index)=>{
 	                		return newValue == item.code;
 	                })[0];
@@ -736,7 +736,7 @@
 //				setTimeout(()=>{
 //					this.handleFile1();
 //				},3000);
-				
+
 //				this.handleFile2();
 //				this.handleFile3();
 			}
