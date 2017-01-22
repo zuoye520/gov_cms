@@ -27,7 +27,14 @@ exports.formatPhone = (phone) => {
 	}
 	return phone.substr(0, 3) + '****' + phone.substr(-4);
 }
-
+/*
+ * 截取时间
+ * 2017-01-21T01:54:14.365Z | filterMoney
+ */
+exports.filterTimeStr = (timeStr) => {
+	let timeArr = timeStr.split("T") || [];
+	return timeArr[0];
+}
 /**
  * 格式化时间戳
  * 1461658688000 | formatTime "yyyy-MM-dd hh:mm:ss"
