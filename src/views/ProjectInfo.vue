@@ -166,6 +166,22 @@
 				<div class="title">项目情况介绍：</div>
 				<div class="cont w790">{{detail.project_situation || '无'}}</div>
 			</div>
+			
+			<div class="bor-l bor-b bor-r fn-clear" style="background: #dbedff;">
+				<div class="title" style="height: 100%;line-height: none; border-right: none;">预售许可证：</div>
+				<div class="cont w790" style="height: auto;line-height: none; padding: 0; width: 820px !important;">
+					<table width="100%" class="tab-list" border="0" cellspacing="" cellpadding="">
+						<tr><th>预售许可证号</th><th>办证时间</th><th>开盘时间</th><th>交房时间</th></tr>
+						<tr v-for="item in licence">
+							<td>{{item.no}}</td>
+							<td>{{item.bzsj | filterTimeStr}}</td>
+							<td>{{item.xssj | filterTimeStr}}</td>
+							<td>{{item.jfsj | filterTimeStr}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
 		</section>
 		<section class="pic-cont">
 			<!--<h3>诚信展示图片</h3>
@@ -285,6 +301,18 @@
 		}
 			
 	}
+	.tab-list{
+		background: #f8f8f8;
+		tr{
+			th,td{
+				text-align: center;
+				border-left: 1px #ddd solid;
+			}
+			td{
+				border-top: 1px #ddd solid;
+			}
+		}
+	}
 </style>
 
 <script>
@@ -366,7 +394,10 @@
 		 * 实例计算属性
 		 */
 		computed: {
-			
+			licence(){
+				apps.log(JSON.parse(this.detail.licence))
+				return JSON.parse(this.detail.licence)
+			}
 		},
 		/*
 		 * 路由数据钩 参数发生变化这里被激活
