@@ -11,12 +11,17 @@
 			<l-location :type = "category"></l-location>
 			<div>
 				<dl>
-					<dt class="fn-clear"><span>【 序号 】</span><span class="p-l-30">【 标签 】</span><span class="fn-right p-r-20">【 时间 】</span></dt>
+					<dt class="fn-clear">
+						<span>【 序号 】</span>
+						
+						<span class="p-l-30" v-show="!isSearch">【 标签 】</span>
+						<span class="p-l-30" v-show="isSearch">【 描述 】</span>
+						<span class="fn-right p-r-20">【 时间 】</span></dt>
 					<dd v-for="item in articleList.list">
 						<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { category : category ,id: item.id }}">
 							<p class="num fn-left">{{$index+1}}</p>
 							<div class="content fn-left">
-								<h3>{{item.title}} </h3>
+								<h3><span v-show="isSearch">【{{item.eName}}】</span>{{item.title}} </h3>
 								<p class="text-ellipsis-2">{{item.content}} </p>
 							</div>
 							<div class="fn-right time">[{{item.publishTime | formatTime "yyyy-MM-dd"}}]</div>
@@ -160,7 +165,8 @@
 					pageCount: 10,
 					pageIndex: 1
 				},
-				category : 1
+				category : 1,
+				isSearch : false
 			}
 		},
 		/*
@@ -236,6 +242,7 @@
 				this.params.level = this.queryParams.level!='请选择' ?this.queryParams.level : null;
 				this.params.search = this.queryParams.search ?this.queryParams.search : null;
 				
+				this.isSearch = this.params.search || this.params.enterpriseId ? true:false 
 				this.getArticleListAction(this.params).then((data) => {
 					apps.log('列表数据请求成功')
 				}, (error) => {

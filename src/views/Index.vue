@@ -64,7 +64,7 @@
 						<p><span>密<i></i>码：</span><input type="password" id="" value="" /></p>
 						<div class="btns fn-clear">
 							<a class="btn-register fn-left" v-link="{ name: 'stepOne'}">注册</a>
-							<a class="btn-login fn-right" @click="handleLogin">登录</a>
+							<a class="btn-login fn-right">登录</a>
 						</div>
 					</div>
 				</div>

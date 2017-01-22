@@ -13,8 +13,8 @@
 				<dl>
 					<dt class="fn-clear"><span>【 序号 】</span><span class="p-l-30">【 描述 】</span><span class="fn-right p-r-20">【 时间 】</span></dt>
 					<dd v-for="item in aeList.list">
-						<!--<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { category : category ,id: item.id }}">-->
-							<a class="fn-clear"  >
+						<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { category : category ,id: item.id }}">
+							<!--<a class="fn-clear"  >-->
 							<p class="num fn-left">{{$index+1}}</p>
 							<div class="content fn-left">
 								<h3>【{{item.eName}}】{{item.title}} </h3>
