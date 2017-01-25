@@ -4,8 +4,10 @@
  * 颜色scss变量
  */
 $color-main: #023790;
-$color-font:#333;/*基本字体颜色*/
-$color-bg: #f8f8f8;/*背景颜色*/
+$color-font: #333;
+/*基本字体颜色*/
+$color-bg: #f8f8f8;
+/*背景颜色*/
 $color-gray1: #666;
 $color-gray2: #999;
 $color-gray3: #ccc;
@@ -17,23 +19,23 @@ $color-red: #f05a5a;
 $color-footer: #ebf3ff;
 
 //公共样式
-.w1000{
+.w1000 {
     margin: auto;
     width: 1000px;
 }
 
-a{
+a {
     color: $color-font;
     cursor: pointer !important;
 }
 
 //首页swiper
-.swiper-wrapper{
+.banner-cont .swiper-wrapper {
     width: 448px;
     height: 306px;
     position: relative;
 }
-.swiper-wrapper h3{
+.banner-cont .swiper-wrapper h3 {
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -41,36 +43,112 @@ a{
     background: rgba(0,0,0,0.8);
     padding: 10px 0 !important;
 }
-.swiper-wrapper h3>p{
+.banner-cont .swiper-wrapper h3 > p {
     padding-left: 30px;
     width: 230px;
 }
-.swiper-container-horizontal>.swiper-pagination-bullets{
+.banner-cont .swiper-container-horizontal > .swiper-pagination-bullets {
     position: absolute;
     bottom: 10px;
     right: 20px;
     left: auto;
     width: auto;
 }
-.swiper-pagination-bullet{
-    background:#fff!important;
+.banner-cont .swiper-pagination-bullet {
+    background: #fff!important;
     opacity: 0.5;
 }
-.swiper-pagination-bullet.swiper-pagination-bullet-active{
+.banner-cont .swiper-pagination-bullet.swiper-pagination-bullet-active {
     background: #fff !important;
     opacity: 1;
 }
-.swiper-button-prev,.swiper-button-next{
+.banner-cont .swiper-button-prev,
+.swiper-button-next {
     width: 50px;
     height: 61px;
     margin-top: -30px !important;
 }
-.swiper-slide img{
+.banner-cont .swiper-slide img {
     width: 100%;
     height: 100%;
 }
 //企业信息swiper
-.swiper-wrapper.info-swp{
+.banner-cont .swiper-wrapper.info-swp {
     width: 463px;
     height: 320px;
+}
+
+.brand-cont .swiper-container {
+    width: 100%;
+    .swiper-button-next,.swiper-button-prev{
+        background: rgba(0,0,0,0.3);
+        width: 30px;
+        height: 45px;
+        padding-top: 5px;
+        top: 50%;
+        margin-top: -30px;
+        transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+        img{
+            width: 25px;
+        }
+    }
+    .swiper-button-next:hover,.swiper-button-prev:hover{
+       background: rgba(0,0,0,0.6);
+    }
+    .swiper-slide {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+//     width: 188px;
+    }
+}
+
+
+.building-cont .swiper-container {
+    width: 100%;
+    .swiper-button-next,.swiper-button-prev{
+        background: rgba(0,0,0,0.3);
+        width: 30px;
+        height: 45px;
+        padding-top: 5px;
+        top: 50%;
+        margin-top: -30px;
+        transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+        img{
+            width: 25px;
+        }
+    }
+    .swiper-button-next:hover,.swiper-button-prev:hover{
+       background: rgba(0,0,0,0.6);
+    }
+    .swiper-slide {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+//     width: 188px;
+    }
 }

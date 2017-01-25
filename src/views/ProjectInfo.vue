@@ -2,7 +2,7 @@
 	<!--项目详情信息-->
 	<div class="w1000">
 		<l-location :type="category"></l-location>
-		<section class="info-cont">
+		<section class="info-cont banner-cont">
 			<div class="fn-clear">
 				<div class="fn-left swiper">
 					<div class="swiper-container">

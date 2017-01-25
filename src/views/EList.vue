@@ -9,12 +9,19 @@
 		</section>
 		<section class="right-side fn-left">
 			<l-location :type = "params.category"></l-location>
-			<div>
-				<dl>
+			<div class="list">
+				<table width="100%" border="1" cellspacing="" cellpadding="">
+					<tr><th>企业名称</th><th>最新获奖信息</th><th>其他获奖信息</th></tr>
+					<tr v-for="item in aeList.list">
+						<td>{{item.eName}}</td>
+						<td>{{item.content}}</td>
+						<td><a v-link="{ name: 'eListDetail', query: {pid: item.id }}">更多</a></td>
+					</tr>
+				</table>
+				<!--<dl>
 					<dt class="fn-clear"><span>【 序号 】</span><span class="p-l-30">【 描述 】</span><span class="fn-right p-r-20">【 时间 】</span></dt>
 					<dd v-for="item in aeList.list">
 						<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { category : category ,id: item.id }}">
-							<!--<a class="fn-clear"  >-->
 							<p class="num fn-left">{{$index+1}}</p>
 							<div class="content fn-left">
 								<h3>【{{item.eName}}】{{item.title}} </h3>
@@ -23,7 +30,7 @@
 							<div class="fn-right time">[{{item.publishTime | formatTime "yyyy-MM-dd"}}]</div>
 						</a>
 					</dd>
-				</dl>
+				</dl>-->
 				<p class="p-30" align="center" v-show ="aeList.list && aeList.list.length <= 0">暂无内容...</p>
 			</div>
 			<div class="pages">
@@ -36,6 +43,31 @@
 <!-- 添加 scoped “范围”属性CSS限制这个组件只 -->
 <style scoped lang="scss">
 	@import "../assets/css/common.scss";
+	.list{
+		padding: 20px 0;
+		table{
+			border:#ccc 1px solid;
+			th{
+				background: #f05a5a;
+				color: #fff;
+			}
+			td,th{
+				padding: 10px 20px;
+				text-align: center;
+				min-width: 100px;
+				a{
+					color: #1680e5;
+				}
+			}
+			tr{
+				background: #fff;
+			}
+			tr:nth-child(even){
+				background: #eee;
+			}
+		}
+	}
+	
 	.news-list {
 		padding: 15px 0 30px;
 		position: relative;

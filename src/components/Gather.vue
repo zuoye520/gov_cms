@@ -39,10 +39,12 @@
 				color: #fff;
 			}
 			&.intermediary{
-				background: url(../assets/images/platform_1.jpg) center center no-repeat;
+				/*background: url(../assets/images/platform_1.jpg) center center no-repeat;*/
+				background: #0b6fce;
 			}
 			&.property{
-				background: url(../assets/images/platform_2.jpg) center center no-repeat;
+				/*background: url(../assets/images/platform_2.jpg) center center no-repeat;*/
+				background: #1680e5;
 			}
 			&:hover{
 		        opacity: 0.8;
