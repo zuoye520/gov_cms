@@ -9,7 +9,7 @@
 					<a :class="{'on':menuActive == 30}">信息公示</a>
 					<!--<a v-link="{ name: 'newsList', params: { category: 3 }}" :class="{'on':menuActive == 3}">信息公示</a>-->
 					<div class="sub-menu">
-						<p v-link="{ name: 'enterpriseList',query:{category:19,type:30}}">企业公示</p>
+						<p v-link="{ name: 'ePublicityList',query:{category:19,type:30}}">企业公示</p>
 						<p v-link="{ name: 'eList',query:{category:10,type:30}}">获奖信息</p>
 						<p v-link="{ name: 'eList',query:{category:11,type:30}}">不良行为</p>
 					</div>

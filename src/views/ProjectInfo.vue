@@ -194,8 +194,8 @@
 			</div>-->
 			<div class="tab-bar">
 				<ol>
-					<li><a v-link="{ name: 'newsEList', params: {category:10, enterpriseId: params.pid}}">开发企业获奖信息</a></li>
-					<li><a v-link="{ name: 'newsEList', params: {category:11,enterpriseId: params.pid}}">开发企业不良行为信息</a></li>
+					<li><a v-link="{ name: 'eListDetail', query: {category:10,eid: params.pid,eName:detail.name }}" >开发企业获奖信息</a></li>
+					<li><a v-link="{ name: 'eListDetail', query: {category:11,eid: params.pid,eName:detail.name }}">开发企业不良行为信息</a></li>
 					<li><a v-link="{ name: 'enterpriseInfo', params: {pid: params.pid}}" >诚信企业展示</a></li>
 					<li><a v-link="{ name: 'projectList', params: {eid: params.pid }}">诚信项目展示</a></li>
 				</ol>

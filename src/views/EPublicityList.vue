@@ -1,7 +1,7 @@
 <template>
 	<div class="fn-clear news-list w1000">
 		<section class="left-side fn-left">
-			<l-query :query-params ='params'></l-query>
+			<l-query :query-params ='query'></l-query>
 			<div class="gather-cont">
 				<l-gather></l-gather>
 			</div>
@@ -10,28 +10,33 @@
 		<section class="right-side fn-left">
 			<l-location :type = "params.category"></l-location>
 			<div class="list">
-				<div class="filter box">
-					<div class="box box-flex">
-						<span>标题</span>
+				<div class="filter box box-center-flex">
+					<div class="box sort box-flex">
+						<!--<span>排序</span>
 						<p>
-							<select name="">
-							<option value=""></option>
+							<select>
+								<option value="">信用排名</option>
+								<option value="">信用综合得分</option>
+								<option value="">信用能力得分</option>
+								<option value="">诚信表现得分</option>
 							</select>
-						</p>
+						</p>-->
 					</div>
 					<div>
-						<div class="box">
+						<div class="box search box-center-flex">
 							<p>
-								<input type="text" id="" value="" />
+								<input type="text" id="" value="" placeholder="请输入企业名称..." v-model="params.ename"/>
 							</p>
-							<p><a>查询</a></p>
+							<p class="p-l-10"><a @click="handleSearch" class="search-btn">查询</a></p>
 						</div>
 						
 					</div>
 				</div>
 				<table width="100%" border="1" cellspacing="" cellpadding="">
-					<tr><th>企业名称</th><th>最新获奖信息</th><th>其他获奖信息</th></tr>
-					<tr v-for="item in aeList.list">
+					<tr><th>企业名称</th><th>信用排名<a class="sort"></a></th><th>信用综合得分<a class="sort"></a></th><th>信用能力得分<a class="sort"></a></th><th>诚信表现得分<a class="sort"></a></th></tr>
+					<tr v-for="item in epList.list">
+						<td>{{item.eName}}</td>
+						<td>{{item.eName}}</td>
 						<td>{{item.eName}}</td>
 						<td>{{item.content}}</td>
 						<td><a v-link="{ name: 'eListDetail', query: {pid: item.id }}">更多</a></td>
@@ -39,7 +44,7 @@
 				</table>
 				<!--<dl>
 					<dt class="fn-clear"><span>【 序号 】</span><span class="p-l-30">【 描述 】</span><span class="fn-right p-r-20">【 时间 】</span></dt>
-					<dd v-for="item in aeList.list">
+					<dd v-for="item in epList.list">
 						<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { category : category ,id: item.id }}">
 							<p class="num fn-left">{{$index+1}}</p>
 							<div class="content fn-left">
@@ -50,7 +55,7 @@
 						</a>
 					</dd>
 				</dl>-->
-				<p class="p-30" align="center" v-show ="aeList.list && aeList.list.length <= 0">暂无内容...</p>
+				<p class="p-30" align="center" v-show ="epList.list && epList.list.length <= 0">暂无内容...</p>
 			</div>
 			<div class="pages">
 				<z-pages :pages-obj = "pagesObj"></z-pages>
@@ -64,16 +69,49 @@
 	@import "../assets/css/common.scss";
 	.list{
 		padding: 20px 0;
+		.filter{
+			padding: 10px 0 20px;
+			.sort{
+				span{
+					padding:5px 10px;
+				}
+				option{
+					padding: 5px 20px;
+				}
+			}
+			input{
+				padding: 5px 10px;
+				border: 1px #ccc solid;
+				border-radius: 3px;
+			}
+			.search-btn{
+				padding: 7px 20px;
+				background: #1680e5;
+				color: #fff;
+				border-radius: 3px;
+			}
+		}
 		table{
 			border:#ccc 1px solid;
 			th{
 				background: #f05a5a;
 				color: #fff;
+				
+				.sort{
+					padding: 10px;
+					background: url(../assets/images/sort_icon.png) center center no-repeat;
+					background-size: 15px;
+					&.gray{
+						background: url(../assets/images/gray_icon.png) center center no-repeat;
+						background-size: 15px;
+					}
+				}
 			}
 			td,th{
-				padding: 10px 20px;
+				padding: 10px;
 				text-align: center;
 				min-width: 100px;
+				font-size: 12px;
 				a{
 					color: #1680e5;
 				}
@@ -185,7 +223,7 @@
 	import Pages from "../components/Pages.vue";
 
 	import {
-		getAEList,
+		getEPList,
 	} from '../vuex/actions.js';
 	export default {
 		/*
@@ -206,12 +244,12 @@
 				params: {
 					pageCount: 10,
 					pageIndex: 1,
-					category :10,
+					category :19,
 					ename:'',
-					pname:'',
-					level:'请选择'
+					sort:1,
+					sortName:'index'
 				},
-				category : 1
+				query : {}
 			}
 		},
 		/*
@@ -219,10 +257,10 @@
 		 */
 		vuex: {
 			getters: {
-				aeList:(state)=> state.modules.aeList,
+				epList:(state)=> state.modules.epList,
 			},
 			actions: {
-				getAEList,
+				getEPList,
 			}
 		},
 		/*
@@ -236,7 +274,15 @@
 			handlePageClick(index){
 				apps.log('跳转到第：'+index+"页")
 				this.params.pageIndex = index;
-				this.getArticleListAction(this.params).then((data) => {
+				this.getEPList(this.params).then((data) => {
+					apps.log('分页数据请求成功')
+				}, (error) => {
+					apps.log(error)
+				});
+			},
+			handleSearch(){//搜索
+				this.params.pageIndex = 1;
+				this.getEPList(this.params).then((data) => {
 					apps.log('分页数据请求成功')
 				}, (error) => {
 					apps.log(error)
@@ -251,7 +297,7 @@
 				return {
 					pageCount : this.params.pageCount,
 					pageIndex : this.params.pageIndex,
-					total : this.aeList.total
+					total : this.epList.total
 				};
 			}
 		},
@@ -268,11 +314,7 @@
 				apps.log(to.query.category);
 				this.params.pageIndex = 1;
 				this.params.category = parseInt(to.query.category) || 10; //category
-				this.params.ename = to.query.ename || ''; //ename
-				this.params.pname = to.query.pname || ''; //pname
-				this.params.level = to.query.level || '请选择'; //level
-				
-				this.getAEList(this.params).then((data) => {
+				this.getEPList(this.params).then((data) => {
 					apps.log('列表数据请求成功')
 				}, (error) => {
 					apps.log(error)

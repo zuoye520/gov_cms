@@ -11,11 +11,11 @@
 			<l-location :type = "params.category"></l-location>
 			<div class="list">
 				<table width="100%" border="1" cellspacing="" cellpadding="">
-					<tr><th>企业名称</th><th>最新获奖信息</th><th>其他获奖信息</th></tr>
+					<tr><th>企业名称</th><th>最新{{title}}信息</th><th>其他{{title}}信息</th></tr>
 					<tr v-for="item in aeList.list">
 						<td>{{item.eName}}</td>
-						<td>{{item.content}}</td>
-						<td><a v-link="{ name: 'eListDetail', query: {pid: item.id }}">更多</a></td>
+						<td>{{item.title}}</td>
+						<td><a v-link="{ name: 'eListDetail', query: {category:params.category,eid: item.id,eName:item.eName }}">更多</a></td>
 					</tr>
 				</table>
 				<!--<dl>
@@ -190,7 +190,8 @@
 					category :10,
 					ename:'',
 					pname:'',
-					level:'请选择'
+					level:'请选择',
+					search : null
 				},
 				category : 1
 			}
@@ -217,7 +218,7 @@
 			handlePageClick(index){
 				apps.log('跳转到第：'+index+"页")
 				this.params.pageIndex = index;
-				this.getArticleListAction(this.params).then((data) => {
+				this.getAEList(this.params).then((data) => {
 					apps.log('分页数据请求成功')
 				}, (error) => {
 					apps.log(error)
@@ -234,6 +235,9 @@
 					pageIndex : this.params.pageIndex,
 					total : this.aeList.total
 				};
+			},
+			title(){
+				return this.params.category ==10 ? '获奖':'不良'
 			}
 		},
 		/*
@@ -252,7 +256,7 @@
 				this.params.ename = to.query.ename || ''; //ename
 				this.params.pname = to.query.pname || ''; //pname
 				this.params.level = to.query.level || '请选择'; //level
-				
+				this.params.search = to.query.search || null; //search
 				this.getAEList(this.params).then((data) => {
 					apps.log('列表数据请求成功')
 				}, (error) => {

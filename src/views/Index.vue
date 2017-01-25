@@ -72,11 +72,11 @@
 				</div>
 				<l-gather></l-gather>
 				<div class="blue-fill">
-					<h3 class="fn-clear">政策法规<a v-link="{ name: 'newsList', params: { category: 2 }}" class="fn-right">更多</a></h3>
+					<h3 class="fn-clear">政策法规<a v-link="{ name: 'newsList', params: { category: 2 }}" target="_blank" class="fn-right">更多</a></h3>
 					<div class="news-list policy">
 						<ul>
 							<li v-for="item in zcfgList" class="text-ellipsis-2">
-								<a v-link="{ name: 'newsDetails', params: {category : 2, id: item.id }}">{{item.title}}</a>
+								<a v-link="{ name: 'newsDetails', params: {category : 2, id: item.id }}" target="_blank">{{item.title}}</a>
 							</li>
 							<li v-show="zcfgList.length <=0">
 								<p align="center">暂无相关文章</p>
@@ -106,7 +106,7 @@
 						<ul>
 							<li class="fn-clear" v-for="item in xwdtList" v-show="xwdtActive == 1">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 4, id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 4, id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -116,7 +116,7 @@
 
 							<li class="fn-clear" v-for="item in xhdtList" v-show="xwdtActive == 2">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: { category : 5, id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: { category : 5, id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -131,11 +131,11 @@
 						<h3><a  class="news on">开发企业诚信信息更新</a><a v-link="{ name: 'enterpriseList',query:{category:23}}" class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
-								<li class="fn-clear" v-for="item in cxeList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">
+								<li class="fn-clear" v-for="item in cxeList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}" target="_blank">
 									<p class="text-ellipsis fn-left">
 										<a>{{item.name}}</a>
 									</p>
-									<i class="fn-right" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">详情</i>
+									<i class="fn-right" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}" target="_blank">详情</i>
 								</li>
 								<li v-show="cxeList.list && cxeList.list.length <=0">
 									<p align="center">暂无相关文章</p>
@@ -145,12 +145,12 @@
 						</div>
 					</div>
 					<div class="blue-half exposure-cont fn-right">
-						<h3><a class="news on">曝光台</a><a v-link="{ name: 'newsList', params: { category: 7 }}" class="more">更多</a></h3>
+						<h3><a class="news on">曝光台</a><a v-link="{ name: 'newsList', params: { category: 7 }}" target="_blank" class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
 								<li class="fn-clear" v-for="item in bgtList">
 									<p class="text-ellipsis fn-left">
-										<a v-link="{ name: 'newsDetails', params: {category : 7, id: item.id }}">{{item.title}}</a>
+										<a v-link="{ name: 'newsDetails', params: {category : 7, id: item.id }}" target="_blank">{{item.title}}</a>
 									</p>
 								</li>
 								<li v-show="bgtList.length <=0">
@@ -194,7 +194,7 @@
 						<ul>
 							<li class="fn-clear" v-for="item in xzcfList" v-show="xzcfActive == 1">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 8, id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 8, id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -204,7 +204,7 @@
 
 							<li class="fn-clear" v-for="item in hyzlList" v-show="xzcfActive == 2">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: { category : 9, id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: { category : 9, id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -226,7 +226,7 @@
 						<ul>
 							<li class="fn-clear" v-for="item in hjxxList" v-show="hjxxActive == 1">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 10,  id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 10,  id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -236,7 +236,7 @@
 
 							<li class="fn-clear" v-for="item in blxwList" v-show="hjxxActive == 2">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 11, id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 11, id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -253,7 +253,9 @@
 			<div class="brand-list swiper-container" id="swiper2">
 				<ul class="box swiper-wrapper">
 					<li class="swiper-slide" v-for="item in enterpriseLists" >
-						<a v-link="{ name: 'enterpriseInfo', params: {pid: item.bizId }}"><img :src="item.picUrl" /></a>
+						<a v-link="{ name: 'enterpriseInfo', params: {pid: item.bizId }}" target="_blank">
+							<img :src="item.picUrl" />
+						</a>
 					</li>
 					
 					<li v-show="enterpriseLists.length <=0">
@@ -280,7 +282,7 @@
 			<div class="building-secondary fn-left m-b-15 swiper-container" id="swiper3">
 				<ul class="box swiper-wrapper">
 					<li class="swiper-slide" v-for="item in projectList">
-						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}">
+						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}" target="_blank">
 							<img :src="item.picUrl" />
 							<p class="building-name">{{item.title}}</p>
 						</a>
@@ -1160,10 +1162,20 @@
 					level = level.substring(0, level.length - 1);
 				}
 				if(this.qycxActive == 1) {
-					window.location.href = `${context}/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
+					window.location.href = `${context}/enterpriseList/?category=21&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				} else {
 					let category = this.qycxActive == 2 ? 10 : 11;
-					window.location.href = `${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
+					this.$route.router.go({
+						name: 'eList',
+						query: {
+							category:category,
+							search:'search',
+							ename: this.queryParams.ename,
+							pname: this.queryParams.pname,
+							level: level
+						}
+					});
+//					window.location.href = `${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				}
 			},
 			handleLinkList(type) { //点击更多
@@ -1174,8 +1186,8 @@
 					category = this.xzcfActive == 1 ? 8 : 9
 				}
 				this.$route.router.go({
-					name: 'newsList',
-					params: {
+					name: 'eList',
+					query: {
 						category: category
 					}
 				});
@@ -1212,9 +1224,12 @@
 				this.queryParams.ename = "";
 				this.queryParams.pname = "";
 				this.queryParams.level = "请选择";
-				this.initSwiper();
-				this.initSwiper2();
-				this.initSwiper3();
+//				setTimeout(()=>{
+//					this.initSwiper();
+//					this.initSwiper2();
+//					this.initSwiper3();
+//				},2000)
+				
 			}
 		}
 	}

@@ -10,9 +10,9 @@
 		<section class="right-side fn-left">
 			<l-location :type = "params.category"></l-location>
 			<div class="list">
-				<h2>龙湖地产集团获奖信息</h2>
+				<h2>{{eName}}{{title}}信息</h2>
 				<table width="100%" border="1" cellspacing="" cellpadding="">
-					<tr><th>序号</th><th>获奖情况</th><th>所涉及项目名称</th><th>授权单位</th><th>授奖时间</th><th>备注</th></tr>
+					<tr><th>序号</th><th>{{content}}</th><th>所涉及项目名称</th><th>{{publishor}}</th><th>{{publishTime}}</th><th>备注</th></tr>
 					<tr v-for="item in aeList.list">
 						<td>{{item.eName}}</td>
 						<td>{{item.content}}</td>
@@ -22,10 +22,11 @@
 						<td>{{item.eName}}</td>
 					</tr>
 				</table>
-				<div class="tips">
+				<p class="p-30" align="center" v-show ="aeList.list && aeList.list.length <= 0">暂无内容...</p>
+				<!--<div class="tips">
 					<h4>注：</h4>
 					<p>获奖情况描述</p>
-				</div>
+				</div>-->
 			</div>
 		</section>
 	</div>
@@ -192,11 +193,8 @@
 					pageCount: 10,
 					pageIndex: 1,
 					category :10,
-					ename:'',
-					pname:'',
-					level:'请选择'
 				},
-				category : 1
+				eName:''
 			}
 		},
 		/*
@@ -232,6 +230,18 @@
 		 * 实例计算属性
 		 */
 		computed: {
+			title(){
+				return this.params.category ==10 ? '获奖':'不良'
+			},
+			content(){
+				return this.params.category ==10 ? '获奖情况':'事件主要内容'
+			},
+			publishor(){
+				return this.params.category ==10 ? '授奖单位':'整改情况'
+			},
+			publishTime(){
+				return this.params.category ==10 ? '授奖时间':'时间'
+			}
 //			pagesObj(){
 //				return {
 //					pageCount : this.params.pageCount,
@@ -253,10 +263,8 @@
 				apps.log(to.query.category);
 				this.params.pageIndex = 1;
 				this.params.category = parseInt(to.query.category) || 10; //category
-				this.params.ename = to.query.ename || ''; //ename
-				this.params.pname = to.query.pname || ''; //pname
-				this.params.level = to.query.level || '请选择'; //level
-				
+				this.params.eid = parseInt(to.query.eid) || 1; //eid 企业id
+				this.eName = to.query.eName || '';
 				this.getAEList(this.params).then((data) => {
 					apps.log('列表数据请求成功')
 				}, (error) => {

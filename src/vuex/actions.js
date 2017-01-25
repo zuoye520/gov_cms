@@ -33,6 +33,7 @@ const 	POST_R_E_FROM = "xhlc/api/r/e/";//企业信息填写  /xhlc/api/r/e:code
 const 	GET_VC_CHECK = "xhlc/api/vc/check/";//验证验证码是否有效  xhlc/api/vc/check/:code
 
 const 	GET_A_ELIST = "xhlc/api/a/elist/";//获取不良信息和获奖信息列表  xhlc/api/a/elist/:categoryId
+const 	GET_EP_LIST = "xhlc/api/ep";//获取企业公示列表  /xhlc/api/ep
 
 
 /*
@@ -379,16 +380,37 @@ export const getArea = ({ dispatch, state },params={}) => {
     });
 }
 
+
+
 /*
  * @DESC:获取企业文章列表
  * @Author:zuozuo
  * @Date：2016.12.16
  */
 export const getAEList = ({ dispatch, state },params={}) => {
+	let url =params.eid ?GET_A_ELIST+params.category+'/'+params.eid :params.search? GET_A_ELIST+params.category +'/search':  GET_A_ELIST+params.category
 	return new Promise((resolve, reject) =>{
-		apps.get(GET_A_ELIST+params.category,params).success((data)=>{
+		apps.get(url,params).success((data)=>{
 			apps.log(data);
 			dispatch(types.GET_A_ELIST,data);
+			resolve("ok");
+	    }).businessError(900,(msg, data)=>{
+        		reject(msg);
+    		});
+    });
+}
+
+
+/*
+ * @DESC:获取企业文章列表
+ * @Author:zuozuo
+ * @Date：2016.12.16
+ */
+export const getEPList = ({ dispatch, state },params={}) => {
+	return new Promise((resolve, reject) =>{
+		apps.get(GET_EP_LIST,params).success((data)=>{
+			apps.log(data);
+			dispatch(types.GET_EP_LIST,data);
 			resolve("ok");
 	    }).businessError(900,(msg, data)=>{
         		reject(msg);
