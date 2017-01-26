@@ -943,7 +943,8 @@
 					pageCount: 5,
 					pageIndex: 1,
 				},
-				cxeList: []
+				cxeList: [],
+				isSyncSwiper:0 //激活轮播
 			}
 		},
 		/*
@@ -1224,12 +1225,12 @@
 				this.queryParams.ename = "";
 				this.queryParams.pname = "";
 				this.queryParams.level = "请选择";
-//				setTimeout(()=>{
-//					this.initSwiper();
-//					this.initSwiper2();
-//					this.initSwiper3();
-//				},2000)
-				
+				this.isSyncSwiper++
+				if(this.isSyncSwiper > 1){
+					this.initSwiper();
+					this.initSwiper2();
+					this.initSwiper3();
+				}
 			}
 		}
 	}

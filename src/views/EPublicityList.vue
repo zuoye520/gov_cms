@@ -1,14 +1,14 @@
 <template>
 	<div class="fn-clear news-list w1000">
 		<section class="left-side fn-left">
-			<l-query :query-params ='query'></l-query>
+			<l-query :query-params='query'></l-query>
 			<div class="gather-cont">
 				<l-gather></l-gather>
 			</div>
 			<l-btns></l-btns>
 		</section>
 		<section class="right-side fn-left">
-			<l-location :type = "params.category"></l-location>
+			<l-location :type="params.category"></l-location>
 			<div class="list">
 				<div class="filter box box-center-flex">
 					<div class="box sort box-flex">
@@ -25,101 +25,104 @@
 					<div>
 						<div class="box search box-center-flex">
 							<p>
-								<input type="text" id="" value="" placeholder="请输入企业名称..." v-model="params.ename"/>
+								<input type="text" id="" value="" placeholder="请输入企业名称..." v-model="params.ename" @keyup.enter="handleSearch"/>
 							</p>
-							<p class="p-l-10"><a @click="handleSearch" class="search-btn">查询</a></p>
+							<p class="p-l-10">
+								<a @click="handleSearch" class="search-btn">查询</a>
+							</p>
 						</div>
-						
+
 					</div>
 				</div>
 				<table width="100%" border="1" cellspacing="" cellpadding="">
-					<tr><th>企业名称</th><th>信用排名<a class="sort"></a></th><th>信用综合得分<a class="sort"></a></th><th>信用能力得分<a class="sort"></a></th><th>诚信表现得分<a class="sort"></a></th></tr>
+					<tr>
+						<th>企业名称</th>
+						<th>信用排名
+							<a @click="handleSort('index')" class="sort" :class="[params.sortName =='index'? 'on':'']"></a>
+						</th>
+						<th>信用综合得分
+							<a @click="handleSort('score')" class="sort" :class="[params.sortName =='score'? 'on':'']"></a>
+						</th>
+						<th>信用能力得分
+							<a @click="handleSort('score1')" class="sort" :class="[params.sortName =='score1'? 'on':'']"></a>
+						</th>
+						<th>诚信表现得分
+							<a @click="handleSort('score2')" class="sort" :class="[params.sortName =='score2'? 'on':'']"></a>
+						</th>
+					</tr>
 					<tr v-for="item in epList.list">
-						<td>{{item.eName}}</td>
-						<td>{{item.eName}}</td>
-						<td>{{item.eName}}</td>
-						<td>{{item.content}}</td>
-						<td><a v-link="{ name: 'eListDetail', query: {pid: item.id }}">更多</a></td>
+						<td>{{item.name}}</td>
+						<td>{{item.sort}}</td>
+						<td>{{item.score}}</td>
+						<td>{{item.score1}}</td>
+						<td>{{item.score2}}</td>
 					</tr>
 				</table>
-				<!--<dl>
-					<dt class="fn-clear"><span>【 序号 】</span><span class="p-l-30">【 描述 】</span><span class="fn-right p-r-20">【 时间 】</span></dt>
-					<dd v-for="item in epList.list">
-						<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { category : category ,id: item.id }}">
-							<p class="num fn-left">{{$index+1}}</p>
-							<div class="content fn-left">
-								<h3>【{{item.eName}}】{{item.title}} </h3>
-								<p class="text-ellipsis-2">{{item.content}} </p>
-							</div>
-							<div class="fn-right time">[{{item.publishTime | formatTime "yyyy-MM-dd"}}]</div>
-						</a>
-					</dd>
-				</dl>-->
-				<p class="p-30" align="center" v-show ="epList.list && epList.list.length <= 0">暂无内容...</p>
+				<p class="p-30" align="center" v-show="epList.list && epList.list.length <= 0">暂无内容...</p>
 			</div>
 			<div class="pages">
-				<z-pages :pages-obj = "pagesObj"></z-pages>
+				<z-pages :pages-obj="pagesObj"></z-pages>
 			</div>
-			
+
 		</section>
 	</div>
 </template>
 <!-- 添加 scoped “范围”属性CSS限制这个组件只 -->
 <style scoped lang="scss">
 	@import "../assets/css/common.scss";
-	.list{
+	.list {
 		padding: 20px 0;
-		.filter{
+		.filter {
 			padding: 10px 0 20px;
-			.sort{
-				span{
-					padding:5px 10px;
+			.sort {
+				span {
+					padding: 5px 10px;
 				}
-				option{
+				option {
 					padding: 5px 20px;
 				}
 			}
-			input{
+			input {
 				padding: 5px 10px;
 				border: 1px #ccc solid;
 				border-radius: 3px;
 			}
-			.search-btn{
+			.search-btn {
 				padding: 7px 20px;
 				background: #1680e5;
 				color: #fff;
 				border-radius: 3px;
 			}
 		}
-		table{
-			border:#ccc 1px solid;
-			th{
+		table {
+			border: #ccc 1px solid;
+			th {
 				background: #f05a5a;
 				color: #fff;
-				
-				.sort{
+				.sort {
 					padding: 10px;
 					background: url(../assets/images/sort_icon.png) center center no-repeat;
 					background-size: 15px;
-					&.gray{
+					&.on {
 						background: url(../assets/images/gray_icon.png) center center no-repeat;
 						background-size: 15px;
 					}
 				}
 			}
-			td,th{
+			td,
+			th {
 				padding: 10px;
 				text-align: center;
 				min-width: 100px;
 				font-size: 12px;
-				a{
+				a {
 					color: #1680e5;
 				}
 			}
-			tr{
+			tr {
 				background: #fff;
 			}
-			tr:nth-child(even){
+			tr:nth-child(even) {
 				background: #eee;
 			}
 		}
@@ -221,7 +224,10 @@
 	import Btns from "../components/Btns.vue";
 	import CompanyQuery from "../components/CompanyQuery.vue";
 	import Pages from "../components/Pages.vue";
-
+	import {
+		Toast,
+		Indicator
+	} from 'mint-ui';
 	import {
 		getEPList,
 	} from '../vuex/actions.js';
@@ -230,7 +236,7 @@
 		 * 组件名称
 		 */
 		components: {
-			"z-pages":Pages,
+			"z-pages": Pages,
 			"l-location": Location,
 			"l-query": CompanyQuery,
 			"l-gather": Gather,
@@ -244,12 +250,12 @@
 				params: {
 					pageCount: 10,
 					pageIndex: 1,
-					category :19,
-					ename:'',
-					sort:1,
-					sortName:'index'
+					category: 19,
+					ename: '',
+					sort: 1,
+					sortName: ''
 				},
-				query : {}
+				query: {},
 			}
 		},
 		/*
@@ -257,7 +263,7 @@
 		 */
 		vuex: {
 			getters: {
-				epList:(state)=> state.modules.epList,
+				epList: (state) => state.modules.epList,
 			},
 			actions: {
 				getEPList,
@@ -271,33 +277,40 @@
 		 * 处理事件
 		 */
 		methods: {
-			handlePageClick(index){
-				apps.log('跳转到第：'+index+"页")
+			handlePageClick(index) {
+				apps.log('跳转到第：' + index + "页")
 				this.params.pageIndex = index;
 				this.getEPList(this.params).then((data) => {
-					apps.log('分页数据请求成功')
+					apps.log('数据请求成功')
 				}, (error) => {
 					apps.log(error)
 				});
 			},
-			handleSearch(){//搜索
+			handleSearch() { //搜索
+				Indicator.open();
 				this.params.pageIndex = 1;
 				this.getEPList(this.params).then((data) => {
-					apps.log('分页数据请求成功')
+					apps.log('数据请求成功')
+					Indicator.close();
 				}, (error) => {
 					apps.log(error)
+					Indicator.close();
 				});
+			},
+			handleSort(type){
+				this.params.sortName = this.params.sortName == type ? '':type
+				this.handleSearch()
 			}
 		},
 		/*
 		 * 实例计算属性
 		 */
 		computed: {
-			pagesObj(){
+			pagesObj() {
 				return {
-					pageCount : this.params.pageCount,
-					pageIndex : this.params.pageIndex,
-					total : this.epList.total
+					pageCount: this.params.pageCount,
+					pageIndex: this.params.pageIndex,
+					total: this.epList.total
 				};
 			}
 		},
@@ -305,7 +318,10 @@
 		 * 路由数据钩 参数发生变化这里被激活
 		 */
 		route: {
-			canDeactivate({to, next}) {
+			canDeactivate({
+				to,
+				next
+			}) {
 				next();
 			},
 			data({

@@ -33,7 +33,7 @@ const 	POST_R_E_FROM = "xhlc/api/r/e/";//企业信息填写  /xhlc/api/r/e:code
 const 	GET_VC_CHECK = "xhlc/api/vc/check/";//验证验证码是否有效  xhlc/api/vc/check/:code
 
 const 	GET_A_ELIST = "xhlc/api/a/elist/";//获取不良信息和获奖信息列表  xhlc/api/a/elist/:categoryId
-const 	GET_EP_LIST = "xhlc/api/ep";//获取企业公示列表  /xhlc/api/ep
+const 	GET_EP_LIST = "xhlc/api/e/p";//获取企业公示列表  /xhlc/api/ep
 
 
 /*
