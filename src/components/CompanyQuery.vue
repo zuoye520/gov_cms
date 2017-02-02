@@ -45,7 +45,7 @@ import {context} from "../utils/constants.js";
 			 * 实例计算属性
 			 */
 			computed: {
-				
+
 			},
 			/*
 			 * 处理事件
@@ -57,7 +57,17 @@ import {context} from "../utils/constants.js";
 						window.location.href =`${context}/enterpriseList?category=21&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
 					}else{
 						let category = this.queryParams.level=='获奖信息' ? 10: 11;
-						window.location.href =`${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
+						this.$route.router.go({
+							name: 'eList',
+							query: {
+								category:category,
+								search:'search',
+								ename: this.queryParams.ename,
+								pname: this.queryParams.pname,
+								//level: this.queryParams.level
+							}
+						});
+//						window.location.href =`${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;
 					}
 				}
 			}

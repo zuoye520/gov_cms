@@ -2,7 +2,92 @@
 	<!--企业详情信息-->
 	<div class="w1000">
 		<l-location :type="category"></l-location>
-		<section class="fn-clear m-t-30" style="border-top: 1px solid #ccc;">
+		<section class="table-info">
+			<table width="100%" border="1" cellspacing="" cellpadding="">
+				<tr>
+					<td class="title">企业名称</td>
+					<td colspan =2>{{detail.name || '无'}}</td>
+					<td class="title">成立日期</td>
+					<td colspan =2>{{detail.establish_date | formatTime "yyyy-MM-dd"}}</td>
+				</tr>
+				<tr>
+					<td class="title">企业类型</td>
+					<td colspan =2>{{detail.classkind || '无'}}</td>
+					<td class="title">公司地址</td>
+					<td colspan =2>{{detail.address || '无'}}</td>
+				</tr>
+				<tr>
+					<td class="title">企业注册号</td>
+					<td>{{detail.certificate_no || '无'}}</td>
+					<td class="title">法定代表</td>
+					<td>{{detail.delegate || '无'}}</td>
+					<td class="title">资质等级</td>
+					<td>{{detail.competency_grade || 0}}级</td>
+				</tr>
+				<tr>
+					<td class="title">注册资本(万元)</td>
+					<td colspan =2>{{detail.register_cost || '无'}}</td>
+					<td class="title">资产总额(万元)</td>
+					<td colspan =2>{{detail.total_cost || '无'}}</td>
+				</tr>
+				<tr>
+					<td class="title">经营范围</td>
+					<td colspan =2>{{detail.business_scope || '无'}}</td>
+					<td class="title">主营业务</td>
+					<td colspan =2>{{detail.business_main || '无'}}</td>
+				</tr>
+				<tr>
+					<td class="title">股东成员</td>
+					<td colspan =2>{{detail.membership || '无'}}</td>
+					<td class="title">在职员工(人)</td>
+					<td colspan =2>{{detail.headcount || '无'}}</td>
+				</tr>
+				<tr>
+					<td class="title">开发项目名称(自2009年1月1日起)</td>
+					<td colspan =5>
+						<p>·{{detail.project_oldname}}</p>
+						<p>·{{detail.project_nowname}}</p>
+					</td>
+					
+				</tr>
+				<tr>
+					<td class="title">累计完成投资额(万元)</td>
+					<td>{{detail.invest_cost || '无'}}</td>
+					<td class="title">累计开工面积(万㎡)</td>
+					<td>{{detail.start_area || '无'}}</td>
+					<td class="title">累计竣工面积(万㎡)</td>
+					<td>{{detail.end_area || '无'}}</td>
+				</tr>
+				<tr>
+					<td class="title">累计销售面积(万㎡)</td>
+					<td>{{detail.certificate_no || '无'}}</td>
+					<td class="title">累计销售总额(万元)</td>
+					<td>{{detail.sale_cost || '无'}}</td>
+					<td class="title">累计纳税额(万元)</td>
+					<td>{{detail.tax || '无'}}</td>
+				</tr>
+				<tr>
+					<td class="title">上年度销售面积(万㎡)</td>
+					<td colspan="2">{{detail.snmj || '无'}}</td>
+					<td class="title">上年度销售额(万元)</td>
+					<td colspan="2">{{detail.snje || '无'}}</td>
+				</tr>
+				<tr>
+					<td class="title">联系电话</td>
+					<td colspan="2">{{detail.sub_tel || '无'}}</td>
+					<td class="title">是否加入市房协</td>
+					<td colspan="2">{{detail.house_society || '无'}}</td>
+				</tr>
+				<tr>
+					<td class="title">子公司及相应资质等级</td>
+					<td colspan =5>
+						{{detail.sub_company || '无'}}
+					</td>
+					
+				</tr>
+			</table>
+		</section>
+		<!--<section class="fn-clear m-t-30" style="border-top: 1px solid #ccc;">
 			<div class="info-list w-l fn-left">
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
 					<div class="title">企业名称：</div>
@@ -40,7 +125,7 @@
 				</div>
 			</div>
 		</section>
-		
+
 		<section class="fn-clear">
 			<div class="info-list w-l fn-left">
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
@@ -179,8 +264,7 @@
 				</div>
 			</div>
 		</section>
-		
-		
+
 		<section class="fn-clear">
 			<div class="info-list w-l fn-left">
 				<div class="bor-b bor-l bor-r bor-rig fn-clear">
@@ -232,11 +316,7 @@
 				<div class="title">经营范围：</div>
 				<div class="cont">{{detail.business_scope || '无'}}</div>
 			</div>
-			<!--<div class="bor-l bor-b bor-r fn-clear">
-				<div class="title">项目情况介绍：</div>
-				<div class="cont">{{detail.orgcode}}</div>
-			</div>-->
-		</section>
+		</section>-->
 		<section class="pic-cont">
 			<!--<h3>诚信展示图片</h3>
 			<div>
@@ -248,10 +328,20 @@
 			</div>-->
 			<div class="tab-bar">
 				<ol>
-					<li><a v-link="{ name: 'newsEList', params: {category:10, enterpriseId: params.pid}}">开发企业获奖信息</a></li>
-					<li><a v-link="{ name: 'newsEList', params: {category:11,enterpriseId: params.pid}}">开发企业不良行为信息</a></li>
-					<li><a v-link="{ name: 'enterpriseInfo', params: {pid: params.pid }}" class="on">诚信企业展示</a></li>
-					<li><a v-link="{ name: 'projectList', params: {eid: params.pid }}">诚信项目展示</a></li>
+					<li><a v-link="{ name: 'eListDetail', query: {category:10,eid: params.pid,eName:detail.name }}" >开发企业获奖信息</a></li>
+					<li><a v-link="{ name: 'eListDetail', query: {category:11,eid: params.pid,eName:detail.name }}">开发企业不良行为信息</a></li>
+					<!--<li>
+						<a v-link="{ name: 'newsEList', params: {category:10, enterpriseId: params.pid}}">开发企业获奖信息</a>
+					</li>
+					<li>
+						<a v-link="{ name: 'newsEList', params: {category:11,enterpriseId: params.pid}}">开发企业不良行为信息</a>
+					</li>-->
+					<li>
+						<a v-link="{ name: 'enterpriseInfo', params: {pid: params.pid }}" class="on">诚信企业展示</a>
+					</li>
+					<li>
+						<a v-link="{ name: 'projectList', params: {eid: params.pid }}">诚信项目展示</a>
+					</li>
 				</ol>
 			</div>
 		</section>
@@ -260,6 +350,20 @@
 <!-- 添加 scoped “范围”属性CSS限制这个组件只 -->
 <style scoped lang="scss">
 	@import "../assets/css/common.scss";
+	.table-info {
+		padding: 20px 0;
+		table {
+			border: #ccc 1px solid;
+			td {
+				padding: 10px 20px;
+				&.title{
+					padding: 10px;
+					background: #ebf3ff;
+				}
+			}
+		}
+	}
+	
 	.info-cont {
 		margin-top: 25px;
 		.swiper {
@@ -267,90 +371,93 @@
 			border: 1px solid #ccc;
 		}
 	}
-	.info-list{
+	
+	.info-list {
 		color: #666;
-		&.w-r{
+		&.w-r {
 			width: 495px;
 		}
-		&.w-l{
+		&.w-l {
 			width: 505px;
 		}
-		.bor-t{
+		.bor-t {
 			border-top: 1px solid #ccc;
 		}
-		.bor-l{
+		.bor-l {
 			border-left: 1px solid #ccc;
 		}
-		.bor-b{
+		.bor-b {
 			border-bottom: 1px solid #ccc;
 		}
-		.bor-r{
+		.bor-r {
 			border-right: 1px solid #ccc;
 		}
-		.title,.cont{
+		.title,
+		.cont {
 			float: left;
 			height: 44px;
 			line-height: 44px;
 			padding: 0 10px;
 		}
-		.title{
+		.title {
 			width: 158px;
 			text-align: right;
 			background: #dbedff;
 			border-right: 1px solid #ccc;
 			font-weight: bold;
 		}
-		.cont{
+		.cont {
 			width: 294px;
-			&.f-w{
+			&.f-w {
 				font-weight: bold;
 			}
 		}
 	}
-	.pic-cont{
+	
+	.pic-cont {
 		margin-bottom: 100px;
 		border-right: 1px solid #ccc;
 		border-left: 1px solid #ccc;
-		h3{
+		h3 {
 			text-align: center;
 			color: #666;
 			font-weight: bold;
 			font-size: 16px;
 			padding: 20px 0;
 		}
-		ul{
+		ul {
 			padding: 0 0 23px 23px;
-			li{
+			li {
 				float: left;
 				width: 301px;
 				height: 226px;
 				overflow: hidden;
 				margin-right: 24px;
-				img{
+				img {
 					width: 100%;
 					height: 100%;
 				}
 			}
 		}
-		.tab-bar{
+		.tab-bar {
 			text-align: center;
 			background: #5b9ada;
 			padding: 10px 0;
-			li{
+			li {
 				display: inline-block;
 				padding: 0 20px;
-				 + li{
+				+ li {
 					border-left: 1px solid #11467c;
 				}
-				a{
+				a {
 					color: #11467c;
-					&.on,&:hover{
+					&.on,
+					&:hover {
 						color: #fff;
 					}
 				}
 			}
 		}
-			
 	}
 </style>
 
@@ -415,13 +522,13 @@
 		 * 处理事件
 		 */
 		methods: {
-			
+
 		},
 		/*
 		 * 实例计算属性
 		 */
 		computed: {
-			
+
 		},
 		/*
 		 * 路由数据钩 参数发生变化这里被激活

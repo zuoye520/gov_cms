@@ -31,6 +31,7 @@ const state = {
 	sNew:null,
 	sFrom:{},
 	aeList:[],//获奖信息和不良信息
+	epList:[]//企业公示列表
 	
 };
 
@@ -119,6 +120,9 @@ const mutations = {
 	},
 	[types.GET_A_ELIST](state, data) {
 		state.aeList = data;
+	},
+	[types.GET_EP_LIST](state, data) {
+		state.epList = data;
 	}
 }
 /*

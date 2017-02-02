@@ -676,3 +676,75 @@ a ,input [type='button']{
             #{$property}: $value;
 }
 
+//flex弹性布局==========================================
+//块级元素
+.fx{
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+}
+//行内元素
+.fx-inline{
+    display: inline-flex;
+    display: -ms-inline-flexbox;
+    display: -webkit-inline-flex;
+}
+//上下左右居中
+.fx-align{
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+}
+//可换行
+.fx-wrap{
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+//占满一行
+.fx-fill{
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+}
+
+//在交叉轴（Y轴）上的对齐方式===================================
+//下对齐
+.fx-y-down{
+    align-items: flex-end;
+    -webkit-align-items: flex-end;
+}
+//居中对齐
+.fx-y-center{
+    align-items: center;
+    -webkit-align-items: center;
+}
+//拉伸对齐
+.fx-y-stretch{
+    align-items: stretch;
+    -webkit-align-items: stretch;
+}
+
+//在主轴（X轴）上的对齐方式=====================================
+//居中对齐
+.fx-x-center{
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+//右对齐
+.fx-x-right{
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+}
+//两端对齐
+.fx-x-between{
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+//每个元素中间的间距相等
+.fx-x-around{
+    justify-content: space-around;
+    -webkit-justify-content: space-around;
+}

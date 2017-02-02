@@ -3,7 +3,7 @@
 		<section class="banner-cont fn-clear m-t-15">
 			<div class="left-banner fn-left">
 				<!-- Swiper -->
-				<div class="swiper-container">
+				<div class="swiper-container" id="banner">
 					<div class="swiper-wrapper">
 						<!--<div class="swiper-slide" v-for="item in bannerList"><img :src="item.picUrl"/></div>-->
 						<div class="swiper-slide" v-for="item in bannerList" v-link="{ name: 'newsDetails', params: {category : 4, id: item.bizId }}">
@@ -20,15 +20,17 @@
 			<div class="right-query fn-right">
 				<div class="fn-clear">
 					<div class="fn-left input-grp">
-						<div><span>开发企业名称：</span><input type="text" value="" v-model = "queryParams.ename"/></div>
-						<div><span>开发项目名称：</span><input type="text" value="" v-model = "queryParams.pname"/></div>
+						<div><span>开发企业名称：</span><input type="text" value="" v-model="queryParams.ename" /></div>
+						<div><span>开发项目名称：</span><input type="text" value="" v-model="queryParams.pname" /></div>
 						<div><span>诚信等级：</span>
 							<select v-model="queryParams.level">
 								<option>请选择</option>
 								<option v-for="item in gradesList">{{item}}级</option>
 							</select>
 						</div>
-						<div><span></span><a class="btn" @click="handleQueryInfo">查询</a></div>
+						<div><span></span>
+							<a class="btn" @click="handleQueryInfo">查询</a>
+						</div>
 					</div>
 					<div class="fn-right btns-list">
 						<ul>
@@ -63,18 +65,18 @@
 						<p class="m-b-15"><span>用户名：</span><input type="text" id="" value="" /></p>
 						<p><span>密<i></i>码：</span><input type="password" id="" value="" /></p>
 						<div class="btns fn-clear">
-							<a class="btn-register fn-left" v-link="{ name: 'stepOne'}">注册</a>
+							<a class="btn-register fn-left" v-link="{ name: 'tips'}">注册</a>
 							<a class="btn-login fn-right">登录</a>
 						</div>
 					</div>
 				</div>
 				<l-gather></l-gather>
 				<div class="blue-fill">
-					<h3 class="fn-clear">政策法规<a v-link="{ name: 'newsList', params: { category: 2 }}" class="fn-right">更多</a></h3>
+					<h3 class="fn-clear">政策法规<a v-link="{ name: 'newsList', params: { category: 2 }}" target="_blank" class="fn-right">更多</a></h3>
 					<div class="news-list policy">
 						<ul>
 							<li v-for="item in zcfgList" class="text-ellipsis-2">
-								<a v-link="{ name: 'newsDetails', params: {category : 2, id: item.id }}">{{item.title}}</a>
+								<a v-link="{ name: 'newsDetails', params: {category : 2, id: item.id }}" target="_blank">{{item.title}}</a>
 							</li>
 							<li v-show="zcfgList.length <=0">
 								<p align="center">暂无相关文章</p>
@@ -83,7 +85,6 @@
 					</div>
 				</div>
 				<l-btns></l-btns>
-
 				<!--<div class="blue-fill">
 					<h3 class="fn-clear">开发企业诚信信息<a  class="fn-right">更多</a></h3>
 					<div class="news-list sincerity">
@@ -105,7 +106,7 @@
 						<ul>
 							<li class="fn-clear" v-for="item in xwdtList" v-show="xwdtActive == 1">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 4, id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 4, id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -115,7 +116,7 @@
 
 							<li class="fn-clear" v-for="item in xhdtList" v-show="xwdtActive == 2">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: { category : 5, id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: { category : 5, id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -130,11 +131,11 @@
 						<h3><a  class="news on">开发企业诚信信息更新</a><a v-link="{ name: 'enterpriseList',query:{category:23}}" class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
-								<li class="fn-clear" v-for ="item in cxeList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">
+								<li class="fn-clear" v-for="item in cxeList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}" target="_blank">
 									<p class="text-ellipsis fn-left">
 										<a>{{item.name}}</a>
 									</p>
-									<i class="fn-right" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">详情</i>
+									<i class="fn-right" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}" target="_blank">详情</i>
 								</li>
 								<li v-show="cxeList.list && cxeList.list.length <=0">
 									<p align="center">暂无相关文章</p>
@@ -144,12 +145,12 @@
 						</div>
 					</div>
 					<div class="blue-half exposure-cont fn-right">
-						<h3><a class="news on">曝光台</a><a v-link="{ name: 'newsList', params: { category: 7 }}" class="more">更多</a></h3>
+						<h3><a class="news on">曝光台</a><a v-link="{ name: 'newsList', params: { category: 7 }}" target="_blank" class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
 								<li class="fn-clear" v-for="item in bgtList">
 									<p class="text-ellipsis fn-left">
-										<a v-link="{ name: 'newsDetails', params: {category : 7, id: item.id }}">{{item.title}}</a>
+										<a v-link="{ name: 'newsDetails', params: {category : 7, id: item.id }}" target="_blank">{{item.title}}</a>
 									</p>
 								</li>
 								<li v-show="bgtList.length <=0">
@@ -162,9 +163,13 @@
 				<div class="blue-fill company-list">
 					<h3 class="fn-clear">诚信等级公示<a  class="fn-right" v-link="{ name: 'enterpriseList',query:{category:22}}">更多</a></h3>
 					<div class="company-info ">
-
+						<div class="box title">
+							<p class="box-flex e-name">企业名称</p>
+							<p class="score">诚信分值</p>
+							<p class="level">诚信等级</p>
+						</div>
 						<ul>
-							<li class="fn-clear" v-for ="item in eLeveList">
+							<li class="fn-clear" v-for="item in eLeveList">
 								<p class="company-name fn-clear fn-left">
 									<span><a v-link="{name : 'enterpriseInfo',params: {pid : item.id}}">{{item.name}}</a></span>
 									<span class="fn-right">{{item.score}}分</span>
@@ -189,7 +194,7 @@
 						<ul>
 							<li class="fn-clear" v-for="item in xzcfList" v-show="xzcfActive == 1">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 8, id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 8, id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -199,7 +204,7 @@
 
 							<li class="fn-clear" v-for="item in hyzlList" v-show="xzcfActive == 2">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: { category : 9, id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: { category : 9, id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -221,7 +226,7 @@
 						<ul>
 							<li class="fn-clear" v-for="item in hjxxList" v-show="hjxxActive == 1">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 10,  id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 10,  id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -231,7 +236,7 @@
 
 							<li class="fn-clear" v-for="item in blxwList" v-show="hjxxActive == 2">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 11, id: item.id }}">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', params: {category : 11, id: item.id }}" target="_blank">{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -243,8 +248,29 @@
 				</div>
 			</div>
 		</section>
+		<section class="brand-cont">
+			<h3 class="fn-clear">诚信品牌展示<p class="fn-right"><a v-link="{ name: 'enterpriseList',query:{category:20}}">更多</a></p> </h3>
+			<div class="brand-list swiper-container" id="swiper2">
+				<ul class="box swiper-wrapper">
+					<li class="swiper-slide" v-for="item in enterpriseLists" >
+						<a v-link="{ name: 'enterpriseInfo', params: {pid: item.bizId }}" target="_blank">
+							<img :src="item.picUrl" />
+						</a>
+					</li>
+
+					<li v-show="enterpriseLists.length <=0">
+						<p align="center">暂无相关信息</p>
+					</li>
+				</ul>
+				<div class="swiper-button-prev box-align"><img src="../assets/images/left.png"/></div>
+				<div class="swiper-button-next box-align"><img src="../assets/images/right.png"/></div>
+			</div>
+		</section>
 		<section class="building-cont m-b-15 fn-clear">
-			<div class="building-main fn-left">
+			<h3 class="fn-clear">诚信项目展示<p class="fn-right">
+				<!--<a v-link="{ name: 'enterpriseList',query:{category:20}}">更多</a>-->
+			</p> </h3>
+			<!--<div class="building-main fn-left">
 				<h2>诚信项目展示</h2>
 				<div>
 					<a v-link="{ name: 'projectInfo', params: {pid: projectList[0] && projectList[0].bizId}}">
@@ -252,18 +278,20 @@
 						<p class="building-name">{{projectList[0]?projectList[0].title:''}}</p>
 					</a>
 				</div>
-			</div>
-			<div class="building-secondary fn-left m-b-15">
-				<ul class="fn-clear">
-					<li class="fn-left" v-for="item in projectListOne">
-						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}">
+			</div>-->
+			<div class="building-secondary fn-left m-b-15 swiper-container" id="swiper3">
+				<ul class="box swiper-wrapper">
+					<li class="swiper-slide" v-for="item in projectList">
+						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}" target="_blank">
 							<img :src="item.picUrl" />
 							<p class="building-name">{{item.title}}</p>
 						</a>
 					</li>
 				</ul>
+				<div class="swiper-button-prev box-align"><img src="../assets/images/left.png"/></div>
+				<div class="swiper-button-next box-align"><img src="../assets/images/right.png"/></div>
 			</div>
-			<div class="building-secondary fn-left">
+			<!--<div class="building-secondary fn-left">
 				<ul class="fn-clear">
 					<li class="fn-left" v-for="item in projectListTwo">
 						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}">
@@ -272,21 +300,9 @@
 						</a>
 					</li>
 				</ul>
-			</div>
+			</div>-->
 		</section>
-		<section class="brand-cont">
-			<h3 class="fn-clear">诚信品牌<p class="fn-right"><a v-link="{ name: 'enterpriseList',query:{category:20}}">更多</a></p> </h3>
-			<div class="brand-list">
-				<ul class="fn-clear">
-					<li class="fn-left" v-for="item in enterpriseLists" v-link="{ name: 'enterpriseInfo', params: {pid: item.bizId }}">
-						<a><img :src="item.picUrl" /></a>
-					</li>
-					<li v-show="enterpriseLists.length <=0">
-						<p align="center">暂无相关信息</p>
-					</li>
-				</ul>
-			</div>
-		</section>
+
 	</div>
 </template>
 <!-- 添加 scoped “范围”属性CSS限制这个组件只 -->
@@ -296,6 +312,22 @@
 
 	.blue-fill {
 		margin-bottom: 15px;
+		.title {
+			font-size: 16px;
+			padding: 10px 0;
+			.e-name {
+				padding: 0 20px;
+			}
+			.score {
+				width: 200px;
+				text-align: right;
+			}
+			.level {
+				width: 170px;
+				padding: 0 20px;
+				text-align: right;
+			}
+		}
 		h3 {
 			background: $color-blue;
 			font-size: 20px;
@@ -463,7 +495,8 @@
 					border: 1px solid #157fe3;
 					color: #fff;
 					font-size: 18px;
-					&:active,&:hover {
+					&:active,
+					&:hover {
 						background: darken(#157fe3, 10%);
 					}
 				}
@@ -530,7 +563,8 @@
 			.login-cont {
 				width: 280px;
 				height: 306px;
-				background: url(../assets/images/login_bg.jpg) 0 0 no-repeat;
+				/*background: url(../assets/images/login_bg.jpg) 0 0 no-repeat;*/
+				background: #005eb6;
 				h3 {
 					text-align: center;
 					padding-top: 40px;
@@ -572,7 +606,7 @@
 							text-align: center;
 							color: #fff;
 							&.btn-register {
-								background: #346bc8;
+								background: #1680e5;
 								&:hover {
 									background: darken(#346bc8, 10%);
 								}
@@ -594,12 +628,12 @@
 				.news-list {
 					height: 267px;
 				}
-				.more{
+				.more {
 					padding-right: 10px;
 					color: #333;
 					cursor: pointer;
 					font-size: 16px;
-					&:hover{
+					&:hover {
 						text-decoration: underline;
 					}
 				}
@@ -677,6 +711,20 @@
 	}
 
 	.building-cont {
+		h3 {
+			padding: 5px 30px;
+			background: $color-blue;
+			color: #fff;
+			font-size: 20px;
+			margin-bottom: 15px;
+			a {
+				color: #fff;
+				font-size: 14px;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
 		.building-main,
 		.building-secondary {
 			a {
@@ -736,7 +784,12 @@
 		.building-secondary {
 			li {
 				height: 140px;
-				margin-left: 15px;
+				/*margin-left: 15px;*/
+				margin-right: 20px;
+				margin-bottom: 20px;
+				&:nth-of-type(5n) {
+					/*margin-right: 0;*/
+				}
 			}
 			a {
 				display: inline-block;
@@ -767,14 +820,16 @@
 		}
 		.brand-list {
 			li {
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
 				overflow: hidden;
-				width: 188px;
+				/*width: 188px;*/
 				height: 188px;
-				margin-right: 12px;
+				/*margin-left: 12px;*/
 				margin-bottom: 15px;
 				border: 1px solid #999;
 				&:nth-child(5n) {
-					margin-right: 0;
+					/*margin-right: 0;*/
 				}
 				a {
 					display: inline-block;
@@ -792,7 +847,9 @@
 </style>
 <script>
 	import apps from "../utils/apps.js";
-	import {context} from "../utils/constants.js";
+	import {
+		context
+	} from "../utils/constants.js";
 	import {
 		getPicListAction,
 		getArticleListAction,
@@ -820,14 +877,14 @@
 		 */
 		data() {
 			return {
-				qycxActive:1,//默认企业信息身份查询
+				qycxActive: 1, //默认企业信息身份查询
 				xwdtActive: 1, //默认显示新闻动态
 				xzcfActive: 1, //默认显示行政处罚
 				hjxxActive: 1, //默认显示获奖信息
-				queryParams:{//企业信息查询参数
-					ename:'',
-					pname:'',
-					level:"请选择"
+				queryParams: { //企业信息查询参数
+					ename: '',
+					pname: '',
+					level: "请选择"
 				},
 				xwdtParams: { //新闻动态
 					pageCount: 8,
@@ -882,11 +939,12 @@
 					pageIndex: 1,
 				},
 				qywzParams: { //企业文章列表
-					categoryid:0,
+					categoryid: 0,
 					pageCount: 5,
 					pageIndex: 1,
 				},
-				cxeList:[]
+				cxeList: [],
+				isSyncSwiper:0 //激活轮播
 			}
 		},
 		/*
@@ -907,7 +965,7 @@
 				blxwList: (state) => state.modules.blxwList, //企业不良行为
 				gradesList: (state) => state.modules.gradesList, //获取诚信企业评级列表
 				eLeveList: (state) => state.modules.eLeveList, //获取诚信等级公示
-//				maList : (state) => state.modules.maList, //获取诚信等级公示
+				//				maList : (state) => state.modules.maList, //获取诚信等级公示
 			},
 			actions: {
 				getPicListAction,
@@ -922,6 +980,20 @@
 		 * 实例被创建后调用，但是还没有开始 DOM 编译
 		 */
 		ready() {
+			this.$watch('bannerList',function(){
+                this.initSwiper(); // 如果为ajax异步返回数据，则监控bannerList更改后在初始化
+            });
+            this.$watch('enterpriseLists',function(){
+                this.initSwiper2(); // 如果为ajax异步返回数据，则监控bannerList更改后在初始化
+            });
+            this.$watch('projectList',function(){
+                this.initSwiper3(); // 如果为ajax异步返回数据，则监控bannerList更改后在初始化
+            });
+//			this.$nextTick(() => {
+//				this.initSwiper()
+//				this.initSwiper2()
+//				this.initSwiper3()
+//			})
 		},
 		created() {
 			//获取首页图片信息Banner
@@ -929,7 +1001,7 @@
 				type: 'Banner'
 			}).then((data) => {
 				apps.log('banner数据请求成功')
-				this.initSwiper();
+					//				this.initSwiper();
 			}, (error) => {
 				apps.log(error)
 			});
@@ -950,8 +1022,6 @@
 			}, (error) => {
 				apps.log(error)
 			});
-
-
 			//获取诚信企业评级列表
 			this.getEGradesList().then((data) => {
 				apps.log('获取诚信企业评级列表')
@@ -1023,8 +1093,8 @@
 
 			//获取诚信企业列表
 			this.getCXEList({
-				pageCount:5,
-				pageIndex:1,
+				pageCount: 5,
+				pageIndex: 1,
 			}).then((data) => {
 				apps.log('获取诚信企业列表成功');
 				this.cxeList = data;
@@ -1037,58 +1107,92 @@
 		 * 处理事件
 		 */
 		methods: {
-			initSwiper(){//初始化轮播图
-				setTimeout(()=>{
-					let swiper = new Swiper('.swiper-container', {
-						pagination: '.swiper-pagination',
+			initSwiper() { //初始化轮播图
+				let swiper = new Swiper('#banner', {
+						pagination: '#banner .swiper-pagination',
 						paginationClickable: true,
-						loop : true,
+						loop: true,
 						autoplay: 2500,
-						autoplayDisableOnInteraction:false,
-						nextButton: '.swiper-button-next',
-						prevButton: '.swiper-button-prev',
+						autoplayDisableOnInteraction: false,
+						nextButton: '#banner .swiper-button-next',
+						prevButton: '#banner .swiper-button-prev',
 					});
-				},1000);
 			},
-			handleTabNews(index) {//tabbar切换
+			initSwiper2() {
+				let swiper = new Swiper('#swiper2', {
+						slidesPerView: 5,
+						nextButton: '#swiper2 .swiper-button-next',
+        				prevButton: '#swiper2 .swiper-button-prev',
+						paginationClickable: true,
+						spaceBetween:14,
+						freeMode: true,
+						loop: true,
+						autoplay: 2000,
+						autoplayDisableOnInteraction: false,
+					});
+			},
+			initSwiper3() {
+				let swiper = new Swiper('#swiper3', {
+						slidesPerView: 5,
+						nextButton: '#swiper3 .swiper-button-next',
+        				prevButton: '#swiper3 .swiper-button-prev',
+						paginationClickable: true,
+						spaceBetween:14,
+						freeMode: true,
+						loop: true,
+						autoplay: 2500,
+						autoplayDisableOnInteraction: false,
+					});
+			},
+			handleTabNews(index) { //tabbar切换
 				this.xwdtActive = index;
 			},
-			handleTabPunish(index) {//tabbar切换
+			handleTabPunish(index) { //tabbar切换
 				this.xzcfActive = index;
 			},
-			handleTabWinning(index) {//tabbar切换
+			handleTabWinning(index) { //tabbar切换
 				this.hjxxActive = index;
 			},
-			handleTabQuery(index){//轮播旁边切换
+
+			handleTabQuery(index) { //轮播旁边切换
 				this.qycxActive = index;
 			},
-			handleQueryInfo(){//搜索
-
-				let level =  this.queryParams.level;
-				if(level !='请选择'){
-					level = level.substring(0,level.length-1);
+			handleQueryInfo() { //搜索
+				let level = this.queryParams.level;
+				if(level != '请选择') {
+					level = level.substring(0, level.length - 1);
 				}
-				if(this.qycxActive ==1){
-					window.location.href =`${context}/enterpriseList?ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
-				}else{
-					let category = this.qycxActive==2 ? 10: 11;
-					window.location.href =`${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
+				if(this.qycxActive == 1) {
+					window.location.href = `${context}/enterpriseList/?category=21&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
+				} else {
+					let category = this.qycxActive == 2 ? 10 : 11;
+					this.$route.router.go({
+						name: 'eList',
+						query: {
+							category:category,
+							search:'search',
+							ename: this.queryParams.ename,
+							pname: this.queryParams.pname,
+							level: level
+						}
+					});
+//					window.location.href = `${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				}
 
 			},
-			handleLinkList(type){//点击更多
+			handleLinkList(type) { //点击更多
 				let category = null;
-				if(type == 'hjxx'){
-					category = this.hjxxActive ==1? 10:11
-				}else{
-					category = this.xzcfActive ==1? 8:9
+				if(type == 'hjxx') {
+					category = this.hjxxActive == 1 ? 10 : 11
+				} else {
+					category = this.xzcfActive == 1 ? 8 : 9
 				}
 				this.$route.router.go({
-                		name: 'newsList',
-                		params:{
-                			category:category
-                		}
-                });
+					name: 'eList',
+					query: {
+						category: category
+					}
+				});
 			}
 
 		},
@@ -1119,9 +1223,15 @@
 			}) {
 				//还原数据
 				this.qycxActive = 1;
-				this.queryParams.ename ="";
-				this.queryParams.pname ="";
-				this.queryParams.level ="请选择";
+				this.queryParams.ename = "";
+				this.queryParams.pname = "";
+				this.queryParams.level = "请选择";
+				this.isSyncSwiper++
+				if(this.isSyncSwiper > 1){
+					this.initSwiper();
+					this.initSwiper2();
+					this.initSwiper3();
+				}
 			}
 		}
 	}

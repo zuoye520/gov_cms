@@ -53,10 +53,10 @@
 							str = "行业自律"
 							break;
 						case 10: //企业获奖信息
-							str = "企业获奖信息"
+							str = "获奖信息"
 							break;
 						case 11: //企业不良行为
-							str = "企业不良行为"
+							str = "不良行为"
 							break;
 						case 12: //文件下载
 							str = "文件下载"

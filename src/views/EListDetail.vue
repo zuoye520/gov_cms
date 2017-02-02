@@ -10,33 +10,24 @@
 		<section class="right-side fn-left">
 			<l-location :type = "params.category"></l-location>
 			<div class="list">
+				<h2>{{eName}}{{title}}信息</h2>
 				<table width="100%" border="1" cellspacing="" cellpadding="">
-					<tr><th>企业名称</th><th>最新{{title}}信息</th><th>其他{{title}}信息</th></tr>
+					<tr><th>序号</th><th>{{content}}</th><th>所涉及项目名称</th><th>{{publishor}}</th><th>{{publishTime}}</th><th>备注</th></tr>
 					<tr v-for="item in aeList.list">
-						<td>{{item.name}}</td>
+						<td>{{item.eName}}</td>
+						<td>{{item.content}}</td>
 						<td>{{item.title}}</td>
-						<td><a v-link="{ name: 'eListDetail', query: {category:params.category,eid: item.id,eName:item.eName }}">更多</a></td>
+						<td>{{item.publishor}}</td>
+						<td>{{item.publishTime | formatTime "yyyy-MM-dd"}}</td>
+						<td>{{item.expand}}</td>
 					</tr>
 				</table>
-				<!--<dl>
-					<dt class="fn-clear"><span>【 序号 】</span><span class="p-l-30">【 描述 】</span><span class="fn-right p-r-20">【 时间 】</span></dt>
-					<dd v-for="item in aeList.list">
-						<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { category : category ,id: item.id }}">
-							<p class="num fn-left">{{$index+1}}</p>
-							<div class="content fn-left">
-								<h3>【{{item.eName}}】{{item.title}} </h3>
-								<p class="text-ellipsis-2">{{item.content}} </p>
-							</div>
-							<div class="fn-right time">[{{item.publishTime | formatTime "yyyy-MM-dd"}}]</div>
-						</a>
-					</dd>
-				</dl>-->
 				<p class="p-30" align="center" v-show ="aeList.list && aeList.list.length <= 0">暂无内容...</p>
+				<!--<div class="tips">
+					<h4>注：</h4>
+					<p>获奖情况描述</p>
+				</div>-->
 			</div>
-			<div class="pages">
-				<z-pages :pages-obj = "pagesObj"></z-pages>
-			</div>
-
 		</section>
 	</div>
 </template>
@@ -45,8 +36,22 @@
 	@import "../assets/css/common.scss";
 	.list{
 		padding: 20px 0;
+		h2{
+			font-size: 20px;
+			color: #f05a5a;
+			text-align: center;
+			padding: 0 0 20px;
+		}
+		.tips{
+			padding: 10px;
+			h4{
+				color: #f05a5a;
+			}
+		}
+
 		table{
 			border:#ccc 1px solid;
+			font-size: 12px;
 			th{
 				background: #f05a5a;
 				color: #fff;
@@ -54,7 +59,7 @@
 			td,th{
 				padding: 10px 20px;
 				text-align: center;
-				min-width: 100px;
+				min-width: 50px;
 				a{
 					color: #1680e5;
 				}
@@ -188,12 +193,8 @@
 					pageCount: 10,
 					pageIndex: 1,
 					category :10,
-					ename:'',
-					pname:'',
-					level:'请选择',
-					search : null
 				},
-				category : 1
+				eName:''
 			}
 		},
 		/*
@@ -215,30 +216,39 @@
 		 * 处理事件
 		 */
 		methods: {
-			handlePageClick(index){
-				apps.log('跳转到第：'+index+"页")
-				this.params.pageIndex = index;
-				this.getAEList(this.params).then((data) => {
-					apps.log('分页数据请求成功')
-				}, (error) => {
-					apps.log(error)
-				});
-			}
+//			handlePageClick(index){
+//				apps.log('跳转到第：'+index+"页")
+//				this.params.pageIndex = index;
+//				this.getArticleListAction(this.params).then((data) => {
+//					apps.log('分页数据请求成功')
+//				}, (error) => {
+//					apps.log(error)
+//				});
+//			}
 		},
 		/*
 		 * 实例计算属性
 		 */
 		computed: {
-			pagesObj(){
-				return {
-					pageCount : this.params.pageCount,
-					pageIndex : this.params.pageIndex,
-					total : this.aeList.total
-				};
-			},
 			title(){
 				return this.params.category ==10 ? '获奖':'不良'
+			},
+			content(){
+				return this.params.category ==10 ? '获奖情况':'事件主要内容'
+			},
+			publishor(){
+				return this.params.category ==10 ? '授奖单位':'整改情况'
+			},
+			publishTime(){
+				return this.params.category ==10 ? '授奖时间':'时间'
 			}
+//			pagesObj(){
+//				return {
+//					pageCount : this.params.pageCount,
+//					pageIndex : this.params.pageIndex,
+//					total : this.aeList.total
+//				};
+//			}
 		},
 		/*
 		 * 路由数据钩 参数发生变化这里被激活
@@ -253,10 +263,8 @@
 				apps.log(to.query.category);
 				this.params.pageIndex = 1;
 				this.params.category = parseInt(to.query.category) || 10; //category
-				this.params.ename = to.query.ename || ''; //ename
-				this.params.pname = to.query.pname || ''; //pname
-				this.params.level = to.query.level || '请选择'; //level
-				this.params.search = to.query.search || null; //search
+				this.params.eid = parseInt(to.query.eid) || 1; //eid 企业id
+				this.eName = to.query.eName || '';
 				this.getAEList(this.params).then((data) => {
 					apps.log('列表数据请求成功')
 				}, (error) => {
