@@ -16,10 +16,10 @@
 					<tr v-for="item in aeList.list">
 						<td>{{item.eName}}</td>
 						<td>{{item.content}}</td>
-						<td>{{item.eName}}</td>
-						<td>{{item.eName}}</td>
-						<td>{{item.eName}}</td>
-						<td>{{item.eName}}</td>
+						<td>{{item.title}}</td>
+						<td>{{item.publishor}}</td>
+						<td>{{item.publishTime | formatTime "yyyy-MM-dd"}}</td>
+						<td>{{item.expand}}</td>
 					</tr>
 				</table>
 				<p class="p-30" align="center" v-show ="aeList.list && aeList.list.length <= 0">暂无内容...</p>
@@ -48,7 +48,7 @@
 				color: #f05a5a;
 			}
 		}
-		
+
 		table{
 			border:#ccc 1px solid;
 			font-size: 12px;
@@ -72,7 +72,7 @@
 			}
 		}
 	}
-	
+
 	.news-list {
 		padding: 15px 0 30px;
 		position: relative;

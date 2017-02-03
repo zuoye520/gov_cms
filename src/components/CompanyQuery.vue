@@ -45,7 +45,7 @@ import {context} from "../utils/constants.js";
 			 * 实例计算属性
 			 */
 			computed: {
-				
+
 			},
 			/*
 			 * 处理事件
@@ -64,7 +64,7 @@ import {context} from "../utils/constants.js";
 								search:'search',
 								ename: this.queryParams.ename,
 								pname: this.queryParams.pname,
-								level: this.queryParams.level
+								//level: this.queryParams.level
 							}
 						});
 //						window.location.href =`${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${this.queryParams.level}`;

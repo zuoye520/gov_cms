@@ -171,7 +171,7 @@
 						<ul>
 							<li class="fn-clear" v-for="item in eLeveList">
 								<p class="company-name fn-clear fn-left">
-									<span>{{item.name}}</span>
+									<span><a v-link="{name : 'enterpriseInfo',params: {pid : item.id}}">{{item.name}}</a></span>
 									<span class="fn-right">{{item.score}}分</span>
 								</p>
 								<div class="fn-right level">{{item.competency_grade}} 级</div>
@@ -257,7 +257,7 @@
 							<img :src="item.picUrl" />
 						</a>
 					</li>
-					
+
 					<li v-show="enterpriseLists.length <=0">
 						<p align="center">暂无相关信息</p>
 					</li>
@@ -309,7 +309,7 @@
 <style scoped lang="scss">
 	@import "../assets/css/common.scss";
 	/*公共样式*/
-	
+
 	.blue-fill {
 		margin-bottom: 15px;
 		.title {
@@ -372,7 +372,7 @@
 			}
 		}
 	}
-	
+
 	.blue-half {
 		width: 100%;
 		height: 100%;
@@ -449,7 +449,7 @@
 		}
 	}
 	/*公共样式结束*/
-	
+
 	.banner-cont {
 		.left-banner {
 			width: 448px;
@@ -554,7 +554,7 @@
 			}
 		}
 	}
-	
+
 	.content {
 		.left-content {
 			.blue-fill {
@@ -606,7 +606,7 @@
 							text-align: center;
 							color: #fff;
 							&.btn-register {
-								background: #346bc8;
+								background: #1680e5;
 								&:hover {
 									background: darken(#346bc8, 10%);
 								}
@@ -697,19 +697,19 @@
 			}
 		}
 	}
-	
+
 	.news-list.policy {
 		height: 250px !important;
 	}
-	
+
 	.news-list.sincerity {
 		height: 236px !important;
 	}
-	
+
 	.news-list.win-info {
 		height: 299px !important;
 	}
-	
+
 	.building-cont {
 		h3 {
 			padding: 5px 30px;
@@ -802,7 +802,7 @@
 			}
 		}
 	}
-	
+
 	.brand-cont {
 		h3 {
 			padding: 5px 30px;
@@ -1022,7 +1022,6 @@
 			}, (error) => {
 				apps.log(error)
 			});
-
 			//获取诚信企业评级列表
 			this.getEGradesList().then((data) => {
 				apps.log('获取诚信企业评级列表')
@@ -1154,6 +1153,7 @@
 			handleTabWinning(index) { //tabbar切换
 				this.hjxxActive = index;
 			},
+
 			handleTabQuery(index) { //轮播旁边切换
 				this.qycxActive = index;
 			},
@@ -1178,6 +1178,7 @@
 					});
 //					window.location.href = `${context}/newsList/${category}?search=search&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				}
+
 			},
 			handleLinkList(type) { //点击更多
 				let category = null;

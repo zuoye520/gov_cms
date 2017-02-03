@@ -33,7 +33,7 @@
 			width: 100%;
 			height: 70px;
 			p{
-				text-align: center;	
+				text-align: center;
 				font-size: 24px;
 				font-weight: bold;
 				color: #fff;

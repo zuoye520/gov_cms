@@ -44,6 +44,6 @@
             background: url(../assets/images/logo.png) left top no-repeat;
         }
     }
-   
+
 }
 </style>

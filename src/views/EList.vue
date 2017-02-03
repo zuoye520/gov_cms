@@ -13,7 +13,7 @@
 				<table width="100%" border="1" cellspacing="" cellpadding="">
 					<tr><th>企业名称</th><th>最新{{title}}信息</th><th>其他{{title}}信息</th></tr>
 					<tr v-for="item in aeList.list">
-						<td>{{item.eName}}</td>
+						<td>{{item.name}}</td>
 						<td>{{item.title}}</td>
 						<td><a v-link="{ name: 'eListDetail', query: {category:params.category,eid: item.id,eName:item.eName }}">更多</a></td>
 					</tr>
@@ -36,7 +36,7 @@
 			<div class="pages">
 				<z-pages :pages-obj = "pagesObj"></z-pages>
 			</div>
-			
+
 		</section>
 	</div>
 </template>
@@ -67,7 +67,7 @@
 			}
 		}
 	}
-	
+
 	.news-list {
 		padding: 15px 0 30px;
 		position: relative;

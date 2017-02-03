@@ -10,5 +10,6 @@ module.exports = {
     TOKEN:'param-token',
     debug : 1,
     dev:false,
-    context : "/site"
+    context : "/site",
+    contextPublic : ""
 }
