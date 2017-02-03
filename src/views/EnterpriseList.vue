@@ -8,7 +8,7 @@
 			<l-btns></l-btns>
 		</section>
 		<section class="right-side fn-left">
-			<l-location :type = "category"></l-location>
+			<l-location :type = "category" :father-type="fatherCategory"></l-location>
 			<div class="company-list">
 				<ul>
 					<li class="fn-clear" v-for="item in eList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">
@@ -146,7 +146,8 @@
 					pageCount: 10,
 					pageIndex: 1
 				},
-				category : 15
+				category : 15,
+				fatherCategory :0
 			}
 		},
 		/*
@@ -207,6 +208,7 @@
 			}) {
 				apps.log(to.query.category);
 				this.category = to.query.category && parseInt(to.query.category);
+				this.fatherCategory = parseInt(to.query.fatherCategory) || 0; //fatherCategory
 				this.params.pageIndex = 1;
 				this.queryParams.ename = decodeURIComponent(apps._GET('ename'))!='null' ? decodeURIComponent(apps._GET('ename')):'';
 				this.queryParams.pname = decodeURIComponent(apps._GET('pname'))!='null' ? decodeURIComponent(apps._GET('pname')):'';

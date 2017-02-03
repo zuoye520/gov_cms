@@ -1,6 +1,6 @@
 <template>
 	<div class="w1000">
-		<l-location :type = "category"></l-location>
+		<l-location :type = "category" :sub-type="subCategory"></l-location>
 		<section class="article">
 			<div class="title">
 				<h1>{{articleDetail.title || '没有相关文章信息哟~'}}</h1>
@@ -106,7 +106,8 @@
 				params:{
 					id:1
 				},
-				category : 99
+				category : 99,
+				subCategory:110
 			}
 		},
 		/*
@@ -153,8 +154,8 @@
 				to
 			}) {
 				Indicator.open();
-				this.params.id = to.params.id || 1;//文章id
-				this.category = parseInt(to.params.category) || 99;
+				this.params.id = to.query.id || 1;//文章id
+				this.category = parseInt(to.query.category) || 99;
 				apps.log(this.category);
 				this.getArticleDetailAction(this.params).then((data) => {
 					apps.log('文章详情数据请求成功')

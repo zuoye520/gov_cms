@@ -84,8 +84,8 @@
 					<dt>注：</dt>
 					<dd>1、为了保障您的合法权益，请您在投诉填写真实资料，以便我们和您联系，带"*"为必填项。</dd>
 					<dd>2、文明用语，请不要使用一些不文明的语言。</dd>
-					<dd>3、请投诉人详细阅读<span v-link="{ name: 'newsDetails', params: {category : 0, id:100 }}">《重庆市房地产开发企业诚信投诉范围》</span>。</dd>
-					<dd>4、投诉事件不在<span v-link="{ name: 'newsDetails', params: {category : 0, id:100 }}">《重庆市房地产开发企业诚信投诉范围》</span>内的，请向对应监督管理部门投诉。</dd>
+					<dd>3、请投诉人详细阅读<span v-link="{ name: 'newsDetails', query: {category : 1, id:100 }}">《重庆市房地产开发企业诚信投诉范围》</span>。</dd>
+					<dd>4、投诉事件不在<span v-link="{ name: 'newsDetails', query: {category : 1, id:100 }}">《重庆市房地产开发企业诚信投诉范围》</span>内的，请向对应监督管理部门投诉。</dd>
 				</dl>
 			</div>
 		</section>
@@ -413,13 +413,10 @@
 			data({
 				to
 			}) {
-				apps.log(to.params.type)
-				this.type = parseInt(to.params.type) || 0;
+				this.type = parseInt(to.query.category) || 0;
 
-				this.name = this.type == 0 ? '表扬' : '投诉';
-				this.category = this.type == 0 ? 14 : 13;
-//				this.name = '表扬';
-//				this.category = 14;
+				this.name = this.type == 13 ? '表扬' : '投诉';
+				this.category = parseInt(to.query.category) || 0;
 				//获取生成的ID
 				this.getSNewAction().then((data) => {
 					this.params.id = data;

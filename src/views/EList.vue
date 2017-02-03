@@ -8,7 +8,7 @@
 			<l-btns></l-btns>
 		</section>
 		<section class="right-side fn-left">
-			<l-location :type = "params.category"></l-location>
+			<l-location :type = "params.category" :father-type="fatherCategory"></l-location>
 			<div class="list">
 				<table width="100%" border="1" cellspacing="" cellpadding="">
 					<tr><th>企业名称</th><th>最新{{title}}信息</th><th>其他{{title}}信息</th></tr>
@@ -193,7 +193,8 @@
 					level:'请选择',
 					search : null
 				},
-				category : 1
+				category : 1,
+				fatherCategory : 0,
 			}
 		},
 		/*
@@ -250,9 +251,11 @@
 			data({
 				to
 			}) {
-				apps.log(to.query.category);
+				apps.log(to.query.fatherCategory);
 				this.params.pageIndex = 1;
 				this.params.category = parseInt(to.query.category) || 10; //category
+				this.fatherCategory = parseInt(to.query.fatherCategory) || 0; //fatherCategory
+				
 				this.params.ename = to.query.ename || ''; //ename
 				this.params.pname = to.query.pname || ''; //pname
 				this.params.level = to.query.level || '请选择'; //level

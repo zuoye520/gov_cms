@@ -8,7 +8,7 @@
 			<l-btns></l-btns>
 		</section>
 		<section class="right-side fn-left">
-			<l-location :type="params.category"></l-location>
+			<l-location :type="params.category" :father-type="fatherCategory"></l-location>
 			<div class="list">
 				<div class="filter box box-center-flex">
 					<div class="box sort box-flex">
@@ -256,6 +256,7 @@
 					sortName: ''
 				},
 				query: {},
+				fatherCategory : 0,
 			}
 		},
 		/*
@@ -330,6 +331,7 @@
 				apps.log(to.query.category);
 				this.params.pageIndex = 1;
 				this.params.category = parseInt(to.query.category) || 10; //category
+				this.fatherCategory = parseInt(to.query.fatherCategory) || 0; //fatherCategory
 				this.getEPList(this.params).then((data) => {
 					apps.log('列表数据请求成功')
 				}, (error) => {

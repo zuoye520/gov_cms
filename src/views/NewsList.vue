@@ -18,7 +18,7 @@
 						<span class="p-l-30" v-show="isSearch">【 描述 】</span>
 						<span class="fn-right p-r-20">【 时间 】</span></dt>
 					<dd v-for="item in articleList.list">
-						<a class="fn-clear"  v-link="{ name: 'newsDetails', params: { category : category ,id: item.id }}">
+						<a class="fn-clear"  v-link="{ name: 'newsDetails', query: { category : category ,id: item.id }}">
 							<p class="num fn-left">{{$index+1}}</p>
 							<div class="content fn-left">
 								<h3><span v-show="isSearch">【{{item.eName}}】</span>{{item.title}} </h3>
@@ -225,12 +225,12 @@
 			data({
 				to
 			}) {
-				apps.log(to.params.category);
-				this.params.category = to.params.category || 1; //category
-				this.category = parseInt(to.params.category);
+				apps.log(to.query.category);
+				this.params.category = to.query.category || 1; //category
+				this.category = parseInt(to.query.category);
 				this.params.pageIndex = 1;
 				
-				this.params.enterpriseId = to.params.enterpriseId || null;//企业id
+				this.params.enterpriseId = to.query.enterpriseId || null;//企业id
 				//搜索相关信息
 				this.queryParams.ename = decodeURIComponent(apps._GET('ename'))!='null' ? decodeURIComponent(apps._GET('ename')):'';
 				this.queryParams.pname = decodeURIComponent(apps._GET('pname'))!='null' ? decodeURIComponent(apps._GET('pname')):'';

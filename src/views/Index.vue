@@ -6,7 +6,7 @@
 				<div class="swiper-container" id="banner">
 					<div class="swiper-wrapper">
 						<!--<div class="swiper-slide" v-for="item in bannerList"><img :src="item.picUrl"/></div>-->
-						<div class="swiper-slide" v-for="item in bannerList" v-link="{ name: 'newsDetails', params: {category : 4, id: item.bizId }}">
+						<div class="swiper-slide" v-for="item in bannerList" v-link="{ name: 'newsDetails', query: {category : 4, id: item.bizId }}">
 							<img :src="item.picUrl" />
 							<h3><p class="text-ellipsis">{{item.title}}</p></h3>
 						</div>
@@ -72,11 +72,11 @@
 				</div>
 				<l-gather></l-gather>
 				<div class="blue-fill">
-					<h3 class="fn-clear">政策法规<a v-link="{ name: 'newsList', params: { category: 2 }}" target="_blank" class="fn-right">更多</a></h3>
+					<h3 class="fn-clear">政策法规<a v-link="{ name: 'newsList', query: { category: 2 }}"  class="fn-right">更多</a></h3>
 					<div class="news-list policy">
 						<ul>
 							<li v-for="item in zcfgList" class="text-ellipsis-2">
-								<a v-link="{ name: 'newsDetails', params: {category : 2, id: item.id }}" target="_blank">{{item.title}}</a>
+								<a v-link="{ name: 'newsDetails', query: {category : 2, id: item.id }}" >{{item.title}}</a>
 							</li>
 							<li v-show="zcfgList.length <=0">
 								<p align="center">暂无相关文章</p>
@@ -106,7 +106,7 @@
 						<ul>
 							<li class="fn-clear" v-for="item in xwdtList" v-show="xwdtActive == 1">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 4, id: item.id }}" target="_blank">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', query: {category : 4, id: item.id }}" >{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -116,7 +116,7 @@
 
 							<li class="fn-clear" v-for="item in xhdtList" v-show="xwdtActive == 2">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: { category : 5, id: item.id }}" target="_blank">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', query: { category : 5, id: item.id }}" >{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -131,11 +131,11 @@
 						<h3><a  class="news on">开发企业诚信信息更新</a><a v-link="{ name: 'enterpriseList',query:{category:23}}" class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
-								<li class="fn-clear" v-for="item in cxeList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}" target="_blank">
+								<li class="fn-clear" v-for="item in cxeList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}" >
 									<p class="text-ellipsis fn-left">
 										<a>{{item.name}}</a>
 									</p>
-									<i class="fn-right" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}" target="_blank">详情</i>
+									<i class="fn-right" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}" >详情</i>
 								</li>
 								<li v-show="cxeList.list && cxeList.list.length <=0">
 									<p align="center">暂无相关文章</p>
@@ -145,12 +145,12 @@
 						</div>
 					</div>
 					<div class="blue-half exposure-cont fn-right">
-						<h3><a class="news on">曝光台</a><a v-link="{ name: 'newsList', params: { category: 7 }}" target="_blank" class="more">更多</a></h3>
+						<h3><a class="news on">曝光台</a><a v-link="{ name: 'newsList', query: { category: 7 }}"  class="more">更多</a></h3>
 						<div class="news-list">
 							<ul>
 								<li class="fn-clear" v-for="item in bgtList">
 									<p class="text-ellipsis fn-left">
-										<a v-link="{ name: 'newsDetails', params: {category : 7, id: item.id }}" target="_blank">{{item.title}}</a>
+										<a v-link="{ name: 'newsDetails', query: {category : 7, id: item.id }}" >{{item.title}}</a>
 									</p>
 								</li>
 								<li v-show="bgtList.length <=0">
@@ -194,7 +194,7 @@
 						<ul>
 							<li class="fn-clear" v-for="item in xzcfList" v-show="xzcfActive == 1">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 8, id: item.id }}" target="_blank">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', query: {category : 8, id: item.id }}" >{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -204,7 +204,7 @@
 
 							<li class="fn-clear" v-for="item in hyzlList" v-show="xzcfActive == 2">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: { category : 9, id: item.id }}" target="_blank">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', query: { category : 9, id: item.id }}" >{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -226,7 +226,7 @@
 						<ul>
 							<li class="fn-clear" v-for="item in hjxxList" v-show="hjxxActive == 1">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 10,  id: item.id }}" target="_blank">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', query: {category : 10,  id: item.id }}" >{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -236,7 +236,7 @@
 
 							<li class="fn-clear" v-for="item in blxwList" v-show="hjxxActive == 2">
 								<p class="text-ellipsis fn-left">
-									<a v-link="{ name: 'newsDetails', params: {category : 11, id: item.id }}" target="_blank">{{item.title}}</a>
+									<a v-link="{ name: 'newsDetails', query: {category : 11, id: item.id }}" >{{item.title}}</a>
 								</p>
 								<i class="fn-right">{{item.publishTime | formatTime "MM-dd"}}</i>
 							</li>
@@ -253,7 +253,7 @@
 			<div class="brand-list swiper-container" id="swiper2">
 				<ul class="box swiper-wrapper">
 					<li class="swiper-slide" v-for="item in enterpriseLists" >
-						<a v-link="{ name: 'enterpriseInfo', params: {pid: item.bizId }}" target="_blank">
+						<a v-link="{ name: 'enterpriseInfo', params: {pid: item.bizId }}" >
 							<img :src="item.picUrl" />
 						</a>
 					</li>
@@ -282,7 +282,7 @@
 			<div class="building-secondary fn-left m-b-15 swiper-container" id="swiper3">
 				<ul class="box swiper-wrapper">
 					<li class="swiper-slide" v-for="item in projectList">
-						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}" target="_blank">
+						<a v-link="{ name: 'projectInfo', params: {pid: item.bizId }}" >
 							<img :src="item.picUrl" />
 							<p class="building-name">{{item.title}}</p>
 						</a>
@@ -862,6 +862,10 @@
 	import Gather from "../components/Gather.vue";
 	import Btns from "../components/Btns.vue";
 	import CompanyQuery from "../components/CompanyQuery.vue";
+	let swiper1 =null,
+		swiper2 =null,
+		swiper3 =null;
+		
 	export default {
 		/*
 		 * 组件名称
@@ -944,7 +948,10 @@
 					pageIndex: 1,
 				},
 				cxeList: [],
-				isSyncSwiper:0 //激活轮播
+				isSyncSwiper:0, //激活轮播
+//				swiper1:null,
+//				swiper2:null,
+//				swiper3:null,
 			}
 		},
 		/*
@@ -997,31 +1004,31 @@
 		},
 		created() {
 			//获取首页图片信息Banner
-			this.getPicListAction({
-				type: 'Banner'
-			}).then((data) => {
-				apps.log('banner数据请求成功')
-					//				this.initSwiper();
-			}, (error) => {
-				apps.log(error)
-			});
-
-			//获取首页图片信息EnterpriseList
-			this.getPicListAction({
-				type: 'EnterpriseList'
-			}).then((data) => {
-				apps.log('诚信列表数据请求成功')
-			}, (error) => {
-				apps.log(error)
-			});
-			//获取首页图片信息ProjectList
-			this.getPicListAction({
-				type: 'ProjectList'
-			}).then((data) => {
-				apps.log('项目列表数据请求成功')
-			}, (error) => {
-				apps.log(error)
-			});
+//			this.getPicListAction({
+//				type: 'Banner'
+//			}).then((data) => {
+//				apps.log('banner数据请求成功')
+//			}, (error) => {
+//				apps.log(error)
+//			});
+//
+//			//获取首页图片信息EnterpriseList
+//			this.getPicListAction({
+//				type: 'EnterpriseList'
+//			}).then((data) => {
+//				apps.log('诚信列表数据请求成功')
+//			}, (error) => {
+//				apps.log(error)
+//			});
+//			//获取首页图片信息ProjectList
+//			this.getPicListAction({
+//				type: 'ProjectList'
+//			}).then((data) => {
+//				apps.log('项目列表数据请求成功')
+//			}, (error) => {
+//				apps.log(error)
+//			});
+//			this.getPicList();
 			//获取诚信企业评级列表
 			this.getEGradesList().then((data) => {
 				apps.log('获取诚信企业评级列表')
@@ -1108,18 +1115,20 @@
 		 */
 		methods: {
 			initSwiper() { //初始化轮播图
-				let swiper = new Swiper('#banner', {
+				swiper1 = new Swiper('#banner', {
 						pagination: '#banner .swiper-pagination',
 						paginationClickable: true,
 						loop: true,
 						autoplay: 2500,
+						observer:true,
+						observeParents:true,
 						autoplayDisableOnInteraction: false,
 						nextButton: '#banner .swiper-button-next',
 						prevButton: '#banner .swiper-button-prev',
 					});
 			},
 			initSwiper2() {
-				let swiper = new Swiper('#swiper2', {
+				swiper2 = new Swiper('#swiper2', {
 						slidesPerView: 5,
 						nextButton: '#swiper2 .swiper-button-next',
         				prevButton: '#swiper2 .swiper-button-prev',
@@ -1128,11 +1137,13 @@
 						freeMode: true,
 						loop: true,
 						autoplay: 2000,
+						observer:true,
+						observeParents:true,
 						autoplayDisableOnInteraction: false,
 					});
 			},
 			initSwiper3() {
-				let swiper = new Swiper('#swiper3', {
+				swiper3 = new Swiper('#swiper3', {
 						slidesPerView: 5,
 						nextButton: '#swiper3 .swiper-button-next',
         				prevButton: '#swiper3 .swiper-button-prev',
@@ -1141,7 +1152,34 @@
 						freeMode: true,
 						loop: true,
 						autoplay: 2500,
+						observer:true,
+						observeParents:true,
 						autoplayDisableOnInteraction: false,
+					});
+			},
+			getPicList(){//获取首页轮播图列表
+				this.getPicListAction({
+						type: 'Banner'
+					}).then((data) => {
+						apps.log('banner数据请求成功')
+					}, (error) => {
+						apps.log(error)
+					});
+					//获取首页图片信息EnterpriseList
+					this.getPicListAction({
+						type: 'EnterpriseList'
+					}).then((data) => {
+						apps.log('诚信列表数据请求成功')
+					}, (error) => {
+						apps.log(error)
+					});
+					//获取首页图片信息ProjectList
+					this.getPicListAction({
+						type: 'ProjectList'
+					}).then((data) => {
+						apps.log('项目列表数据请求成功')
+					}, (error) => {
+						apps.log(error)
 					});
 			},
 			handleTabNews(index) { //tabbar切换
@@ -1163,13 +1201,14 @@
 					level = level.substring(0, level.length - 1);
 				}
 				if(this.qycxActive == 1) {
-					window.location.href = `${context}/enterpriseList/?category=21&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
+					window.location.href = `${context}/enterpriseList/?fatherCategory=101&category=21&ename=${this.queryParams.ename}&pname=${this.queryParams.pname}&level=${level}`;
 				} else {
 					let category = this.qycxActive == 2 ? 10 : 11;
 					this.$route.router.go({
 						name: 'eList',
 						query: {
 							category:category,
+							fatherCategory:101,
 							search:'search',
 							ename: this.queryParams.ename,
 							pname: this.queryParams.pname,
@@ -1226,12 +1265,8 @@
 				this.queryParams.ename = "";
 				this.queryParams.pname = "";
 				this.queryParams.level = "请选择";
-				this.isSyncSwiper++
-				if(this.isSyncSwiper > 1){
-					this.initSwiper();
-					this.initSwiper2();
-					this.initSwiper3();
-				}
+				//获取图片列表
+				this.getPicList()
 			}
 		}
 	}

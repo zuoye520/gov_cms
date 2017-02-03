@@ -1,12 +1,14 @@
 <template>
 	<div class="location-page">
 		<section class="location">
-			您的当前位置 :
-			<a v-link="{ name: 'index'}">首页</a> >>{{location}}
+			您的当前位置 :  <span v-show="fatherLocation">{{fatherLocation}} >> </span> <span>{{location}}</span> <span v-show="subLocation"> >> {{subLocation}}</span>
+			<!--<a v-link="{ name: 'index'}">首页</a> -->
+			
 		</section>
 	</div>
 </template>
 <script>
+import apps from "../utils/apps.js";
 	export default {
 		/*
 		 * 接收父组件数据
@@ -19,9 +21,44 @@
 				type: {
 					type: [Number,String],
 					default: 99,
+				},
+				fatherType: {
+					type: [Number,String],
+					default: 99,
+				},
+				subType: {
+					type: [Number,String],
+					default: 99,
 				}
 			},
 			computed: {
+				fatherLocation(){
+					let str = "";
+					switch(this.fatherType) {
+						case 100: //信息公示
+							str = "信息公示"
+							break;
+						case 101: //企业查询
+							str = "企业查询"
+							break;	
+						default:
+							str = null
+							break;
+					}
+					return str;
+				},
+				subLocation(){
+					let str = "";
+					switch(this.subType) {
+						case 110: //详情
+							str = "详情"
+							break;
+						default:
+							str = null
+							break;
+					}
+					return str;
+				},
 				location() {
 					let str = "";
 					switch(this.type) {
@@ -61,12 +98,12 @@
 						case 12: //文件下载
 							str = "文件下载"
 							break;
-						case 13: //诚信投诉
-							str = "诚信投诉"	
-							break;	
-						case 14: //诚信表扬
+						case 13: //诚信表扬
 							str = "诚信表扬"	
 							break;
+						case 14: //诚信投诉
+							str = "诚信投诉"	
+							break;		
 						case 15: //企业列表
 							str = "企业列表"	
 							break;	

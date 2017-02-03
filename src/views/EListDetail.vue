@@ -1,14 +1,14 @@
 <template>
 	<div class="fn-clear news-list w1000">
 		<section class="left-side fn-left">
-			<l-query :query-params ='params'></l-query>
+			<l-query :query-params ='params' ></l-query>
 			<div class="gather-cont">
 				<l-gather></l-gather>
 			</div>
 			<l-btns></l-btns>
 		</section>
 		<section class="right-side fn-left">
-			<l-location :type = "params.category"></l-location>
+			<l-location :type = "params.category" :father-type="fatherCategory" :sub-type="subCategory"></l-location>
 			<div class="list">
 				<h2>{{eName}}{{title}}信息</h2>
 				<table width="100%" border="1" cellspacing="" cellpadding="">
@@ -194,7 +194,9 @@
 					pageIndex: 1,
 					category :10,
 				},
-				eName:''
+				eName:'',
+				fatherCategory:100,
+				subCategory:110
 			}
 		},
 		/*

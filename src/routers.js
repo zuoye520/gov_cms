@@ -19,7 +19,13 @@ const mapObj = {
 			require(['./views/Index.vue'], resolve)
 		}
 	},
-	"/newsList/:category" :{
+//	"/newsList/:category" :{
+//		name: 'newsList',
+//		component(resolve) {
+//			require(['./views/NewsList.vue'], resolve)
+//		}
+//	},
+	"/newsList" :{
 		name: 'newsList',
 		component(resolve) {
 			require(['./views/NewsList.vue'], resolve)
@@ -49,13 +55,13 @@ const mapObj = {
 			require(['./views/NewsList.vue'], resolve)
 		}
 	},
-	"/newsDetails/:category/:id" :{
+	"/newsDetails" :{
 		name: 'newsDetails',
 		component(resolve) {
 			require(['./views/NewsDetails.vue'], resolve)
 		}
 	},
-	"/complaint/:type" :{
+	"/complaint" :{
 		name: 'complaint',
 		component(resolve) {
 			require(['./views/Complaint.vue'], resolve)
@@ -120,32 +126,39 @@ export default function(router) {
 	});
 	
 	router.afterEach((transition)=> {
-		apps.log(transition.to.name);
+		if(typeof(transition.to.query)!="undefined"){
+			router.app.menuActive = transition.to.query.category ? parseInt(transition.to.query.category) : 1;
+			apps.setSessionStorage('location',router.app.menuActive);
+		}else{
+			router.app.menuActive = 1;
+			apps.setSessionStorage('location',router.app.menuActive);
+		}
+		
 		//控制菜单状态
-		switch (transition.to.name){
-			case 'index':
-					router.app.menuActive =0;
-				break;
-			case 'newsList':
-				router.app.menuActive = parseInt(transition.to.params.category) || 0;
-				
-				break;
-			case 'newsDetails':
-				router.app.menuActive = parseInt(transition.to.params.category) || 0;
-				break;
-			case 'complaint':
-				transition.to.params.type == 1?router.app.menuActive =100:router.app.menuActive =101;
-				
-				break;	
-			case 'enterpriseList':
-				transition.to.query.category == 20?router.app.menuActive =20:router.app.menuActive =0;
-				break;	
-			default:
-				router.app.menuActive =0;
-				break;
-		}
-		if(typeof(transition.to.query)!="undefined" && transition.to.query.type ==30){
-			router.app.menuActive =30;
-		}
+//		switch (transition.to.name){
+//			case 'index':
+//					router.app.menuActive =0;
+//				break;
+//			case 'newsList':
+//				router.app.menuActive = parseInt(transition.to.params.category) || 0;
+//				
+//				break;
+//			case 'newsDetails':
+//				router.app.menuActive = parseInt(transition.to.params.category) || 0;
+//				break;
+//			case 'complaint':
+//				transition.to.params.type == 1?router.app.menuActive =100:router.app.menuActive =101;
+//				
+//				break;	
+//			case 'enterpriseList':
+//				transition.to.query.category == 20?router.app.menuActive =20:router.app.menuActive =0;
+//				break;	
+//			default:
+//				router.app.menuActive =0;
+//				break;
+//		}
+//		if(typeof(transition.to.query)!="undefined" && transition.to.query.type ==30){
+//			router.app.menuActive =30;
+//		}
 	})
 }
