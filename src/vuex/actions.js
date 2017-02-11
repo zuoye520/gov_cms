@@ -208,7 +208,7 @@ export const getEGradesList = ({ dispatch, state },params={}) => {
  */
 export const getPEList = ({ dispatch, state },params={}) => {
 	return new Promise((resolve, reject) =>{
-		apps.get(GET_P_E_LIST+params.eid,params).success((data)=>{
+		apps.get(params.eid ? GET_P_E_LIST+params.eid : GET_P_E_LIST,params).success((data)=>{
 			apps.log(data);
 			dispatch(types.GET_P_E_LIST,data);
 			resolve("ok");

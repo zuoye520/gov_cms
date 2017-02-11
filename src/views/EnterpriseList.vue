@@ -11,16 +11,17 @@
 			<l-location :type = "category" :father-type="fatherCategory"></l-location>
 			<div class="company-list">
 				<ul>
-					<li class="fn-clear" v-for="item in eList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">
+					<li v-for="item in eList.list" v-link="{ name: 'enterpriseInfo', params: {pid: item.id}}">
 						<div class="company-logo fn-left">
 							<img v-if="item.logo" :src="item.logo" />
 							<img v-else src="../assets/images/deflaut.jpg" />
 						</div>
-						<div class="company-info fn-left">
-							<h3>{{item.name}}</h3>
-							<p>{{item.des}}</p>
-							<p class="score"><strong>{{item.score}}</strong>分</p>
-						</div>
+						<h3>{{item.name}}</h3>
+						<!--<div class="company-info fn-left">-->
+							<!--<h3>{{item.name}}</h3>-->
+							<!--<p>{{item.des}}</p>-->
+							<!--<p class="score"><strong>{{item.score}}</strong>分</p>-->
+						<!--</div>-->
 					</li>
 					<!--<li class="fn-clear">
 						<div class="company-logo fn-left"><img src="../assets/images/brand1.jpg" /></div>
@@ -68,42 +69,51 @@
 				li {
 					margin-top: 30px;
 					position: relative;
+					margin-right: 20px;
+					float:left;
+					&:nth-child(4n){
+						margin-right: 0px;
+					}
 					.company-logo {
-						width: 240px;
-						height: 60px;
-						margin-right: 20px;
+						width: 159px;
+						height: 159px;
+
 						border: 1px solid $color-border;
 						overflow: hidden;
 						img {
 							width: 100%;
 							height: 100%;
-							
 						}
+
+	}
+					h3 {
+						line-height: 40px;
+						text-align: center;
 					}
-					.company-info {
-						width: 443px;
-						h3 {
-							font-weight: bold;
-							font-size: 16px;
-							span {
-								color: $color-gray1;
-							}
-						}
-						>p {
-							/*height: 40px;*/
-							overflow: hidden;
-						}
-						.score {
-							width: 57px;
-							height: 32px;
-							text-align: center;
-							line-height: 32px;
-							background: #ff9900;
-							font-size: 20px;
-							color: #fff;
-							margin-top: 10px;
-						}
-					}
+					/*.company-info {*/
+						/*width: 443px;*/
+						/*h3 {*/
+							/*font-weight: bold;*/
+							/*font-size: 16px;*/
+							/*span {*/
+								/*color: $color-gray1;*/
+							/*}*/
+						/*}*/
+						/*>p {*/
+							/*/!*height: 40px;*!/*/
+							/*overflow: hidden;*/
+						/*}*/
+						/*.score {*/
+							/*width: 57px;*/
+							/*height: 32px;*/
+							/*text-align: center;*/
+							/*line-height: 32px;*/
+							/*background: #ff9900;*/
+							/*font-size: 20px;*/
+							/*color: #fff;*/
+							/*margin-top: 10px;*/
+						/*}*/
+					/*}*/
 				}
 			}
 		}
@@ -143,7 +153,7 @@
 					level:'请选择'
 				},
 				params: {
-					pageCount: 10,
+					pageCount: 50,
 					pageIndex: 1
 				},
 				category : 15,

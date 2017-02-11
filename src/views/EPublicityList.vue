@@ -36,26 +36,27 @@
 				</div>
 				<table width="100%" border="1" cellspacing="" cellpadding="">
 					<tr>
+						<th style="width: 40px">序号</th>
 						<th>企业名称</th>
-						<th>信用排名
-							<a @click="handleSort('index')" class="sort" :class="[params.sortName =='index'? 'on':'']"></a>
-						</th>
-						<th>信用综合得分
+						<!--<th>信用排名-->
+							<!--<a @click="handleSort('index')" class="sort" :class="[params.sortName =='index'? 'on':'']"></a>-->
+						<!--</th>-->
+						<th style="width: 75px">诚信分值
 							<a @click="handleSort('score')" class="sort" :class="[params.sortName =='score'? 'on':'']"></a>
 						</th>
-						<th>信用能力得分
+						<th style="width: 75px">诚信等级
 							<a @click="handleSort('score1')" class="sort" :class="[params.sortName =='score1'? 'on':'']"></a>
 						</th>
-						<th>诚信表现得分
-							<a @click="handleSort('score2')" class="sort" :class="[params.sortName =='score2'? 'on':'']"></a>
+						<th style="width: 75px">详细情况
+
 						</th>
 					</tr>
-					<tr v-for="item in epList.list">
+					<tr v-for="(index,item) in epList.list">
+						<td>{{index + 1}}</td>
 						<td>{{item.name}}</td>
-						<td>{{item.sort}}</td>
-						<td>{{item.score}}</td>
-						<td>{{item.score1}}</td>
-						<td>{{item.score2}}</td>
+						<td>{{item.grade == '0' ? "未参评" : item.score}}</td>
+						<td>{{item.grade == '0' ? "未参评" : item.grade + "级"}}</td>
+						<td><a v-link="{ name: 'enterpriseInfo', params: {pid: item.id }}">查看</a></td>
 					</tr>
 				</table>
 				<p class="p-30" align="center" v-show="epList.list && epList.list.length <= 0">暂无内容...</p>
@@ -71,7 +72,7 @@
 <style scoped lang="scss">
 	@import "../assets/css/common.scss";
 	.list {
-		padding: 20px 0;
+		/*padding: 20px 0;*/
 		.filter {
 			padding: 10px 0 20px;
 			.sort {
@@ -113,7 +114,7 @@
 			th {
 				padding: 10px;
 				text-align: center;
-				min-width: 100px;
+				/*min-width: 100px;*/
 				font-size: 12px;
 				a {
 					color: #1680e5;

@@ -91,6 +91,12 @@ const mapObj = {
 			require(['./views/ProjectList.vue'], resolve)
 		}
 	},
+	"/projectList" :{
+		name: 'allProjectList',
+		component(resolve) {
+			require(['./views/ProjectList.vue'], resolve)
+		}
+	},
 	"/tips" :{
 		name: 'tips',
 		component(resolve) {

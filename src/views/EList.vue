@@ -11,8 +11,9 @@
 			<l-location :type = "params.category" :father-type="fatherCategory"></l-location>
 			<div class="list">
 				<table width="100%" border="1" cellspacing="" cellpadding="">
-					<tr><th>企业名称</th><th>最新{{title}}信息</th><th>其他{{title}}信息</th></tr>
-					<tr v-for="item in aeList.list">
+					<tr><th>序号</th></th><th>企业名称</th><th>最新{{title}}信息</th><th>其他{{title}}信息</th></tr>
+					<tr v-for="(index,item) in aeList.list">
+						<td>{{index + 1}}</td>
 						<td>{{item.name}}</td>
 						<td>{{item.title}}</td>
 						<td><a v-link="{ name: 'eListDetail', query: {category:params.category,eid: item.id,eName:item.eName }}">更多</a></td>
