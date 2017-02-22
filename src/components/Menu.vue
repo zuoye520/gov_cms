@@ -9,14 +9,15 @@
 					<a :class="{'on':menuActive == 19 || menuActive == 10 || menuActive == 11 }">信息公示</a>
 					<!--<a v-link="{ name: 'newsList', params: { category: 3 }}" :class="{'on':menuActive == 3}">信息公示</a>-->
 					<div class="sub-menu">
-						<p v-link="{ name: 'ePublicityList',query:{category:19,fatherCategory:100}}">企业公示</p>
+						<p v-link="{ name: 'ePublicityList',query:{category:22,fatherCategory:100}}">企业信息</p>
+						<p v-link="{ name: 'allProjectList',query:{category:24,fatherCategory:100}}">项目信息</p>
 						<p v-link="{ name: 'eList',query:{category:10,fatherCategory:100}}">获奖信息</p>
 						<p v-link="{ name: 'eList',query:{category:11,fatherCategory:100}}">不良行为</p>
 					</div>
 				</li>
 				<li><a v-link="{ name: 'newsList', query: { category: 4 }}" :class="{'on':menuActive == 4}">新闻动态</a></li>
 				<li><a v-link="{ name: 'newsList', query: { category: 5 }}" :class="{'on':menuActive == 5}">协会动态</a></li>
-				<li><a v-link="{ name: 'enterpriseList',query:{category:20}}" :class="{'on':menuActive == 20}">诚信品牌</a></li>
+				<!--<li><a v-link="{ name: 'enterpriseList',query:{category:20}}" :class="{'on':menuActive == 20}">诚信品牌</a></li>-->
 				<li><a v-link="{ name: 'newsList', query: { category: 7 }}" :class="{'on':menuActive == 7}">曝光台</a></li>
 				<li><a v-link="{ name: 'complaint', query: { category: 13 }}" :class="{'on':menuActive == 13}">诚信表扬</a></li>
 				<li><a v-link="{ name: 'complaint', query: { category: 14 }}" :class="{'on':menuActive == 14}">诚信投诉</a></li>
@@ -73,7 +74,7 @@ import {context} from "../utils/constants.js";
 	       position: relative;
 	        a{
 	            display: inline-block;
-	            padding: 10px 23px;
+	            padding: 10px 29px;
 	            color: #fff;
 	            &:active,&:hover{
 	                background: darken(#023790,5%);

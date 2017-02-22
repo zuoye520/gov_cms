@@ -161,20 +161,23 @@
 					</div>
 				</div>
 				<div class="blue-fill company-list">
-					<h3 class="fn-clear">诚信等级公示<a  class="fn-right" v-link="{ name: 'enterpriseList',query:{category:22}}">更多</a></h3>
+					<h3 class="fn-clear">诚信等级公布<a  class="fn-right" v-link="{ name: 'ePublicityList',query:{category:22,fatherCategory:100}}">更多</a></h3>
 					<div class="company-info ">
 						<div class="box title">
+							<p class="index">序号</p>
 							<p class="box-flex e-name">企业名称</p>
 							<p class="score">诚信分值</p>
 							<p class="level">诚信等级</p>
 						</div>
 						<ul>
 							<li class="fn-clear" v-for="item in eLeveList">
+
 								<p class="company-name fn-clear fn-left">
+                  <span class="fn-left index">{{$index + 1}}</span>
 									<span><a v-link="{name : 'enterpriseInfo',params: {pid : item.id}}">{{item.name}}</a></span>
-									<span class="fn-right">{{item.score}}分</span>
+									<span class="fn-right">{{item.competency_grade == '0' ? "未参评" : item.score + "分"}}</span>
 								</p>
-								<div class="fn-right level">{{item.competency_grade}} 级</div>
+								<div class="fn-right level">{{item.competency_grade == '0' ? "未参评" : item.competency_grade + "级"}} </div>
 							</li>
 							<li v-show="eLeveList.length <=0">
 								<p align="center">暂无相关企业</p>
@@ -266,7 +269,7 @@
 				<div class="swiper-button-next box-align"><img src="../assets/images/right.png"/></div>
 			</div>
 		</section>
-		<section class="building-cont m-b-15 fn-clear">
+		<section style="display:none" class="building-cont m-b-15 fn-clear">
 			<h3 class="fn-clear">诚信项目展示<p class="fn-right">
 				<!--<a v-link="{ name: 'enterpriseList',query:{category:20}}">更多</a>-->
 			</p> </h3>
@@ -315,6 +318,10 @@
 		.title {
 			font-size: 16px;
 			padding: 10px 0;
+      .index {
+        padding-left: 20px;
+        width : 32px
+      }
 			.e-name {
 				padding: 0 20px;
 			}
@@ -678,6 +685,10 @@
 						.company-name {
 							width: 450px;
 						}
+            .index {
+              width : 38px;
+              padding-left: 12px;
+            }
 						.level {
 							font-weight: bold;
 						}
@@ -865,7 +876,7 @@
 	let swiper1 =null,
 		swiper2 =null,
 		swiper3 =null;
-		
+
 	export default {
 		/*
 		 * 组件名称

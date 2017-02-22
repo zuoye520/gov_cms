@@ -126,12 +126,14 @@ import apps from "../utils/apps.js";
 							str = "信息身份"
 							break;	
 						case 22: //诚信等级公示
-							str = "诚信等级公示"
+							str = "企业信息"
 							break;
 						case 23: //开发企业诚信信息更新
 							str = "开发企业诚信信息更新"
-							break;		
-							
+							break;
+						case 24: //开发企业诚信信息更新
+							str = "项目信息"
+							break;
 						default:
 							str = "文章详情"
 							break;

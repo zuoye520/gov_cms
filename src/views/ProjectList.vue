@@ -8,21 +8,59 @@
 			<l-btns></l-btns>
 		</section>
 		<section class="right-side fn-left">
-			<l-location :type = "category"></l-location>
+			<l-location :type = "category" :father-type="fatherCategory"></l-location>
 			<div>
-				<dl>
-					<dt class="fn-clear"><span>【 序号 】</span><span class="p-l-30">【 标签 】</span><span class="fn-right p-r-20">【 时间 】</span></dt>
-					<dd v-for="item in peList.list">
-						<a class="fn-clear"  v-link="{ name: 'projectInfo', params: {pid: item.id }}">
-							<p class="num fn-left">{{$index+1}}</p>
-							<div class="content fn-left">
-								<h3>{{item.name}} </h3>
-								<p class="text-ellipsis-2">{{item.content}} </p>
-							</div>
-							<div class="fn-right time">[{{item.time | formatTime "yyyy-MM-dd"}}]</div>
-						</a>
-					</dd>
-				</dl>
+				<!--<dl>-->
+					<!--<dt class="fn-clear"><span>【 序号 】</span><span class="p-l-30">【 标签 】</span><span class="fn-right p-r-20">【 时间 】</span></dt>-->
+					<!--<dd v-for="item in peList.list">-->
+						<!--<a class="fn-clear"  v-link="{ name: 'projectInfo', params: {pid: item.id }}">-->
+							<!--<p class="num fn-left">{{$index+1}}</p>-->
+							<!--<div class="content fn-left">-->
+								<!--<h3>{{item.name}} </h3>-->
+								<!--<p class="text-ellipsis-2">{{item.content}} </p>-->
+							<!--</div>-->
+							<!--<div class="fn-right time">[{{item.time | formatTime "yyyy-MM-dd"}}]</div>-->
+						<!--</a>-->
+					<!--</dd>-->
+				<!--</dl>-->
+				<div class="filter box box-center-flex">
+					<div class="box sort box-flex">
+						<!--<span>排序</span>
+						<p>
+							<select>
+								<option value="">信用排名</option>
+								<option value="">信用综合得分</option>
+								<option value="">信用能力得分</option>
+								<option value="">诚信表现得分</option>
+							</select>
+						</p>-->
+					</div>
+					<div>
+						<div class="box search box-center-flex">
+							<p>
+								<input type="text" id="" value="" placeholder="请输入项目名称..." v-model="params.key" @keyup.enter="handleSearch"/>
+							</p>
+							<p class="p-l-10">
+								<a @click="handleSearch" class="search-btn">查询</a>
+							</p>
+						</div>
+
+					</div>
+				</div>
+				<table width="100%" border="1" cellspacing="" cellpadding="">
+					<tr>
+						<th style="width: 40px">序号</th>
+						<th>项目名称</th>
+						<th>企业名称</th>
+						<th style="width: 75px">详细情况</th>
+					</tr>
+					<tr v-for="(index,item) in peList.list">
+						<td>{{index + 1}}</td>
+						<td>{{item.name}}</td>
+						<td>{{item.enterpriseName}}</td>
+						<td><a v-link="{ name: 'projectInfo', params: {pid: item.id }}">查看</a></td>
+					</tr>
+				</table>
 				<p class="p-30" align="center" v-show ="peList.list && peList.list.length <= 0">暂无内容...</p>
 			</div>
 			<div class="pages">
@@ -43,6 +81,52 @@
 			.gather-cont {
 				padding-top: 15px;
 			}
+		}
+		.filter {
+		padding: 10px 0 20px;
+		input {
+			padding: 5px 10px;
+			border: 1px #ccc solid;
+			border-radius: 3px;
+		}
+		.search-btn {
+			padding: 7px 20px;
+			background: #1680e5;
+			color: #fff;
+			border-radius: 3px;
+		}
+		}
+		table {
+			border: #ccc 1px solid;
+		th {
+			background: #f05a5a;
+			color: #fff;
+		.sort {
+			padding: 10px;
+			background: url(../assets/images/sort_icon.png) center center no-repeat;
+			background-size: 15px;
+		&.on {
+			 background: url(../assets/images/gray_icon.png) center center no-repeat;
+			 background-size: 15px;
+		 }
+		}
+		}
+		td,
+		th {
+			padding: 10px;
+			text-align: center;
+			/*min-width: 100px;*/
+			font-size: 12px;
+		a {
+			color: #1680e5;
+		}
+		}
+		tr {
+			background: #fff;
+		}
+		tr:nth-child(even) {
+			background: #eee;
+		}
 		}
 		.right-side {
 			width: 705px;
@@ -131,7 +215,10 @@
 	import Btns from "../components/Btns.vue";
 	import CompanyQuery from "../components/CompanyQuery.vue";
 	import Pages from "../components/Pages.vue";
-
+	import {
+			Toast,
+			Indicator
+	} from 'mint-ui';
 	import {
 		getPEList
 	} from '../vuex/actions.js';
@@ -161,7 +248,8 @@
 					pageIndex: 1,
 					eid:null
 				},
-				category : 18
+				category : 24,
+				fatherCategory : 0,
 			}
 		},
 		/*
@@ -184,14 +272,28 @@
 		 */
 		methods: {
 			handlePageClick(index){
+				Indicator.open();
 				apps.log('跳转到第：'+index+"页")
 				this.params.pageIndex = index;
 				this.getPEList(this.params).then((data) => {
-					apps.log('分页数据请求成功')
+					apps.log('分页数据请求成功');
+					Indicator.close();
 				}, (error) => {
-					apps.log(error)
+					apps.log(error);
+					Indicator.close();
 				});
-			}
+			},
+			handleSearch() { //搜索
+				Indicator.open();
+				this.params.pageIndex = 1;
+				this.getPEList(this.params).then((data) => {
+					apps.log('企业项目列表数据请求成功')
+					Indicator.close();
+				}, (error) => {
+					apps.log(error);
+					Indicator.close();
+				});
+			},
 		},
 		/*
 		 * 定义过滤器
@@ -220,12 +322,16 @@
 			data({
 				to
 			}) {
+				Indicator.open();
 				this.params.pageIndex = 1;
 				this.params.eid = to.params.eid;
+				this.fatherCategory = parseInt(to.query.fatherCategory) || 0; //fatherCategory
 				this.getPEList(this.params).then((data) => {
-					apps.log('企业项目列表数据请求成功')
+					apps.log('企业项目列表数据请求成功');
+					Indicator.close();
 				}, (error) => {
 					apps.log(error)
+					Indicator.close();
 				});
 				
 			}
