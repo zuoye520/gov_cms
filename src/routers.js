@@ -108,7 +108,7 @@ const mapObj = {
 		component(resolve) {
 			require(['./views/StepTwo.vue'], resolve)
 		}
-	}
+	},
 };
 
 		
