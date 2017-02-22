@@ -1,6 +1,6 @@
 <template>
 	<!--Menu-->
-	<div class="page">
+	<div class="page w1000">
 		<nav>
 			<ul class="fn-clear w1000">
 				<li><a v-link="{ name: 'index'}" :class="{'on':menuActive == 1}">首 页</a></li>

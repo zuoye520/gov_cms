@@ -2,7 +2,7 @@
 	<!--header-->
 	<div class="page">
 		<header>
-			<h1 class="w1000 fn-clear title-cont">
+			<h1 class="w1000 fn-clear title-cont fn-hide">
 				<div class="logo fn-left"></div>
 				<!--<div class="title">
 					<div>重庆市房地产行业诚信信息平台</div>
@@ -19,8 +19,9 @@
 	@import "../assets/css/common.scss";
 	header{
     width: 100%;
-    height: 280px;
-    background: url(../assets/images/banner_bg.jpg) center center no-repeat;
+    height: 158px;
+    background: url(../assets/images/header_bg.jpg) center center no-repeat;
+    
     h1{
         padding-top: 50px;
          .title{
@@ -41,7 +42,7 @@
             width: 100%;
             height: 120px;
             margin-right: 20px;
-            background: url(../assets/images/logo.png) left top no-repeat;
+            /*background: url(../assets/images/logo.png) left top no-repeat;*/
         }
     }
 
