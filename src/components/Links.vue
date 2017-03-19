@@ -7,21 +7,21 @@
 				<ul class="fn-clear">
 					<li>
 						<select>
-							<option>市政府部门网站</option>
+              <option v-for="item in gov" :value="item.url">{{item.title}}</option>
 						</select>
 					</li>
 					<li>
 						<select>
-							<option>市国土房管行业网站</option>
+              <option v-for="item in land" :value="item.url">{{item.title}}</option>
 						</select>
 					</li>
 					<li>
 						<select>
-							<option>市诚信建设相关网站</option>
+              <option v-for="item in credit" :value="item.url">{{item.title}}</option>
 						</select>
 					</li>
 				</ul>
-				
+
 			</div>
 		</section>
 	</div>
@@ -59,3 +59,77 @@
 		}
 	}
 </style>
+
+<script>
+  import apps from "../utils/apps.js";
+  import {
+    context
+  } from "../utils/constants.js";
+  import {
+    getSiteLinkList
+  } from '../vuex/actions.js';
+
+  export default {
+    /*
+     * 初始化数据
+     */
+    data() {
+      return {
+        siteLinkList : [],
+        gov : [],
+        land : [],
+        credit : []
+      }
+  },
+  /*
+   * vuex
+   */
+  vuex: {
+    getters: {
+        siteLinkList: (state) => state.modules.siteLinkList, //获取诚信等级公示
+      //				maList : (state) => state.modules.maList, //获取诚信等级公示
+    },
+    actions: {
+        getSiteLinkList
+    }
+  },
+  /*
+   * 实例被创建后调用，但是还没有开始 DOM 编译
+   */
+  ready() {
+  },
+  created() {
+
+    //获取诚信企业评级列表
+    this.getSiteLinkList().then((data) => {
+      apps.log('获取到网站列表============')
+      this.gov = data.filter(d=>d.type === 'gov');
+      this.land = data.filter(d=>d.type === 'land');
+      this.credit = data.filter(d=>d.type === 'credit');
+      console.log(this.gov);
+    }, (error) => {
+      apps.log(error)
+    });
+
+
+  },
+  /*
+   * 处理事件
+   */
+  methods: {
+
+  },
+  /*
+   * 定义过滤器
+   */
+  filters: {},
+  /*
+   * 实例计算属性
+   */
+  computed: {
+  },
+  /*
+   * 路由数据钩 参数发生变化这里被激活
+   */
+  }
+</script>

@@ -20,7 +20,7 @@ export const GET_A_LIST = 'GET_A_LIST';
 export const GET_P_E_LIST = 'GET_P_E_LIST';
 export const GET_A_ELIST = 'GET_A_ELIST';
 export const GET_EP_LIST = 'GET_EP_LIST';
-
+export const GET_SITE_LINK_LIST = "GET_SITE_LINK_LIST";
 
 
 
