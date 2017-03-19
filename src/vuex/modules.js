@@ -31,8 +31,8 @@ const state = {
 	sNew:null,
 	sFrom:{},
 	aeList:[],//获奖信息和不良信息
-	epList:[]//企业公示列表
-	
+	epList:[],//企业公示列表
+	siteLinkList : []
 };
 
 /*
@@ -123,7 +123,10 @@ const mutations = {
 	},
 	[types.GET_EP_LIST](state, data) {
 		state.epList = data;
-	}
+	},
+  [types.GET_SITE_LINK_LIST](state,data) {
+    state.siteLinkList = data;
+  }
 }
 /*
  * @DESC : 对外开放

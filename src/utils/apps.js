@@ -81,14 +81,14 @@ const request = function(url, data, config, type) {
 	} else {
 		config = config || {};
 	}
-	config.timeout = config.timeout || 10000,
+	config.timeout = config.timeout || 20000,
 		config.loading = config.loading === undefined ? true : config.loading,
 		config.headers = config.headers || {};
 
 	if(!constants.dev) {
 		config.headers[constants.TOKEN] = getSessionStorage(constants.TOKEN);
 	}
-	//这里是移动端特殊处理	
+	//这里是移动端特殊处理
 	type = type || "GET";
 	data = type !== 'GET' ? JSON.stringify(data) : data;
 	let rp = new ResultPromise();
@@ -207,7 +207,7 @@ const isUserAgent = function(type){
 			break;
 		case 'isIos':
 			return (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);
-			break;	
+			break;
 		default:
 			return false;
 			break;

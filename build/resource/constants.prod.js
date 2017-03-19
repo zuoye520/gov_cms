@@ -6,7 +6,7 @@
 "use strict"
 
 module.exports = {
-    INTERFACE_URL :"http://106.14.80.129:9090/", //接口请求路径
+    INTERFACE_URL :"/", //接口请求路径
     TOKEN:'param-token',
     debug : 1,
     dev:false,

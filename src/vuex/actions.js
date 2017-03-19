@@ -35,6 +35,8 @@ const 	GET_VC_CHECK = "xhlc/api/vc/check/";//验证验证码是否有效  xhlc/a
 const 	GET_A_ELIST = "xhlc/api/a/elist/";//获取不良信息和获奖信息列表  xhlc/api/a/elist/:categoryId
 const 	GET_EP_LIST = "xhlc/api/e/p";//获取企业公示列表  /xhlc/api/ep
 
+const GET_SITE_LINK_LIST = "xhlc/api/sl/list"; //获取网站链接
+
 
 /*
  * @DESC:获取首页图片信息
@@ -51,7 +53,7 @@ export const getPicListAction = ({ dispatch, state },params={}) => {
         		reject(msg);
     		});
     });
-	
+
 }
 
 /*
@@ -164,7 +166,7 @@ export const getSNewAction = ({ dispatch, state },params={}) => {
 }
 
 /*
- * @DESC:企业投诉／表扬 
+ * @DESC:企业投诉／表扬
  * @Author:zuozuo
  * @Date：2016.12.11
  */
@@ -416,4 +418,16 @@ export const getEPList = ({ dispatch, state },params={}) => {
         		reject(msg);
     		});
     });
+}
+
+export const getSiteLinkList = ({dispatch,state},params={}) => {
+  return new Promise((resolve, reject) =>{
+    apps.get(GET_SITE_LINK_LIST,params).success((data)=>{
+      apps.log(data);
+      dispatch(types.GET_SITE_LINK_LIST,data);
+      resolve(data);
+    }).businessError(900,(msg, data)=>{
+      reject(msg);
+    });
+  });
 }

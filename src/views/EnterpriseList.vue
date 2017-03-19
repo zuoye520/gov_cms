@@ -16,7 +16,7 @@
 							<img v-if="item.logo" :src="item.logo" />
 							<img v-else src="../assets/images/deflaut.jpg" />
 						</div>
-						<h3>{{item.name}}</h3>
+						<h3 title="{{item.name}}" class="text-ellipsis" style="width : 159px">{{item.name}}</h3>
 						<!--<div class="company-info fn-left">-->
 							<!--<h3>{{item.name}}</h3>-->
 							<!--<p>{{item.des}}</p>-->
@@ -71,6 +71,7 @@
 					position: relative;
 					margin-right: 20px;
 					float:left;
+          width : 159px;
 					&:nth-child(4n){
 						margin-right: 0px;
 					}
@@ -89,6 +90,7 @@
 					h3 {
 						line-height: 40px;
 						text-align: center;
+            width : 159px
 					}
 					/*.company-info {*/
 						/*width: 443px;*/
@@ -223,17 +225,17 @@
 				this.queryParams.ename = decodeURIComponent(apps._GET('ename'))!='null' ? decodeURIComponent(apps._GET('ename')):'';
 				this.queryParams.pname = decodeURIComponent(apps._GET('pname'))!='null' ? decodeURIComponent(apps._GET('pname')):'';
 				this.queryParams.level = decodeURIComponent(apps._GET('level'))!='null' ? decodeURIComponent(apps._GET('level')):'请选择';
-				
+
 				this.params.ename = this.queryParams.ename ?this.queryParams.ename : null;
 				this.params.pname = this.queryParams.pname ?this.queryParams.pname : null;
 				this.params.level = this.queryParams.level!='请选择' ?this.queryParams.level : null;
-				
+
 				this.getEList(this.params).then((data) => {
 					apps.log('企业列表数据请求成功')
 				}, (error) => {
 					apps.log(error)
 				});
-				
+
 			}
 		}
 	}
