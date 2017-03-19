@@ -36,3 +36,15 @@ export const filterGoodsDetail = (state) =>{
 	
 	return detail;
 }
+//重新组装likns
+export const filterLinks = (state) =>{
+	let data = state.modules.siteLinkList
+	let gov = data.filter(d=>d.type === 'gov');
+    let land = data.filter(d=>d.type === 'land');
+    let credit = data.filter(d=>d.type === 'credit');
+    return {
+	    	gov,
+	    	land,
+	    	credit
+    }
+}

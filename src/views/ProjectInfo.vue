@@ -24,152 +24,152 @@
 					</div>
 				</div>
 				<div class="fn-left info-list w-r">
-					<div class="bor-t bor-r fn-clear">
+					<div class="bor-t bor-r box">
 						<div class="title">项目名称：</div>
-						<div class="cont text-center f-w">{{detail.name|| '无'}}</div>
+						<div class="cont text-center f-w fx fx-y-center" >{{detail.name|| '无'}}</div>
 					</div>
-					<div class="bor-t bor-r fn-clear">
-						<div class="title">企业名称：</div>
-						<div class="cont">{{detail.group_name|| '无'}}</div>
+					<div class="bor-t bor-r box ">
+						<div class="title ">企业名称：</div>
+						<div class="cont fx fx-y-center">{{detail.group_name|| '无'}}</div>
 					</div>
-					<div class="bor-t bor-r fn-clear">
+					<div class="bor-t bor-r box">
 						<div class="title">坐落地址：</div>
-						<div class="cont">{{detail.address|| '无'}}</div>
+						<div class="cont fx fx-y-center">{{detail.address|| '无'}}</div>
 					</div>
-					<div class="bor-t bor-r fn-clear">
+					<div class="bor-t bor-r box">
 						<div class="title">占地面积：</div>
-						<div class="cont">{{detail.hold_area||0}}平方米</div>
+						<div class="cont fx fx-y-center">{{detail.hold_area||0}}平方米</div>
 					</div>
-					<div class="bor-t bor-r fn-clear">
+					<div class="bor-t bor-r box">
 						<div class="title">总建筑面积：</div>
-						<div class="cont">{{detail.build_area || 0}}平方米</div>
+						<div class="cont fx fx-y-center">{{detail.build_area || 0}}平方米</div>
 					</div>
-					<div class="bor-t bor-r fn-clear">
+					<div class="bor-t bor-r box">
 						<div class="title">物业类型：</div>
-						<div class="cont">{{detail.house_name|| '无'}}</div>
+						<div class="cont fx fx-y-center">{{detail.house_name|| '无'}}</div>
 					</div>
-					<div class="bor-t bor-r fn-clear">
+					<div class="bor-t bor-r box">
 						<div class="title">总户数：</div>
-						<div class="cont">{{detail.household_count || 0}}户</div>
+						<div class="cont fx fx-y-center">{{detail.household_count || 0}}户</div>
 					</div>
-					<div class="bor-t bor-r fn-clear bor-b">
+					<div class="bor-t bor-r box bor-b">
 						<div class="title">联系电话：</div>
-						<div class="cont">{{detail.tel || '无'}}</div>
+						<div class="cont fx fx-y-center">{{detail.tel || '无'}}</div>
 					</div>
 				</div>
 			</div>
 		</section>
 		<section class="fn-clear">
 			<div class="info-list w-l fn-left">
-				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+				<div class="bor-b bor-l bor-r bor-rig box">
 					<div class="title">交房标准：</div>
-					<div class="cont">{{detail.handed_standard|| '无'}}</div>
+					<div class="cont fx fx-y-center">{{detail.handed_standard|| '无'}}</div>
 				</div>
-				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+				<div class="bor-b bor-l bor-r bor-rig box">
 					<div class="title">停车位：</div>
-					<div class="cont"> {{detail.park_count || 0}}个</div>
+					<div class="cont fx fx-y-center"> {{detail.park_count || 0}}个</div>
 				</div>
-				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+				<div class="bor-b bor-l bor-r bor-rig box">
 					<div class="title">开工时间：</div>
-					<div class="cont">{{detail.start_date | formatTime "yyyy-MM-dd"}}</div>
+					<div class="cont fx fx-y-center">{{detail.start_date | formatTime "yyyy-MM-dd"}}</div>
 				</div>
-				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+				<div class="bor-b bor-l bor-r bor-rig box">
 					<div class="title">项目开发公司名称：</div>
-					<div class="cont">{{detail.develop_name|| '无'}}</div>
+					<div class="cont fx fx-y-center">{{detail.develop_name|| '无'}}</div>
 				</div>
 			</div>
 			<div class="fn-left info-list w-r">
-				<div class="bor-r bor-b fn-clear">
+				<div class="bor-r bor-b box">
 					<div class="title">交房时间：</div>
-					<div class="cont">{{detail.handed_date | formatTime "yyyy-MM-dd"}}</div>
+					<div class="cont fx fx-y-center">{{detail.handed_date | formatTime "yyyy-MM-dd"}}</div>
 				</div>
-				<div class="bor-r bor-b fn-clear">
+				<div class="bor-r bor-b box">
 					<div class="title">车位比：</div>
-					<div class="cont">{{detail.stall|| '无'}}</div>
+					<div class="cont fx fx-y-center">{{detail.stall|| '无'}}</div>
 				</div>
-				<div class="bor-r bor-b fn-clear">
+				<div class="bor-r bor-b box">
 					<div class="title">竣工时间：</div>
-					<div class="cont">{{detail.end_date | formatTime "yyyy-MM-dd"}}</div>
+					<div class="cont fx fx-y-center">{{detail.end_date | formatTime "yyyy-MM-dd"}}</div>
 				</div>
-				<div class="bor-r bor-b fn-clear">
+				<div class="bor-r bor-b box">
 					<div class="title">集团公司名称：</div>
-					<div class="cont">{{detail.group_name|| '无'}}</div>
+					<div class="cont fx fx-y-center">{{detail.group_name|| '无'}}</div>
 				</div>
 			</div>
 		</section>
 		<section class="info-list">
-			<div class="bor-l bor-b bor-r fn-clear">
+			<div class="bor-l bor-b bor-r box">
 				<div class="title">建筑设计单位名称：</div>
-				<div class="cont w790">{{detail.design_name|| '无'}}</div>
+				<div class="cont w790 fx fx-y-center">{{detail.design_name|| '无'}}</div>
 			</div>
-			<div class="bor-l bor-b bor-r fn-clear">
+			<div class="bor-l bor-b bor-r box">
 				<div class="title">施工单位名称：</div>
-				<div class="cont w790">{{detail.construction_name|| '无'}}</div>
+				<div class="cont w790 fx fx-y-center">{{detail.construction_name|| '无'}}</div>
 			</div>
-			<div class="bor-l bor-b bor-r fn-clear">
+			<div class="bor-l bor-b bor-r box">
 				<div class="title">监理单位名称：</div>
-				<div class="cont w790">{{detail.manage_name|| '无'}}</div>
+				<div class="cont w790 fx fx-y-center">{{detail.manage_name|| '无'}}</div>
 			</div>
 		</section>
 		<section class="fn-clear">
 			<div class="info-list w-l fn-left">
-				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+				<div class="bor-b bor-l bor-r bor-rig box">
 					<div class="title">景观设计单位名称：</div>
-					<div class="cont">{{detail.sight_name|| '无'}}</div>
+					<div class="cont fx fx-y-center">{{detail.sight_name|| '无'}}</div>
 				</div>
-				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+				<div class="bor-b bor-l bor-r bor-rig box">
 					<div class="title">业务银行名称：</div>
-					<div class="cont">{{detail.band_name|| '无'}}</div>
+					<div class="cont fx fx-y-center">{{detail.band_name|| '无'}}</div>
 				</div>
-				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+				<div class="bor-b bor-l bor-r bor-rig box">
 					<div class="title">销售代理公司名称：</div>
-					<div class="cont">{{detail.saleagent_name|| '无'}}</div>
+					<div class="cont fx fx-y-center">{{detail.saleagent_name|| '无'}}</div>
 				</div>
-				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+				<div class="bor-b bor-l bor-r bor-rig box">
 					<div class="title">权证号：</div>
-					<div class="cont">无</div>
+					<div class="cont fx fx-y-center">无</div>
 				</div>
-				<div class="bor-b bor-l bor-r bor-rig fn-clear">
+				<div class="bor-b bor-l bor-r bor-rig box">
 					<div class="title">预售许可证号：</div>
-					<div class="cont">无</div>
+					<div class="cont fx fx-y-center">无</div>
 				</div>
 			</div>
 			<div class="fn-left info-list w-r">
-				<div class="bor-r bor-b fn-clear">
+				<div class="bor-r bor-b box">
 					<div class="title">物业管理公司名称：</div>
-					<div class="cont">{{detail.house_name|| '无'}}</div>
+					<div class="cont fx fx-y-center">{{detail.house_name|| '无'}}</div>
 				</div>
-				<div class="bor-r bor-b fn-clear">
+				<div class="bor-r bor-b box">
 					<div class="title">广告代理公司名称：</div>
-					<div class="cont">{{detail.advertise_name|| '无'}}</div>
+					<div class="cont fx fx-y-center">{{detail.advertise_name|| '无'}}</div>
 				</div>
-				<div class="bor-r bor-b fn-clear">
+				<div class="bor-r bor-b box ">
 					<div class="title">签订土地出让合同时间：</div>
-					<div class="cont">{{detail.land_transfer_date | formatTime "yyyy-MM-dd"}}</div>
+					<div class="cont fx fx-y-center">{{detail.land_transfer_date | formatTime "yyyy-MM-dd"}}</div>
 				</div>
-				<div class="bor-r bor-b fn-clear">
+				<div class="bor-r bor-b box">
 					<div class="title">办证时间：</div>
-					<div class="cont">无</div>
+					<div class="cont fx fx-y-center">无</div>
 				</div>
-				<div class="bor-r bor-b fn-clear">
+				<div class="bor-r bor-b box">
 					<div class="title">开盘销售时间：</div>
-					<div class="cont">无</div>
+					<div class="cont fx fx-y-center">无</div>
 				</div>
 			</div>
 		</section>
 		<section class="info-list">
-			<div class="bor-l bor-b bor-r fn-clear">
+			<div class="bor-l bor-b bor-r box">
 				<div class="title">项目配套设施情况介绍：</div>
-				<div class="cont w790">{{detail.facility_situation || '无'}}</div>
+				<div class="cont w790 fx fx-y-center">{{detail.facility_situation || '无'}}</div>
 			</div>
-			<div class="bor-l bor-b bor-r fn-clear">
+			<div class="bor-l bor-b bor-r box">
 				<div class="title">项目情况介绍：</div>
-				<div class="cont w790">{{detail.project_situation || '无'}}</div>
+				<div class="cont w790 fx fx-y-center">{{detail.project_situation || '无'}}</div>
 			</div>
 			
-			<div class="bor-l bor-b bor-r fn-clear" style="background: #dbedff;">
-				<div class="title" style="height: 100%;line-height: none; border-right: none;">预售许可证：</div>
-				<div class="cont w790" style="height: auto;line-height: none; padding: 0; width: 820px !important;">
+			<div class="bor-l bor-b bor-r box" >
+				<div class="title" style="line-height: none; border-right: none;">预售许可证：</div>
+				<div class=" cont w790 fx fx-y-center" style="height: auto;line-height: none;padding: 0; width: 820px !important;">
 					<table width="100%" class="tab-list" border="0" cellspacing="" cellpadding="">
 						<tr><th>预售许可证号</th><th>办证时间</th><th>开盘时间</th><th>交房时间</th></tr>
 						<tr v-for="item in licence">
@@ -210,6 +210,11 @@
 <!-- 添加 scoped “范围”属性CSS限制这个组件只 -->
 <style scoped lang="scss">
 	@import "../assets/css/common.scss";
+	table{
+		th,td{
+			padding: 10px;
+		}
+	}
 	.info-cont {
 		margin-top: 25px;
 		.swiper {
@@ -238,13 +243,14 @@
 			border-right: 1px solid #ccc;
 		}
 		.title,.cont{
-			float: left;
-			height: 44px;
-			line-height: 44px;
+			/*float: left;*/
+			min-height: 44px;
+			line-height: 20px;
 			padding: 0 10px;
 		}
 		.title{
 			width: 158px;
+			line-height: 44px;
 			text-align: right;
 			background: #dbedff;
 			border-right: 1px solid #ccc;
@@ -252,6 +258,7 @@
 		}
 		.cont{
 			width: 294px;
+			/*background: #fff;*/
 			&.f-w{
 				font-weight: bold;
 			}

@@ -423,9 +423,9 @@ export const getEPList = ({ dispatch, state },params={}) => {
 export const getSiteLinkList = ({dispatch,state},params={}) => {
   return new Promise((resolve, reject) =>{
     apps.get(GET_SITE_LINK_LIST,params).success((data)=>{
-      apps.log(data);
+//    apps.log(data);
       dispatch(types.GET_SITE_LINK_LIST,data);
-      resolve(data);
+      resolve();
     }).businessError(900,(msg, data)=>{
       reject(msg);
     });
