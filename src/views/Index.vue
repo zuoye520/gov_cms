@@ -175,9 +175,9 @@
 								<p class="company-name fn-clear fn-left">
                   <span class="fn-left index">{{$index + 1}}</span>
 									<span><a v-link="{name : 'enterpriseInfo',params: {pid : item.id}}">{{item.name}}</a></span>
-									<span class="fn-right">{{item.competency_grade == '0' ? "未参评" : item.score + "分"}}</span>
+									<span class="fn-right">{{item.score ? item.score + "分"  : "未参评"}}</span>
 								</p>
-								<div class="fn-right level">{{item.competency_grade == '0' ? "未参评" : item.competency_grade + "级"}} </div>
+								<div class="fn-right level">{{item.competency_grade ? item.competency_grade + "级"  :  "未参评"}} </div>
 							</li>
 							<li v-show="eLeveList.length <=0">
 								<p align="center">暂无相关企业</p>
