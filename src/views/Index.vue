@@ -62,11 +62,11 @@
 				<div class="login-cont m-b-15">
 					<h3>开发企业登录窗口<p>Login Window</p></h3>
 					<div class="user-info">
-						<p class="m-b-15"><span>用户名：</span><input type="text" id="" value="" /></p>
-						<p><span>密<i></i>码：</span><input type="password" id="" value="" /></p>
+						<p class="m-b-15"><span>用户名：</span><input type="text" v-model.trim="loginParams.username" /></p>
+						<p><span>密<i></i>码：</span><input type="password" v-model.trim="loginParams.password" /></p>
 						<div class="btns fn-clear">
 							<a class="btn-register fn-left" v-link="{ name: 'tips'}">注册</a>
-							<a class="btn-login fn-right">登录</a>
+							<a class="btn-login fn-right" @click="handleLogin">登录</a>
 						</div>
 					</div>
 				</div>
@@ -867,7 +867,8 @@
 		getELeveListAction,
 		getEGradesList,
 		getAList,
-		getCXEList
+		getCXEList,
+		manageLogin
 	} from '../vuex/actions.js';
 	import Pages from "../components/Pages.vue";
 	import Gather from "../components/Gather.vue";
@@ -892,6 +893,10 @@
 		 */
 		data() {
 			return {
+				loginParams:{
+					username:null,
+					password:null
+				},
 				qycxActive: 1, //默认企业信息身份查询
 				xwdtActive: 1, //默认显示新闻动态
 				xzcfActive: 1, //默认显示行政处罚
@@ -991,7 +996,8 @@
 				getELeveListAction,
 				getEGradesList,
 				getAList,
-				getCXEList
+				getCXEList,
+				manageLogin
 			}
 		},
 		/*
@@ -1125,6 +1131,14 @@
 		 * 处理事件
 		 */
 		methods: {
+			handleLogin(){//登录
+				this.manageLogin().then((data) => {
+					let url = `${data}?userName=${this.loginParams.username}&pwd=${this.loginParams.password}`
+					window.open(url)
+				}, (error) => {
+					apps.log(error)
+				});
+			},
 			initSwiper() { //初始化轮播图
 				swiper1 = new Swiper('#banner', {
 						pagination: '#banner .swiper-pagination',
