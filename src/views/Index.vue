@@ -1132,6 +1132,12 @@
 		 */
 		methods: {
 			handleLogin(){//登录
+				let userName =  this.loginParams.username || null,
+					pwd =  this.loginParams.password || null
+				if(!userName || !pwd){
+					alert('请输入账号或者密码')
+					return
+				}
 				this.manageLogin().then((data) => {
 					let url = `${data}?userName=${this.loginParams.username}&pwd=${this.loginParams.password}`
 					window.open(url)
